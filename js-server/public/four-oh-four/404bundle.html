@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <style>
+      div {
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          overflow: visible;
+
+      }
+
+      .body {
+          top: 0%;
+          left: 0%;
+          position: absolute;
+          overflow: visible;
+      }
+
+      .text {
+          opacity: 0;
+      }
+
+      #backdrop {
+          opacity: 0;
+          left:-10%;
+          top:-5%;
+          width:117%;
+          height:113%;
+          background: url("images/404_arnold.jpg") no-repeat center center;
+          background-size: 100%;
+
+          animation: fadeIn 5s forwards, moveBernard 40s ease-out forwards;
+      }
+
+      #doesnt-look-wrapper {
+          top: 3%;
+          left: 2%;
+          background: url("images/doesnt-look.png") no-repeat;
+          animation: fadeIn 7s forwards, moveTextRight 5s ease-out forwards;
+          animation-delay: 1.5s;
+      }
+
+      #like-wrapper {
+          top: 17%;
+          left: 27%;
+          background: url("images/like.png") no-repeat;
+          animation: fadeIn 7s forwards, moveTextLeft 5s ease-out forwards;
+          animation-delay: 2s;
+
+      }
+
+      #anything-at-all-wrapper {
+          top: 9%;
+          left: -10%;
+          background: url("images/anything-at-all.png") no-repeat;
+          animation: fadeIn 7s forwards, moveTextRight 5s ease-out forwards;
+          animation-delay: 2.5s;
+
+      }
+
+      #to-me-wrapper {
+          top: 38%;
+          left: 18%;
+          background: url("images/to-me.png") no-repeat;
+          animation: fadeIn 7s forwards, moveTextLeft 5s ease-out forwards;
+          animation-delay: 3.2s;
+      }
+
+      #four-oh-four-wrapper {
+          top: 55%;
+          left: -3%;
+          background: url("images/404.png") no-repeat;
+          animation: fadeIn 7s forwards, moveTextUp 5s ease-out forwards;
+          animation-delay: 4.5s;
+      }
+
+      @keyframes moveBernard {
+        0% { transform: translate(5%, 2%); }
+        100% { transform: translate(-2.5%, -2%); }
+      }
+
+      @keyframes moveTextUp {
+          0% { transform: translateY(4%) scale(0.8, 0.8); }
+          100% { transform: translateY(0%) scale(0.8, 0.8); }
+      }
+
+      @keyframes moveTextLeft {
+          0% { transform: translateX(-2%) scale(0.8, 0.8); }
+          100% { transform: translateX(0%) scale(0.8, 0.8); }
+      }
+
+      @keyframes moveTextRight {
+          0% { transform: translateX(2%) scale(0.8, 0.8); }
+          100% { transform: translateX(0%) scale(0.8, 0.8); }
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+      }
+    </style>
+  </head>
+
+  <div id="wrapper" class="body" class="preload">
+      <div id="backdrop"></div>
+      <div class= "text" id="doesnt-look-wrapper"></div>
+      <div class= "text" id="like-wrapper"></div>
+      <div class= "text" id="anything-at-all-wrapper"></div>
+      <div class= "text" id="to-me-wrapper"></div>
+      <div class= "text" id="four-oh-four-wrapper"></div>
+  </div>
+</html>
+
+<script>
+  /* two disable scroll functions are called here. Without reveiwing them too much,
+   * it was apparant that they each had a corner case of users being able to scroll
+   * that the other missed. Ideally, they would be combined -- alter them however
+   * you see fit.
+  */
+  function disableScrolling(){
+      var x=window.scrollX;
+      var y=window.scrollY;
+      window.onscroll=function(){window.scrollTo(x, y);};
+  }
+  disableScrolling();
+  // left: 37, up: 38, right: 39, down: 40,
+  // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+  var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+  function preventDefault(e) {
+    e = e || window.event;
+    if (e.preventDefault)
+        e.preventDefault();
+    e.returnValue = false;
+  }
+
+  function preventDefaultForScrollKeys(e) {
+      if (keys[e.keyCode]) {
+          preventDefault(e);
+          return false;
+      }
+  }
+
+  function disableScroll() {
+    if (window.addEventListener) // older FF
+        window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.ontouchmove  = preventDefault; // mobile
+    document.onkeydown  = preventDefaultForScrollKeys;
+  }
+
+  disableScroll()
+</script>

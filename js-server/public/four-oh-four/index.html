@@ -1,0 +1,77 @@
+<!-- Note: there is no body wrapper. this originally sat inside a rails
+     application and was yielded. If this is to be used in a framework,
+     make sure to place and link the stylesheet appripriately.
+
+     The JS (located directly in the HTML below) only serves to prevent user
+     scrolling (which the oversized image attempts to enable).
+     We are overriding the scrolling with JS and not fitting the
+     image directly so that bernard can traverse the screen WITHOUT clipping beyond
+     the borders upon render.
+
+     The css is not altered for mobile, but the positioning should work well for
+     most monitor resolutions
+
+     The bernard image is not my property and is widely available via a google
+     search: bernard lowe westworld in many different resolutions
+
+     All text images are provided as jpgs and pngs
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The page you were looking for doesn't exist (404)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="not_found.css">
+  </head>
+
+  <div id="wrapper" class="body" class="preload">
+      <div id="backdrop"></div>
+      <div class= "text" id="doesnt-look-wrapper"></div>
+      <div class= "text" id="like-wrapper"></div>
+      <div class= "text" id="anything-at-all-wrapper"></div>
+      <div class= "text" id="to-me-wrapper"></div>
+      <div class= "text" id="four-oh-four-wrapper"></div>
+  </div>
+</html>
+
+<script>
+/* two disable scroll functions are called here. Without reveiwing them too much,
+ * it was apparant that they each had a corner case of users being able to scroll
+ * that the other missed. Ideally, they would be combined -- alter them however
+ * you see fit.
+*/
+function disableScrolling(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
+disableScrolling();
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e = e || window.event;
+  if (e.preventDefault)
+      e.preventDefault();
+  e.returnValue = false;
+}
+
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+function disableScroll() {
+  if (window.addEventListener) // older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, false);
+  window.onwheel = preventDefault; // modern standard
+  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+  window.ontouchmove  = preventDefault; // mobile
+  document.onkeydown  = preventDefaultForScrollKeys;
+}
+
+disableScroll()
+</script>

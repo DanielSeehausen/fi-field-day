@@ -1,0 +1,39 @@
+{
+  "name": "socket-server",
+  "version": "1.0.0",
+  "description": "Flatiron WSServer for Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test",
+    "watch": "supervisor -n index.js --no-restart-on error index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielseehausen/flatiron-hackathon-wsserver.git"
+  },
+  "keywords": [
+    "web-sockets",
+    "WS",
+    "matrix",
+    "matrices",
+    "web",
+    "sockets"
+  ],
+  "author": "Daniel Seehausen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielseehausen/flatiron-hackathon-wsserver/issues"
+  },
+  "homepage": "https://github.com/danielseehausen/flatiron-hackathon-wsserver#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-rate-limit": "^2.11.0",
+    "express-ws": "^3.0.0",
+    "mongodb": "^3.0.0-rc0",
+    "node-fetch": "^2.1.2",
+    "redis": "^2.8.0",
+    "ws": "^5.1.1"
+  }
+}
