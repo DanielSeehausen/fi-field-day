@@ -67,3 +67,7 @@ campuses + online in the future.
 Regardless of how you would like to contribute, this gives you a chance to play
 an integral team role in launching a live application. You can practice your
 skills, be creative/have fun, and grow your portfolio in one fell swoop. 
+
+#### The Code
+
+See: `/code/APP-GUIDE.md`
