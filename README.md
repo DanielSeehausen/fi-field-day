@@ -9,7 +9,7 @@ interpersonal, and meatbag vs. machine competitive programming.
 If you are programming for the project, or interested in what it emulates in
 features, please check out what this is
 based off of:
-  - [wikipedia](https://en.wikipedia.org/wiki/Place_(Reddit)
+  - [wikipedia](https://en.wikipedia.org/wiki/Place_(Reddit))
   - [the original developers' team blog](https://redditblog.com/2017/04/18/place-part-two/)
   - [and if you are a glutton for information: the OG /r/place](https://reddit.com/r/place)
 
