@@ -8,7 +8,7 @@ const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 const logStream = fs.createWriteStream('./logs/http-req.log', {flags: 'a'})
 const errStream = fs.createWriteStream('./logs/http-req-error.log', {flags: 'a'})
-const reqValid = require('./src/reqValid.js')
+const reqValidator = require('./src/reqValidator.js')
 const Game = require('./src/game.js')
 const config = require('./config.js')
 
@@ -16,18 +16,20 @@ const app = express()
 const game = new Game()
 
 
-/* request handling order
-
+/* 
+ -> assert query.id was passed
+ -> request handling order
+ -> 
 */
 
 
 //*************************** LIMITER MIDDLEWARE *******************************
-app.use(limiter)
+app.use('/setTile', [validator, limiter])
 
 
 //*************************** VALIDATION MIDDLEWARE ****************************
 function assignGroup(req) {
-  // TODO: doubling up on reqValid should be fixed
+  // TODO: doubling up on reqValidator should be fixed
   if (!req.query.id) return false
   if (req.query.id < config.IDLIMIT["low"] || req.query.id > config.IDLIMIT["high"]) return false
   try {
@@ -43,7 +45,7 @@ function assignGroup(req) {
 
 // assert valid headers and identity
 app.use((req, res, next) => {
-  const validReq = reqValid(req)
+  const validReq = reqValidator(req)
   const validGroup = assignGroup(req)
   if (validReq && validGroup) return next()
   if (validGroup) {
