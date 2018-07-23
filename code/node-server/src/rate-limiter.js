@@ -7,7 +7,7 @@ const limiter = new RateLimit({ 
   delayMs: 0, // more relevant for client sign/captcha type stuff
   headers: false,
   message: `Rate Limit Exceeded. Retry-After ${this.windowMs} ms`,
-  keyGenerator: (req) => { req.query.id },
+  keyGenerator: (req) => ( req.query.id ),
   handler: (req, res, next) => { res.status(429).send(this.msg) }
 })
 
