@@ -28,7 +28,9 @@ React client for the users. Displays:
   - using canvas because divs won't be reasonable at the new scale
   
 
-#### User Node Client
+#### User Clients
+
+<!-- TODO: update this discuss with master steven -->
 
 Node client. Responsible for:
   - connecting to server's ws
