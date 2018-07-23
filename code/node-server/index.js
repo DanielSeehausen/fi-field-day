@@ -1,7 +1,9 @@
 const path = require("path")
 const fs = require('fs')
 const express = require('express')
-const RateLimit = require('express-rate-limit')
+
+const limiter = require('./src/rate-limiter.js')
+
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 const logStream = fs.createWriteStream('./logs/http-req.log', {flags: 'a'})
@@ -14,8 +16,12 @@ const app = express()
 const game = new Game()
 
 
+/* request handling order
+
+*/
+
+
 //*************************** LIMITER MIDDLEWARE *******************************
-const limiter = require('./src/rate-limiter.js')
 app.use(limiter)
 
 
