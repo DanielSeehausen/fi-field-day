@@ -2,13 +2,13 @@ const path = require("path")
 const fs = require('fs')
 const express = require('express')
 
-const limiter = require('./src/rate-limiter.js')
+const limiter = require('./src/middleware/rate-limiter.js')
+const validator = require('./src/middleware/reqValidators/index.js')
 
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 const logStream = fs.createWriteStream('./logs/http-req.log', {flags: 'a'})
 const errStream = fs.createWriteStream('./logs/http-req-error.log', {flags: 'a'})
-const reqValidator = require('./src/reqValidator.js')
 const Game = require('./src/game.js')
 const config = require('./config.js')
 
@@ -24,7 +24,8 @@ const game = new Game()
 
 
 //*************************** LIMITER MIDDLEWARE *******************************
-app.use('/setTile', [validator, limiter])
+app.use('/setTile', [limiter])
+app.use(validator)
 
 
 //*************************** VALIDATION MIDDLEWARE ****************************
