@@ -12,6 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/danielseehausen/flatiron-hackathon-wsserver.git"
   },
+  "_moduleAliases": {
+    "@middleware": "app/lib",
+    "@root": "./",
+    "@config": "./@config"
+  },
   "keywords": [
     "web-sockets",
     "WS",

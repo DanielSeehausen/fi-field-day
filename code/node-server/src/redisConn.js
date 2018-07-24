@@ -1,5 +1,5 @@
 // thanks to steven b
-const config = require('../config.js')
+const config = require('@config)
 
 class RedisConn {
 

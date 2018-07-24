@@ -1,4 +1,4 @@
-const config = require('../config.js')
+const config = require('@config')
 const Board = require('./board.js')
 const Conn = require('./conn.js')
 const Group = require('./group.js')

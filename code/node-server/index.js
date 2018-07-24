@@ -1,73 +1,32 @@
 const path = require("path")
-const fs = require('fs')
 const express = require('express')
+require('module-alias/register') // allows @aliases for require paths
+const config = require('@config')
 
-const limiter = require('./src/middleware/rate-limiter.js')
-const validator = require('./src/middleware/reqValidators/index.js')
+const limiter = require('@middleware/rate-limiter.js')
+const validRequest = require('@middleware/reqValidators/index.js')
 
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
-const logStream = fs.createWriteStream('./logs/http-req.log', {flags: 'a'})
-const errStream = fs.createWriteStream('./logs/http-req-error.log', {flags: 'a'})
+
 const Game = require('./src/game.js')
-const config = require('./config.js')
 
 const app = express()
 const game = new Game()
 
-
-/* 
- -> assert query.id was passed
- -> request handling order
- -> 
-*/
-
-
-//*************************** LIMITER MIDDLEWARE *******************************
-app.use('/setTile', [limiter])
-app.use(validator)
-
-
-//*************************** VALIDATION MIDDLEWARE ****************************
-function assignGroup(req) {
-  // TODO: doubling up on reqValidator should be fixed
-  if (!req.query.id) return false
-  if (req.query.id < config.IDLIMIT["low"] || req.query.id > config.IDLIMIT["high"]) return false
-  try {
-    const group = game.findGroup(req.query.id, req.connection.remoteAddress)
-    if (!group) return false
-    req.query.group = group
-    return true
-  } catch(e) {
-    console.error(`assigning group failed for id: ${req.query.id}`, e)
-    return false
-  }
-}
-
-// assert valid headers and identity
+//*************************** VALIDATOR ******************************
 app.use((req, res, next) => {
-  const validReq = reqValidator(req)
-  const validGroup = assignGroup(req)
-  if (validReq && validGroup) return next()
-  if (validGroup) {
-    // if their request was bad, but the id was right, add to their group record as bad request
-    validGroup.addBadRequest()
-  }
-  res.status(400).send("invalid request!")
-})
-
-//***************************** HTTP REQ LOGGING *******************************
-// log success
-app.use((req, res, next) => {
-  logStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
+  if (!validRequest(req)) 
+    return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
+  
   next()
 })
 
-// log faliure
-app.use((err, req, res, next) => {
-  errStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
-  next(err)
-})
+//************************** RATE LIMITER ****************************
+app.use(limiter)
+
+//************************* HTTP REQ LOGGER **************************
+app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
 app.get('/getBoard', (req, res) => {
@@ -96,6 +55,40 @@ app.get('/getScores', (req, res) => {
 app.get('/getGroup', (req, res) => {
   res.status(200).send(JSON.stringify(req.query.group))
 })
+
+
+
+
+// function assignGroup(req) {
+//   // TODO: doubling up on reqValidator should be fixed
+//   if (!req.query.id) return false
+//   if (req.query.id < config.IDLIMIT["low"] || req.query.id > config.IDLIMIT["high"]) return false
+//   try {
+//     const group = game.findGroup(req.query.id, req.connection.remoteAddress)
+//     if (!group) return false
+//     req.query.group = group
+//     return true
+//   } catch(e) {
+//     console.error(`assigning group failed for id: ${req.query.id}`, e)
+//     return false
+//   }
+// }
+// 
+// // assert valid headers and identity
+// app.use((req, res, next) => {
+//   const validReq = reqValidator(req)
+//   const validGroup = assignGroup(req)
+//   if (validReq && validGroup) return next()
+//   if (validGroup) {
+//     // if their request was bad, but the id was right, add to their group record as bad request
+//     validGroup.addBadRequest()
+//   }
+//   res.status(400).send("invalid request!")
+// })
+
+
+
+
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404

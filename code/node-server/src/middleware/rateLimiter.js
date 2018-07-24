@@ -1,4 +1,4 @@
-const config = require('config.js')
+const config = require('@config')
 const RateLimit = require('express-rate-limit')
 
 const limiter = new RateLimit({ 
