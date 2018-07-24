@@ -113,7 +113,7 @@ class Game {
     return this.groups[id]
   }
 
-  getBoardHTTP() {
+  getCompressedBoard() {
     return this.board
   }
 

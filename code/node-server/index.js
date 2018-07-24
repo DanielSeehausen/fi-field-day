@@ -24,7 +24,9 @@ app.use(limiter)
 app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-app.post('/setTile', (req, res) => {
+// TODO sub routers
+
+app.post('/tile', (req, res) => {
   const tile = {
     x: req.query.x,
     y: req.query.y,
@@ -34,60 +36,39 @@ app.post('/setTile', (req, res) => {
   res.status(200).send()
 })
 
-app.get('/getBoard', (req, res) => {
-  res.status(200).send(JSON.stringify(game.getBoardHTTP()))
+app.get('/tile', (req, res) => {
+  const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
+  res.status(200).send(payload)
 })
 
-app.get('/getTile', (req, res) => {
-  const color = game.getTile(req.query.x, req.query.y)
-  res.set('color', color)
-  res.status(200).send(color)
+app.get('/board', (req, res) => {
+  const payload = game.getCompressedBoard()
+  res.status(200).send(payload)
 })
 
-
-
-app.get('/getScores', (req, res) => {
+app.get('/scores', (req, res) => {
+  // TODO: why this here
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+  // If needed
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
   res.status(200).json(JSON.stringify(game.getScores()))
 })
 
-app.get('/getGroup', (req, res) => {
+app.get('/achievements', (req, res) => {
   res.status(200).send(JSON.stringify(req.query.group))
 })
 
+app.get('/achievements/:id', (req, res) => {
+  res.status(200).send(JSON.stringify(req.query.group))
+})
 
-
-
-// function assignGroup(req) {
-//   // TODO: doubling up on reqValidator should be fixed
-//   if (!req.query.id) return false
-//   if (req.query.id < config.IDLIMIT["low"] || req.query.id > config.IDLIMIT["high"]) return false
-//   try {
-//     const group = game.findGroup(req.query.id, req.connection.remoteAddress)
-//     if (!group) return false
-//     req.query.group = group
-//     return true
-//   } catch(e) {
-//     console.error(`assigning group failed for id: ${req.query.id}`, e)
-//     return false
-//   }
-// }
-// 
-// // assert valid headers and identity
-// app.use((req, res, next) => {
-//   const validReq = reqValidator(req)
-//   const validGroup = assignGroup(req)
-//   if (validReq && validGroup) return next()
-//   if (validGroup) {
-//     // if their request was bad, but the id was right, add to their group record as bad request
-//     validGroup.addBadRequest()
-//   }
-//   res.status(400).send("invalid request!")
-// })
-
+app.get('/netStat', (req, res) => {
+  if (req.query.id !== '0')
+    res.status(401).send()
+  // TODO: return some game/network data?
+})
 
 
 
