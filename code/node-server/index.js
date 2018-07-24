@@ -4,7 +4,7 @@ require('module-alias/register') // allows @aliases for require paths
 const config = require('@config')
 
 const limiter = require('@middleware/rate-limiter.js')
-const validRequest = require('@middleware/reqValidators/index.js')
+const validator = require('@middleware/reqValidators/validator.js')
 
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
@@ -15,12 +15,7 @@ const app = express()
 const game = new Game()
 
 //*************************** VALIDATOR ******************************
-app.use((req, res, next) => {
-  if (!validRequest(req)) 
-    return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
-  
-  next()
-})
+app.use(validator) 
 
 //************************** RATE LIMITER ****************************
 app.use(limiter)
@@ -29,6 +24,16 @@ app.use(limiter)
 app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
+app.post('/setTile', (req, res) => {
+  const tile = {
+    x: req.query.x,
+    y: req.query.y,
+    c: `#${req.query.c}`
+  }
+  game.setTile(tile, req.query.id)
+  res.status(200).send()
+})
+
 app.get('/getBoard', (req, res) => {
   res.status(200).send(JSON.stringify(game.getBoardHTTP()))
 })
@@ -39,10 +44,7 @@ app.get('/getTile', (req, res) => {
   res.status(200).send(color)
 })
 
-app.post('/setTile', (req, res) => {
-  game.setTile(req.query.x, req.query.y, '#' + req.query.c, req.query.group)
-  res.status(200).send()
-})
+
 
 app.get('/getScores', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

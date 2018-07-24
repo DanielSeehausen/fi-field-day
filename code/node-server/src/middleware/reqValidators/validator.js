@@ -13,9 +13,13 @@ const routeValidators = {
   __noSuchMethod__: [() => true] // might be 404 but that is handled normally.
 }
 
-function validRequest(req, res) {
+function validRequest(req, res, next) {
   const validators = routeValidators[req.url]
-  return validators.every(validator => validator(req))
+  
+  if (!validators.every(validator => validator(req)))
+    return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
+  
+  next()
 }
 
 module.exports = validRequest
