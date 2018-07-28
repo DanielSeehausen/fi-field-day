@@ -11,12 +11,12 @@ class Game {
     return this.canvas.getCompressed()
   }
 
-  setTile(x, y, c) {
-    return this.canvas.setTile(x, y, c)
+  setTile(tile) { // {x, y, hexStr}
+    return this.canvas.setTile(tile)
   }
 
-  getTile(x, y) {
-    return this.canvas.getTile(x, y)
+  getTile(coords) {
+    return this.canvas.getTile(coords)
   }
 
   //********************************** MISC ************************************

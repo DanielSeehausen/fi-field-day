@@ -30,7 +30,7 @@ app.post('/tile', (req, res) => {
   const tile = {
     x: req.query.x,
     y: req.query.y,
-    c: `#${req.query.c}`
+    hexStr: `#${req.query.c}`
   }
   game.setTile(tile, req.query.id)
   res.status(200).send()

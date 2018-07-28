@@ -8,12 +8,12 @@ class Canvas {
     this._imgView = new Int8Array(this._buffer) // for nice unpacking to <canvas>
   }
   
-  setTile(x, y, hexStr) {
+  setTile({x, y, hexStr}) {
     const idx = this._coordToByteIdx(x, y)
     this._colorView[idx] = hexStr + 'ff'
   }
 
-  getTile(x, y) {
+  getTile({x, y}) {
     const idx = this._coordToByteIdx(x, y)
     return this._colorView[idx]
   }
