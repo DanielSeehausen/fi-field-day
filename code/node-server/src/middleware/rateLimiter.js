@@ -8,7 +8,7 @@ const limiter = new RateLimit({ 
   headers: false,
   message: `Rate Limit Exceeded. Retry-After ${this.windowMs} ms`,
   keyGenerator: (req) => ( req.query.id ),
-  skip: (req) => ( req.query.id === '0' ), // skip admin
+  skip: (req) => ( req.query.id === config.ADMIN_SECRET ), // skip admin
   handler: (req, res, next) => { res.status(429).send(this.msg) }
 })
 

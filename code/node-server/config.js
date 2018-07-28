@@ -2,9 +2,9 @@
 module.exports = {
   ROWS: 500,
   COLUMNS: 500,
-  DEFAULTCOLOR: '#EEE',
   PORT: 8080,
   IDLIMIT: {low: 0, high: 25},
   LIMITWINDOW: 1000,
-  LIMITCOUNT: 5
+  LIMITCOUNT: 5,
+  ADMIN_SECRET: '0' // TODO: make secret, add to .gitignore
 }

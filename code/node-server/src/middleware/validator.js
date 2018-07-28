@@ -1,12 +1,13 @@
 const config = require('@config')
-const validID = require('./validID')
-const validColor = require('./validColor')
-const getTile = require('./getTile')
+const validID = require('./reqValidators/validID.js')
+const validColor = require('./reqValidators/validColor.js')
+const getTile = require('./reqValidators/getTile.js')
 
-// this is strictly for validating routes that have specific parameter requirements 
-// if a request url isn't present here, it doesn't mean 404 (instead, it doesn't require any special validation)
-
-// TODO abstract for post and get
+/* this is strictly for validating routes that have specific parameter
+ * requirements. If a request url isn't present here, it doesn't mean 404
+ * instead, it means it doesn't require any special validation
+ */
+ 
 const routeValidators = {
   "POST": {
     "/tile": [validID, validTile, validColor],
@@ -19,9 +20,10 @@ const routeValidators = {
   }
 }
 
+pry = require('pryjs')
 function validRequest(req, res, next) {
   const validators = routeValidators[req.method][req.url]
-  
+  eval(pry.it)
   if (!validators.every(validator => validator(req)))
     return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
   

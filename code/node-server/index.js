@@ -4,12 +4,12 @@ require('module-alias/register') // allows @aliases for require paths
 const config = require('@config')
 
 const limiter = require('@middleware/rate-limiter.js')
-const validator = require('@middleware/reqValidators/validator.js')
+const validator = require('@middleware/validator.js')
 
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 
-const Game = require('./src/game.js')
+const Game = require('./src/game2.js')
 
 const app = express()
 const game = new Game()
@@ -21,7 +21,7 @@ app.use(validator)
 app.use(limiter)
 
 //************************* HTTP REQ LOGGER **************************
-app.use(logger)
+// app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
 // TODO sub routers
@@ -46,29 +46,29 @@ app.get('/board', (req, res) => {
   res.status(200).send(payload)
 })
 
-app.get('/scores', (req, res) => {
-  // TODO: why this here
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
-  // If needed
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-  res.status(200).json(JSON.stringify(game.getScores()))
-})
-
-app.get('/achievements', (req, res) => {
-  res.status(200).send(JSON.stringify(req.query.group))
-})
-
-app.get('/achievements/:id', (req, res) => {
-  res.status(200).send(JSON.stringify(req.query.group))
-})
-
-app.get('/netStat', (req, res) => {
-  if (req.query.id !== '0')
-    res.status(401).send()
-  // TODO: return some game/network data?
-})
+// app.get('/scores', (req, res) => {
+//   // TODO: why this here
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
+//   // If needed
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+//   res.status(200).json(JSON.stringify(game.getScores()))
+// })
+// 
+// app.get('/achievements', (req, res) => {
+//   res.status(200).send(JSON.stringify(req.query.group))
+// })
+// 
+// app.get('/achievements/:id', (req, res) => {
+//   res.status(200).send(JSON.stringify(req.query.group))
+// })
+// 
+// app.get('/netStat', (req, res) => {
+//   if (req.query.id !== '0')
+//     res.status(401).send()
+//   // TODO: return some game/network data?
+// })
 
 
 
