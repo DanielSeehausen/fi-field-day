@@ -9,7 +9,7 @@ const validator = require('@middleware/validator.js')
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 
-const Game = require('./src/game2.js')
+const Game = require('@app/game2.js')
 
 const app = express()
 const game = new Game()

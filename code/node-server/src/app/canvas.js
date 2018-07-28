@@ -1,5 +1,3 @@
-const hexStrToInt32 = require('./hexStrToInt32.js')
-
 class Canvas {
 
   constructor(rowCount, colCount) {
