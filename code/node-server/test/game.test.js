@@ -10,12 +10,13 @@ test('creates a canvas', () => {
   expect(game.canvas instanceof Canvas).toBe(true)
 })
 
-test('updates the canvas with setTile', () => {
+test('properly updates the canvas with setTile and asserts that both views into the pixel byte buffer are returning accurate data', () => {
   const hexStr = '87FE21'
   const int32 = hex6CharToInt32(hexStr)
   
   game.setTile({x: 0, y: 0, hexStr})
   
+  // TODO: these should really be in the canvas too
   expect(canvas.int32View[0]).toBe(int32)
   expect(canvas.int8View[0]).toBe(135)
   expect(canvas.int8View[1]).toBe(254)
