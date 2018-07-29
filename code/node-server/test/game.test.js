@@ -15,11 +15,8 @@ test('updates the canvas with setTile', () => {
   const int32 = hex6CharToInt32(hexStr)
   
   game.setTile({x: 0, y: 0, hexStr})
-  console.log(int32);
-  console.log(hexStr)
-  console.log(canvas.int8View);
-  console.log(canvas.int32View);
   
+  console.log(canvas.int32View)
   expect(canvas.int32View[0]).toBe(int32)
   expect(canvas.int8View[0]).toBe(0)
   expect(canvas.int8View[1]).toBe(1)
