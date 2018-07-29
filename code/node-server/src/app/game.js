@@ -18,6 +18,10 @@ class Game {
   getTile(coords) {
     return this.canvas.getTile(coords)
   }
+  
+  getBoard() {
+    return this.canvas.int8View
+  }
 
   //********************************** MISC ************************************
   toJSON() {

@@ -33,7 +33,7 @@ app.post('/tile', (req, res) => {
     hexStr: `#${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  res.status(200).send()
+  res.status(200).send(true)
 })
 
 app.get('/tile', (req, res) => {
@@ -42,7 +42,7 @@ app.get('/tile', (req, res) => {
 })
 
 app.get('/board', (req, res) => {
-  const payload = game.getCompressedBoard()
+  const payload = game.getBoard()
   res.status(200).send(payload)
 })
 

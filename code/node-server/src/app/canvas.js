@@ -25,7 +25,7 @@ class Canvas {
     const bytes = height * width * 4 // argb
     return new ArrayBuffer(bytes)
   }
-  
+
   _coordToByteIdx(x, y) {
     return (this.width * x + y)
   }
