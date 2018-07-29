@@ -6,7 +6,7 @@ class Canvas {
     this.height = rowCount
     this.width = colCount
     this._buffer = this._generateBuffer(this.height, this.width)
-    this.int32View = new Int32Array(this._buffer) // for easy writing
+    this.int32View = new Uint32Array(this._buffer) // for easy writing
     this.int8View = new Uint8Array(this._buffer) // for nice unpacking to <canvas>
   }
   
