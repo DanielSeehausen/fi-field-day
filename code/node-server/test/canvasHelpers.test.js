@@ -10,7 +10,5 @@ test('hex6CharToInt32 reverses a 6 char hex str and adds an alpha value in the p
   const str = '010203'
   const reversedWithAlpha = reverse8CharHexStr('010203FF')
   const int32 = parseInt(reversedWithAlpha, 16)
-  console.log(reversedWithAlpha);
-  console.log(int32);
   expect(hex6CharToInt32(str)).toBe(int32)
 })

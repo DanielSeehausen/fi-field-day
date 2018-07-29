@@ -16,13 +16,11 @@ test('updates the canvas with setTile', () => {
   
   game.setTile({x: 0, y: 0, hexStr})
   
-  console.log(canvas.int32View)
   expect(canvas.int32View[0]).toBe(int32)
   expect(canvas.int8View[0]).toBe(135)
   expect(canvas.int8View[1]).toBe(254)
   expect(canvas.int8View[2]).toBe(33)
   expect(canvas.int8View[3]).toBe(255)
-  
   
   game.setTile({x: 1, y: 1, hexStr})
   expect(canvas.int32View[3]).toBe(int32)
@@ -30,6 +28,4 @@ test('updates the canvas with setTile', () => {
   expect(canvas.int8View[13]).toBe(254)
   expect(canvas.int8View[14]).toBe(33)
   expect(canvas.int8View[15]).toBe(255)
-  
-  
 })
