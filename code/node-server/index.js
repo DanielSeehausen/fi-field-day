@@ -3,13 +3,13 @@ const express = require('express')
 require('module-alias/register') // allows @aliases for require paths
 const config = require('@config')
 
-const limiter = require('@middleware/rate-limiter.js')
+const limiter = require('@middleware/rateLimiter.js')
 const validator = require('@middleware/validator.js')
 
 const staticPath = path.join(__dirname, '/public')
 const fourOhFourPath = staticPath + '/four-oh-four/'
 
-const Game = require('@app/game2.js')
+const Game = require('@app/game.js')
 
 const app = express()
 const game = new Game()

@@ -1,7 +1,7 @@
 const config = require('@config')
 const validID = require('./reqValidators/validID.js')
 const validColor = require('./reqValidators/validColor.js')
-const getTile = require('./reqValidators/getTile.js')
+const validTile = require('./reqValidators/validTile.js')
 
 /* this is strictly for validating routes that have specific parameter
  * requirements. If a request url isn't present here, it doesn't mean 404
@@ -23,7 +23,6 @@ const routeValidators = {
 pry = require('pryjs')
 function validRequest(req, res, next) {
   const validators = routeValidators[req.method][req.url]
-  eval(pry.it)
   if (!validators.every(validator => validator(req)))
     return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
   
