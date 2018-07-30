@@ -9,5 +9,6 @@ html, body {
 }
 
 canvas {
+  padding: 1px;
   border: 2px solid teal;
 }
