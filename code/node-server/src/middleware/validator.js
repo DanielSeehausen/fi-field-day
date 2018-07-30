@@ -22,10 +22,9 @@ const routeValidators = {
 
 pry = require('pryjs')
 function validRequest(req, res, next) {
-  const validators = routeValidators[req.method][req.url]
+  const validators = routeValidators[req.method][req.path]
   if (!validators.every(validator => validator(req)))
     return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
-  
   next()
 }
 

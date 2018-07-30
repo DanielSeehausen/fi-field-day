@@ -38,12 +38,15 @@ app.post('/tile', (req, res) => {
 
 app.get('/tile', (req, res) => {
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
-  res.status(200).send(payload)
+  res.send(payload)
 })
 
 app.get('/board', (req, res) => {
-  const payload = game.getBoard()
-  res.status(200).send(payload)
+  res.setHeader('Access-Control-Allow-Methods', 'GET'); 
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  const buffer = game.getBoard()
+  res.send(buffer)
 })
 
 // app.get('/scores', (req, res) => {

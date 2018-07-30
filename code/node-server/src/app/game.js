@@ -7,10 +7,6 @@ class Game {
     this.canvas = new Canvas(config.ROWS, config.COLUMNS)
   }
 
-  getCanvas() {
-    return this.canvas.getCanvas()
-  }
-
   setTile(tile) { // {x, y, hexStr}
     return this.canvas.setTile(tile)
   }
