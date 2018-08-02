@@ -1,9 +1,12 @@
+const config = require('@config')
+
 function isNumeric(num=undefined) {
   return !isNaN(num)
 }
 
 function validTile(req) {
   const [x, y] = [req.query.x, req.query.y]
+
   return (
     isNumeric(x) &&
     isNumeric(y) &&

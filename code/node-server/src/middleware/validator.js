@@ -20,7 +20,6 @@ const routeValidators = {
   }
 }
 
-pry = require('pryjs')
 function validRequest(req, res, next) {
   const validators = routeValidators[req.method][req.path]
   if (!validators.every(validator => validator(req)))

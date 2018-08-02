@@ -7,7 +7,7 @@ class Game {
     this.canvas = new Canvas(config.ROWS, config.COLUMNS)
   }
 
-  setTile(tile) { // {x, y, hexStr}
+  setTile(tile) { // {x, y, hexStr} sans '#' on hexStr
     return this.canvas.setTile(tile)
   }
 

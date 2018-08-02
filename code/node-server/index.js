@@ -27,26 +27,28 @@ app.use(limiter)
 // TODO sub routers
 
 app.post('/tile', (req, res) => {
+  console.log(req.url);
   const tile = {
-    x: req.query.x,
-    y: req.query.y,
-    hexStr: `#${req.query.c}`
+    x: parseInt(req.query.x),
+    y: parseInt(req.query.y),
+    hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
   res.status(200).send(true)
 })
 
 app.get('/tile', (req, res) => {
+  
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
   res.send(payload)
 })
 
 app.get('/board', (req, res) => {
+  console.log(req.url);
   res.setHeader('Access-Control-Allow-Methods', 'GET'); 
   res.setHeader('Access-Control-Allow-Origin', '*');
   
-  const buffer = game.getBoard()
-  res.send(buffer)
+  res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
 // app.get('/scores', (req, res) => {

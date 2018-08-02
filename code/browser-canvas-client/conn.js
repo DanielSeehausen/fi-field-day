@@ -7,31 +7,25 @@ function getBoard(id='0') {
   fetch(BASE + `/board?id=${id}`, {
     method: 'GET',
   })
-  .then(response => response.arrayBuffer()).then(function(buffer) {
-    console.log(buffer);
-    x = new Uint8ClampedArray(buffer)
-    // buffer = new Uint8ClampedArray(buffer, 28, 4)
-    // data = new ImageData(buffer, 1, 1)
-    // ctx.putImageData(data, 0, 0)
-  });
+  .then(response => response.arrayBuffer())
+  .then(buffer => {
+    const int8Array = new Uint8ClampedArray(buffer)
+    console.log("Received: ", int8Array)
+    const dimension = Math.sqrt(int8Array.length/4)
+    data = new ImageData(int8Array, dimension, dimension)
+    ctx.putImageData(data, 0, 0)
+  })
 }
 
-// var imageData = context.getImageData(x, y, w, h);
-// var array = imageData.data; // array is a Uint8ClampedArray
-// var buffer = imageData.data.buffer; // buffer is a ArrayBuffer
-// 
-// // incomingBuffer is a TypedArray
-// var imageData2 = context.createImageData(w, h);
-// imageData2.data.set(incomingBuffer);
 
-// function setTile(x, y, c='#FF0000', id='0') {
-//   fetch(BASE + `/tile?x=${x}&y=${y}&c=${c}&id=${id}`, {
-//     method: 'Post',
-//     mode: 'no-cors',
-//   })
-//   .then(response => response)
-//   .then(x => { console.log(x.headers) })
-// }
+function setTile(x, y, c='FF0000', id='0') {
+  fetch(BASE + `/tile?x=${x}&y=${y}&c=${c}&id=${id}`, {
+    method: 'Post',
+    mode: 'no-cors',
+  })
+  .then(response => response)
+  .then(x => { console.log(x.headers) })
+}
 
 // function getTile(x, y, id='0') {
 //   fetch(BASE + `/tile?x=${x}&y=${y}&id=${id}`, {

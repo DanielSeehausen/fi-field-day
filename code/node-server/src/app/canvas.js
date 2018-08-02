@@ -7,7 +7,7 @@ class Canvas {
     this.width = colCount
     this._buffer = this._generateBuffer(this.height, this.width)
     this.int32View = new Uint32Array(this._buffer) // for easy writing
-    this.int8View = new Uint8ClampedArray(this._buffer) // for nice unpacking to <canvas>
+    this.int8View = new Uint8ClampedArray(this._buffer) // (don't need this as we can send an array _buffer straight?) for nice unpacking to <canvas>
   }
   
   setTile({x, y, hexStr}) {
