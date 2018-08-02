@@ -40,11 +40,13 @@ September 1st
 #### Who
 
 - **PM:**
-  * TODO fill out
+  * Tashawn
 - **Marketing/Hype:** 
   * TODO fill out
 - **Programming:** 
-  * TODO fill out
+  * Server: Daniel - ChromeBoi - Vicky
+  * Nexus: Steven B. - Terrance
+  * Browser Clients: Dick
 - **Operations:** 
   * TODO fill out
 - **Instructors:**
