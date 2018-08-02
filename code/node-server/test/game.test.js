@@ -24,6 +24,7 @@ test('properly updates the canvas with setTile and asserts that both views into 
   expect(canvas.int8View[3]).toBe(255)
   
   game.setTile({x: 1, y: 1, hexStr})
+  console.log(canvas.int32View[3].class)
   expect(canvas.int32View[3]).toBe(int32)
   expect(canvas.int8View[12]).toBe(135)
   expect(canvas.int8View[13]).toBe(254)
