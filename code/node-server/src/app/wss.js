@@ -1,35 +1,31 @@
-const config = require('config.js')
+const config = require('../../config.js')
 const WebSocketServer = require('ws').Server
 
-class WSS {
+const wss = new WebSocketServer({port: config.WSPORT})
 
-  constructor(game) {
-    this.wss = new WebSocketServer({port: config.PORT})
-    this.game = game
+wss.on('connection', (ws, req) => {
 
-    this.wss.on('connection', (ws, req) => {
-
-      const ip = req.connection.remoteAddress
-      const conn = this.game.connect(ws, ip)
-      console.log(`New wsclient from: ${ip}`);
-      game.sendBoard(conn)
-
-      ws.on('message', (data) => {
-        return // do nothing...not supposed to handle incoming traffic from wsclients
-      })
-
-      ws.on('close', () => {
-        game.removeConn(conn)
-        console.log(`${ip}: disconnected wsclient`)
-      })
-
-      ws.on('error', (error) => {
-        console.log(`${ip} ERRORED: ${error}`)
-      })
-
+    // ws.on('message', (data) => {
+    //   return // do nothing...not supposed to handle incoming traffic from wsclients
+    // })
+    
+    ws.on('close', () => {
+      console.log("WS conn closed!")
     })
-    console.log(`New wss initiated. listening for clients on: ${config.PORT}`);
-  }
+    
+    ws.on('error', (error) => {
+      console.log("WS conn errored! ", error)
+    })
+    
+  })
+  console.log(`New wss initiated. listening for clients on: ${config.WSPORT}`)
+}
+  
+wss.emit = (data) => {
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocketServer.OPEN)
+      client.send(data);
+  })
 }
 
-module.exports = WSS
+module.exports = wss

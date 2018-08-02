@@ -2,7 +2,7 @@
 module.exports = {
   ROWS: 10,
   COLUMNS: 10,
-  PORT: 8080,
+  WSPORT: 8080,
   IDLIMIT: {low: 0, high: 25},
   LIMITWINDOW: 1000,
   LIMITCOUNT: 5,
