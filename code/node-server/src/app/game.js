@@ -5,10 +5,12 @@ class Game {
 
   constructor() {
     this.canvas = new Canvas(config.ROWS, config.COLUMNS)
+    this.wss = require('./wss.js')
   }
 
   setTile(tile) { // {x, y, hexStr} sans '#' on hexStr
-    return this.canvas.setTile(tile)
+    this.canvas.setTile(tile)
+    this.wss.emit(tile)
   }
 
   getTile(coords) {

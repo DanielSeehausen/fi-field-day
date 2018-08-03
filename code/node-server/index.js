@@ -1,18 +1,17 @@
-const path = require("path")
+// const path = require("path")
+// const staticPath = path.join(__dirname, '/public')
+// const fourOhFourPath = staticPath + '/four-oh-four/'
+
 const express = require('express')
-require('module-alias/register') // allows @aliases for require paths
-const config = require('@config')
+const config = require('./config')
 
-const limiter = require('@middleware/rateLimiter.js')
-const validator = require('@middleware/validator.js')
+const limiter = require('./src/middleware/rateLimiter.js')
+const validator = require('./src/middleware/validator.js')
 
-const staticPath = path.join(__dirname, '/public')
-const fourOhFourPath = staticPath + '/four-oh-four/'
-
-const Game = require('@app/game.js')
+const Game = require('./src/app/game.js')
+const game = new Game()
 
 const app = express()
-const game = new Game()
 
 //*************************** VALIDATOR ******************************
 app.use(validator) 
@@ -80,7 +79,7 @@ app.get('/board', (req, res) => {
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404
-app.use(express.static(fourOhFourPath)) // 404 assets
+// app.use(express.static(fourOhFourPath)) // 404 assets
 app.use((req, res) => {
   // removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
   // even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/

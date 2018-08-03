@@ -1,4 +1,4 @@
-const config = require('@config')
+const config = require('../../../config.js')
 
 function validID(req) {
   const id = req.query.id

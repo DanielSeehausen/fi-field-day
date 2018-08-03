@@ -1,4 +1,4 @@
-const config = require('@config')
+const config = require('../../config.js')
 const validID = require('./reqValidators/validID.js')
 const validColor = require('./reqValidators/validColor.js')
 const validTile = require('./reqValidators/validTile.js')

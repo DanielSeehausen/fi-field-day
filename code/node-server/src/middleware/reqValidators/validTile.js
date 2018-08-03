@@ -1,4 +1,4 @@
-const config = require('@config')
+const config = require('../../../config.js')
 
 function isNumeric(num=undefined) {
   return !isNaN(num)
