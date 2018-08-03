@@ -42,15 +42,15 @@ September 1st
 - **PM:**
   * Tashawn
 - **Marketing/Hype:** 
-  * TODO fill out
+  * TODO fill out Evans
 - **Programming:** 
   * Server: Daniel - ChromeBoi - Vicky
-  * Nexus: Steven B. - Terrance
+  * Nexus: Steven B. - Terrance - Zach - ChromeBoi (supporting role)
   * Browser Clients: Dick
 - **Operations:** 
   * TODO fill out
 - **Instructors:**
-  * TODO fill out
+  * ChromeBoi
 
 
 #### This is BETA!
