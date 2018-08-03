@@ -8,7 +8,9 @@ TODO finish updating this
 
 Here is a crude drawing on the back of a paper plate:
 
-![]("./crude-drawing.jpg")
+<a align="center">
+  <img src="./crude-drawing.jpg" />
+</a>
 
 
 
