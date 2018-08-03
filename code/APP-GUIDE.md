@@ -4,6 +4,12 @@ There are 5 discrete apps (+ bot scripts) that make up the entire experience.
 They stand alone and, assuming standard I/O for testing, and should be able to
 operate independently. 
 
+TODO finish updating this
+
+Here is a crude drawing on the back of a paper plate:
+
+
+
 
 #### Browser Achievements/Leaderboard Client
 
