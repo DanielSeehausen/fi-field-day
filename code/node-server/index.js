@@ -37,7 +37,6 @@ app.post('/tile', (req, res) => {
 })
 
 app.get('/tile', (req, res) => {
-  
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
   res.send(payload)
 })

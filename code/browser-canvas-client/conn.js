@@ -1,7 +1,7 @@
 const BASE = 'http://localhost:3000'
 
 const canvas = document.getElementById("canvas")
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d')
 
 function getBoard(id='0') {
   fetch(BASE + `/board?id=${id}`, {
@@ -14,9 +14,22 @@ function getBoard(id='0') {
     const dimension = Math.sqrt(int8Array.length/4)
     data = new ImageData(int8Array, dimension, dimension)
     ctx.putImageData(data, 0, 0)
+    connectWS()
   })
+    
 }
 
+function connectWS() {
+  const socket = new WebSocket('ws://localhost:8080');
+  console.log("new ws");
+  socket.addEventListener('open', (event) => {
+      socket.send('Hello Server!')
+  })
+
+  socket.addEventListener('message', (event) => {
+      console.log('Message from server ', event.data)
+  })
+}
 
 function setTile(x, y, c='FF0000', id='0') {
   fetch(BASE + `/tile?x=${x}&y=${y}&c=${c}&id=${id}`, {
