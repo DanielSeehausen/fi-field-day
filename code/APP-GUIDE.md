@@ -2,7 +2,7 @@
 
 There are 5 discrete apps (+ bot scripts) that make up the entire experience.
 They stand alone and, assuming standard I/O for testing, and should be able to
-operate independently. 
+operate independently.
 
 TODO finish updating this
 
@@ -21,14 +21,14 @@ React client for the users. Displays:
   - Locked + unlocked achievements (group specific)
   - Global "first only" achievements
   - Real time leaderboard
-  
-  
+
+
 #### Browser Statistics Client
 
 React client. Displays:
   - ongoing application statistics (board writes, open ws connections, etc.)
   - (possibly just admin access aka not available to students - instead display it on one screen at each location)
-  
+
 
 #### Browser Board Client
 
@@ -36,7 +36,7 @@ React client for the users. Displays:
   - The actual board in real time
   - A simple color picker and click handler to change a tiles color
   - using canvas because divs won't be reasonable at the new scale
-  
+
 
 #### User Clients
 
@@ -49,7 +49,7 @@ Node client. Responsible for:
   - handling ws pushes from server tile updates and updating local store
   - wrapping http requests to server (i.e. setting tiles) in an api
   - providing 'first line of hackathon me please defense' via rate limiting
-  - providing instructions and plug and play environment for interacting with the experience (ruby for mods 1/2, js for 3/4/5)
+  - providing instructions and plug and play environment for interacting with the experience (ruby for mods 1/2, js for 3/4/5, python for data science)
 
 We are storing and updating a copy of the board state on individual users'
 machines to reduce calls to the server. Users may want to perform board
@@ -59,18 +59,18 @@ request-intensive operations to decide which tiles to write, i.e.:
 boardTiles.forEach(tile => {
   if (tile.color === 'red') {
     // assuming `setTile` posts to server
-    setTile({x: tile.x, y: tile.y, color: 'blue'}) 
+    setTile({x: tile.x, y: tile.y, color: 'blue'})
   }
 })
 ```
 
 If they didn't have a local copy of the board, the iteration would have to make
 a request to the server for every tile (if we were doing a 500 x 500 board
-that's a casual 250,000 requests). 
+that's a casual 250,000 requests).
 
 With the goal of the project being to foster programmatic user interaction, this
 helps us reduce the barriers by providing lower read latency, no need to deal with async responses, and not blowing up
-the server. 
+the server.
 
 #### Server
 
@@ -88,10 +88,10 @@ server is where the sausage is made and is responsible for:
   ###### Board WS:
   - emit board updates to the connected clients
   - send the initial state of the board when clients connect
-  
+
   ###### Achievements/Leaderboard WS:
   - emit group specific achievement updates
-  
+
   ###### Statistics WS:
   - emit overall + group statistics updates (tiles written, open connections, bad requests, etc.)
 
