@@ -72,4 +72,9 @@ skills, be creative/have fun, and grow your portfolio in one fell swoop.
 
 #### The Code
 
-See: `/code/APP-GUIDE.md`
+- [App guide for an overview](/code/APP-GUIDE.md)
+- [Node Server](/code/node-server)
+- [User Clients](/code/user-clients)
+- [B O T Z](/code/dank-bots)
+- [Browser Board Client](/code/browser-board-client)
+- [Browser Canvas Client](/code/browser-canvas-client)
