@@ -8,7 +8,12 @@ html, body {
   
 }
 
+#zoomer {
+  transform: scale(3, 3) 
+}
+
 canvas {
   padding: 1px;
   border: 2px solid teal;
+  image-rendering: pixelated;
 }
