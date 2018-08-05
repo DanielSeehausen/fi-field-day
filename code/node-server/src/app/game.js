@@ -18,7 +18,7 @@ class Game {
   }
   
   getBoard() {
-    return this.canvas.int8View
+    return this.canvas.buffer
   }
 
   //********************************** MISC ************************************
