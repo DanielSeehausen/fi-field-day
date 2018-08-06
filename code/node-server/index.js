@@ -33,7 +33,6 @@ app.post('/tile', (req, res) => {
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  console.log(game)
   res.status(200).send(true)
 })
 
