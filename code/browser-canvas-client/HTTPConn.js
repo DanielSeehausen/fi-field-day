@@ -12,7 +12,7 @@ class HTTPConn {
     .then(bufferData => {
       const pixelArray = new Uint8ClampedArray(bufferData)
       canvas.setImageFromArray(pixelArray)
-      console.log("fetched board: ", pixelArray);
+      console.log("fetched board: ", pixelArray)
     })
   }
   
