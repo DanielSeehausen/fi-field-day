@@ -36,7 +36,7 @@ app.post('/tile', (req, res) => {
   res.status(200).send(true)
 })
 
-app.get('/tile', (req, res) => {
+app.get('/tile', (req, res) => { //tile?x=2&y=2&c=FF0000&id=0
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
   res.send(payload)
 })
