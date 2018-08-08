@@ -17,7 +17,7 @@ Right now, we are hosting a server that stores a board full of tiles, and it is 
 * To get started, simply run `npm start` in your terminal. This program will automatically update your local Redis database for you, so simply set it and forget it!
 
 
-Now that you've got that setup, the next step is to install your **Matrix Manager** JS client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board. 
+Now that you've got that setup, the next step is to install your **Matrix Manager** Ruby client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board. 
 
 To get started, please do the following:
 
@@ -27,7 +27,7 @@ _First, if you would rather use Javascript than Ruby, switch over to [this](http
 * Clone down this repo and `cd` into it. There are two important files: `app.rb` and `MatrixManager.rb`, but you will mostly code in `app.rb`. Run `bundle install` to install all dependencies. 
 
 2. Set your team ID
-* Inside `app.rb`, you will notice a very conscipicuous String that says `ENTER TEAM ID HERE`. Do this.
+* Inside `app.rb`, you will notice a very conspicuous String that says `ENTER TEAM ID HERE`. Do this.
 
 
 With that all setup, take a look at `app.rb`. Inside, you will notice a space for you to write your code right underneath the instantiation of a `Matrix` object. This `Matrix` object is a package of all methods needed to interact with Redis and the server that hosts the board. A "point" in the following code refers to a coordinate on the board and can be considered a hash with x and y properties. For instance, the point in the upper left hand corner can be thought of as, `{x:0,y:0}` and the point to its right can be considered `{x:1, y:0}`.A list of available methods is as follows:
@@ -48,7 +48,7 @@ matrix.read([{x:0, y:0}, {x:1, y:1}, {x:1, y:2}])
 
 2. #read_rect
 
-`read_rect` allows you to read an entire rectangle on the board. It takes three arguments: a start point, an end point, and a callback. Useful for accessing a whole block or line of the board.
+`read_rect` allows you to read an entire rectangle on the board. It takes two arguments: a start point, an end point. Useful for accessing a whole block or line of the board.
 
 ```ruby
 matrix = MatrixManager.new(teamID)
@@ -74,7 +74,7 @@ matrix.set([{x:5,y:6}, {x:8, y:12, color:"4286f4"}, {x:13, y:2}], "FFFFFF")
 
 4. #set_rect
 
-`set_rect`, you guessed it, allows you to set the color for a rectangle. It takes three arguments just as `read_rect`: a starting point, an ending point, and a color.
+`set_rect`, you guessed it, allows you to set the color for a rectangle. It takes three arguments: a starting point, an ending point, and a color.
 
 ```ruby
 matrix = MatrixManager.new(teamID)
