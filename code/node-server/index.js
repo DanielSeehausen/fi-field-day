@@ -5,8 +5,9 @@
 const express = require('express')
 const config = require('./config')
 
-const limiter = require('./src/middleware/rateLimiter.js')
 const validator = require('./src/middleware/validator.js')
+const logger = require('./src/middleware/logger.js')
+const limiter = require('./src/middleware/rateLimiter.js')
 
 const Game = require('./src/app/game.js')
 const game = new Game()
@@ -19,12 +20,10 @@ app.use(validator)
 //************************** RATE LIMITER ****************************
 app.use(limiter)
 
-//************************* HTTP REQ LOGGER **************************
-// app.use(logger)
+//************************* REQ LOGGER **************************
+app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-// TODO sub routers
-
 app.post('/tile', (req, res) => {
   console.log(req.url)
   const tile = {
@@ -33,7 +32,7 @@ app.post('/tile', (req, res) => {
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  res.status(200).send(true)
+  res.send(true)
 })
 
 app.get('/tile', (req, res) => { //tile?x=2&y=2&c=FF0000&id=0
@@ -41,47 +40,27 @@ app.get('/tile', (req, res) => { //tile?x=2&y=2&c=FF0000&id=0
   res.send(payload)
 })
 
-app.get('/board', (req, res) => {
-  console.log(req.url)
+// TODO determine what is needed here for what routes when using the nexus/browser
+app.use((req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Origin', '*')
+  next()
+})
 
+app.get('/board', (req, res) => {
   res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
-// app.get('/scores', (req, res) => {
-//   // TODO: why this here
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   // If needed
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//   res.status(200).json(JSON.stringify(game.getScores()))
-// })
-//
-// app.get('/achievements', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/achievements/:id', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/netStat', (req, res) => {
-//   if (req.query.id !== '0')
-//     res.status(401).send()
-//   // TODO: return some game/network data?
-// })
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404
 // app.use(express.static(fourOhFourPath)) // 404 assets
-app.use((req, res) => {
+// app.use((req, res) => {
   // removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
   // even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
   // res.status(404).sendFile(fourOhFourPath + "404bundle.html")
-  res.status(404).send('check endpoint')
-})
+//   res.status(404).send('check endpoint')
+// })
 
 // 404 and catch all (should be 400 but cant fix atm)
 app.use((err, req, res, next) => {
@@ -89,4 +68,4 @@ app.use((err, req, res, next) => {
 })
 
 //*********************************** START! ***********************************
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
