@@ -24,10 +24,10 @@ class Group {
 
   toJSON() {
     return {
-      this.id,
-      this.writes,
-      this.errors,
-      this.achievements
+      id: this.id,
+      writes: this.writes,
+      errors: this.errors,
+      achievements: this.achievements
     }
   }
 
