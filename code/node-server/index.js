@@ -22,7 +22,7 @@ app.use(validator)
 app.use(limiter)
 
 //************************* REQ LOGGER **************************
-// app.use(logger)
+app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
 // TODO determine what is needed here for what routes when using the nexus/browser
@@ -39,8 +39,7 @@ app.post('/tile', (req, res) => {
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  const group = Group.all[req.query.id]
-  group.addWrite()
+  Group.addWrite(req.query.id)
   res.send(true)
 })
 
@@ -56,46 +55,15 @@ app.get('/board', (req, res) => {
   res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
-// GROUPS GROUPS GROUPS
+
+//******************** GROUP ROUTING **********************
 
 app.get('/groups', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
   const group = Group.all[req.query.id]
-  const groupData = group.stats()
-  res.send(JSON.stringify(groupData))
+  res.send(JSON.stringify(group))
 })
 
-app.post('/groups', (req, res) => {
-  // res.setHeader('Content-Type', 'application/json')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  const groupId = parseInt(req.query.id)
-  const newGroup = new Group(groupId)
-  res.send(JSON.stringify(newGroup.stats()))
-})
-
-// app.get('/scores', (req, res) => {
-//   // TODO: why this here
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   // If needed
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//   res.status(200).json(JSON.stringify(game.getScores()))
-// })
-//
-// app.get('/achievements', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/achievements/:id', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/netStat', (req, res) => {
-//   if (req.query.id !== '0')
-//     res.status(401).send()
-//   // TODO: return some game/network data?
-// })
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404
