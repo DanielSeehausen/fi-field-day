@@ -1,4 +1,5 @@
 class SocketConn {
+  
   constructor(endpoint) {
     this.endpoint = endpoint
     this.connectWS()
@@ -6,7 +7,7 @@ class SocketConn {
 
   connectWS() {
     const socket = new WebSocket(this.endpoint)
-    console.log('new ws')
+
     socket.addEventListener('open', event => {
       socket.send('Hello Server!')
     })

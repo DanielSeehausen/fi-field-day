@@ -16,16 +16,5 @@ httpConn.getBoard() //fetch initial state of board
 for (let i = 0; i < 100; i++) {
   httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
 }
-// httpConn.setTile(0, 0, 'FF0000') // x, y, hex string color sans #
-// httpConn.setTile(1, 0, 'FF0000')
-// httpConn.setTile(0, 1, 'FF0000')
-// httpConn.setTile(1, 1, 'FF0000')
-//
-// httpConn.setTile(2, 0, 'FF0000')
-// httpConn.setTile(2, 1, 'FF0000')
-// httpConn.setTile(2, 2, 'FF0000')
-//
-// httpConn.setTile(0, 2, 'FF0000')
-// httpConn.setTile(1, 2, 'FF0000')
-// httpConn.setTile(2, 2, 'FF0000')
+
 httpConn.getGroupInfo()
