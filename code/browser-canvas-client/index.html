@@ -6,11 +6,22 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <div class="zoomSlider">
+      <form>
+        <fieldset>
+          <legend>Zoom Level: <output id="zoomOutputId" name="zoomOutputName">1</output></label></legend>
+        <input type="range" id="zoom" name="zoom" min="1" max="7" value="1" oninput="zoomOutputId.value = zoom.value"/>
+<br />
+
+      </fieldset>
+      </form>
+    </div>
+    <br />
 
     <div id="zoomer">
       <canvas id="canvas" width="100" height="100"></canvas>
     </div>
-    
+
     <script src="./Canvas.js" charset="utf-8"></script>
     <script src="./SocketConn.js" charset="utf-8"></script>
     <script src="./HTTPConn.js" charset="utf-8"></script>

@@ -10,11 +10,16 @@ const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT)
 
+const zoom = document.getElementById("zoom")
+const zoomer = document.getElementById("zoomer")
+zoom.addEventListener('change', e => zoomer.style.transform = `scale(${e.target.value}, ${e.target.value})`)
+
+
 /******************* Sample Tile Setting***************************************/
 
 httpConn.getBoard() //fetch initial state of board
 for (let i = 0; i < 50; i++) {
-  httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
+  httpConn.setTile(i, i, 'FFFF00') // x, y, hex string color sans #
 }
 // httpConn.setTile(0, 0, 'FF0000') // x, y, hex string color sans #
 // httpConn.setTile(1, 0, 'FF0000')
