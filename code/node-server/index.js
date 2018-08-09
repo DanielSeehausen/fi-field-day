@@ -9,46 +9,60 @@ const validator = require('./src/middleware/validator.js')
 const logger = require('./src/middleware/logger.js')
 const limiter = require('./src/middleware/rateLimiter.js')
 
+const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
 const game = new Game()
 
+
 const app = express()
 
-//*************************** VALIDATOR ******************************
+/*************************** VALIDATOR ******************************/
 app.use(validator)
 
-//************************** RATE LIMITER ****************************
+/************************** RATE LIMITER ****************************/
 app.use(limiter)
 
 //************************* REQ LOGGER **************************
 app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-app.post('/tile', (req, res) => {
-  console.log(req.url)
+// TODO determine what is needed here for what routes when using the nexus/browser
+// app.use((req, res) => {
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
+//   res.setHeader('Access-Control-Allow-Origin', '*')
+//   next()
+// })
+
+app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
+  Group.addWrite(req.query.id)
   res.send(true)
 })
 
-app.get('/tile', (req, res) => { //tile?x=2&y=2&c=FF0000&id=0
+app.get('/tile', (req, res) => {
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
   res.send(payload)
 })
 
-// TODO determine what is needed here for what routes when using the nexus/browser
-app.use((req, res) => {
+// board?id=0; id coming from brwsr client config
+app.get('/board', (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Origin', '*')
-  next()
+  res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
-app.get('/board', (req, res) => {
-  res.send(new Buffer(game.getBoard(), 'binary'))
+
+//******************** GROUP ROUTING **********************
+
+app.get('/groups', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  const group = Group.all[req.query.id]
+  res.send(JSON.stringify(group))
 })
 
 
@@ -56,9 +70,9 @@ app.get('/board', (req, res) => {
 // 404
 // app.use(express.static(fourOhFourPath)) // 404 assets
 // app.use((req, res) => {
-  // removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
-  // even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
-  // res.status(404).sendFile(fourOhFourPath + "404bundle.html")
+// removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
+// even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
+// res.status(404).sendFile(fourOhFourPath + "404bundle.html")
 //   res.status(404).send('check endpoint')
 // })
 

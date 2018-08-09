@@ -8,7 +8,7 @@ html, body {
 }
 
 #zoomer {
-  transform: scale(3, 3)
+  transform: scale(3, 3);
 }
 
 canvas {
