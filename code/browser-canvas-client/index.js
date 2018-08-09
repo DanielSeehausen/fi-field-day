@@ -12,7 +12,11 @@ const socketConn = new SocketConn(config.WSENDPOINT)
 
 const zoom = document.getElementById("zoom")
 const zoomer = document.getElementById("zoomer")
-zoom.addEventListener('change', e => zoomer.style.transform = `scale(${e.target.value}, ${e.target.value})`)
+const zoomOutput = document.getElementById("zoomOutputId")
+zoom.oninput = (e) =>{
+  zoomOutput.value = e.target.value
+  zoomer.style.transform = `scale(${e.target.value}, ${e.target.value})`
+}
 
 
 /******************* Sample Tile Setting***************************************/
