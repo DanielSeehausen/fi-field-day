@@ -15,7 +15,7 @@ const Group = require('./src/app/group.js')
 const app = express()
 
 /*************************** VALIDATOR ******************************/
-// app.use(validator) //TODO: add group to validator
+app.use(validator)
 
 /************************** RATE LIMITER ****************************/
 app.use(limiter)
@@ -59,18 +59,18 @@ app.get('/board', (req, res) => {
 
 // GROUPS GROUPS GROUPS
 
-app.get('/groups/:id', (req, res) => {
+app.get('/groups', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  const groupId = parseInt(req.params.id)
+  const groupId = parseInt(req.query.id)
   const targetGroup = Group.all.find(group => group.id === groupId)
   const groupData = targetGroup.stats()
   res.send(JSON.stringify(groupData))
 })
 
-app.post('/groups/:id', (req, res) => {
+app.post('/groups', (req, res) => {
   // res.setHeader('Content-Type', 'application/json')
   res.setHeader('Access-Control-Allow-Origin', '*')
-  const groupId = parseInt(req.params.id)
+  const groupId = parseInt(req.query.id)
   const newGroup = new Group(groupId)
   res.send(JSON.stringify(newGroup.stats()))
 })

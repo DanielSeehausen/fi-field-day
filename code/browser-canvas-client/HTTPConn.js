@@ -27,7 +27,7 @@ class HTTPConn {
   }
 
   getGroupInfo() {
-    fetch(`${this.endpoint}/groups/${config.ID}`, { method: 'GET' })
+    fetch(`${this.endpoint}/groups?id=${config.ID}`, { method: 'GET' })
       .then(r => r.json())
       .then(groupData => {
         console.log('%cGETTED GROUP! ', 'color: green', groupData)
@@ -35,7 +35,7 @@ class HTTPConn {
   }
 
   setGroupInfo() {
-    fetch(`${this.endpoint}/groups/${config.ID}`, { method: 'POST' })
+    fetch(`${this.endpoint}/groups?id=${config.ID}`, { method: 'POST' })
       .then(r => r.json())
       .then(groupData => {
         console.log('%cCREATED GROUP! ', 'color: red', groupData)

@@ -7,15 +7,17 @@ const validTile = require('./reqValidators/validTile.js')
  * requirements. If a request url isn't present here, it doesn't mean 404
  * instead, it means it doesn't require any special validation
  */
- 
+
 const routeValidators = {
-  "POST": {
-    "/tile": [validID, validTile, validColor],
+  POST: {
+    '/tile': [validID, validTile, validColor],
+    '/groups': [validID],
     __noSuchMethod__: [() => true] // might be 404 but that is handled normally.
   },
-  "GET": {
-    "/board": [validID],
-    "/tile": [validTile, validID],
+  GET: {
+    '/board': [validID],
+    '/groups': [validID],
+    '/tile': [validTile, validID],
     __noSuchMethod__: [() => true] // might be 404 but that is handled normally.
   }
 }
@@ -23,7 +25,7 @@ const routeValidators = {
 function validRequest(req, res, next) {
   const validators = routeValidators[req.method][req.path]
   if (!validators.every(validator => validator(req)))
-    return res.status(422).send("Bad Request! Check your id, coordinates, color value, etc.")
+    return res.status(422).send('Bad Request! Check your id, coordinates, color value, etc.')
   next()
 }
 
