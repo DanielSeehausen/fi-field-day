@@ -22,12 +22,13 @@ class Group {
     if (this.errors % 100 === 0) this.achievements.errors.push(this.goofs)
   }
 
-  stats() {
-    return ({ id, writes, errors, achievements } = this)
-  }
-
   toJSON() {
-    return this.stats()
+    return {
+      this.id,
+      this.writes,
+      this.errors,
+      this.achievements
+    }
   }
 
 }
