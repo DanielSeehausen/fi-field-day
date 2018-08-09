@@ -24,7 +24,7 @@ wss.on('connection', (ws, req) => {
 })
   
 wss.emit = (data) => {
-  console.log(wss.clients.length)
+  debugger
   wss.clients.forEach(client => {
     if (client.readyState === WebSocketServer.OPEN)
       client.send(data);

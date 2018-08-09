@@ -1,11 +1,11 @@
 const fs = require('fs')
-const logStream = fs.createWriteStream('../../../logs/http-req.log', {flags: 'a'})
+// const logStream = fs.createWriteStream('../../../logs/http-req.log', {flags: 'a'})
 // const errStream = fs.createWriteStream('../../../logs/http-req-error.log', {flags: 'a'})
 
 // log success
 
 function logger(req, res, next) {
-  logStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
+  // logStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
   next()
 }
 

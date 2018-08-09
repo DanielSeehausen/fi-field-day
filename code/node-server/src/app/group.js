@@ -14,12 +14,12 @@ class Group {
 
   addWrite() {
     this.writes++
-    if (this.writes % 100 === 0) this.achievements.writes.push(this.writes)
+    if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
 
   addError() {
     this.errors++
-    if (this.errors % 100 === 0) this.achievements.errors.push(this.goofs)
+    if (this.errors % 100 === 0) this.achievements.add(`Errors: ${this.writes}`)
   }
 
   toJSON() {
@@ -27,7 +27,7 @@ class Group {
       id: this.id,
       writes: this.writes,
       errors: this.errors,
-      achievements: this.achievements
+      achievements: Array.from(this.achievements)
     }
   }
 

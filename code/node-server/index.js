@@ -8,8 +8,8 @@ const config = require('./config')
 const validator = require('./src/middleware/validator.js')
 const logger = require('./src/middleware/logger.js')
 const limiter = require('./src/middleware/rateLimiter.js')
-const Group = require('./src/app/group.js')
 
+const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
 const game = new Game()
 
@@ -33,7 +33,7 @@ app.use(logger)
 //   next()
 // })
 
-app.post('/tile', (req, res) => {
+app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
