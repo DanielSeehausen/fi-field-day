@@ -1,9 +1,9 @@
 class Group {
-  
+
   static addWrite(groupId) {
     Group.all[groupId].addWrite()
   }
-  
+
   constructor(id) {
     this.id = id
     this.writes = 0
@@ -11,7 +11,7 @@ class Group {
     this.achievements = new Set()
     Group.all[this.id] = this
   }
-  
+
   addWrite() {
     this.writes++
     if (this.writes % 100 === 0) this.achievements.writes.push(this.writes)
@@ -25,13 +25,17 @@ class Group {
   stats() {
     return ({ id, writes, errors, achievements } = this)
   }
-  
+
   toJSON() {
     return this.stats()
   }
-  
+
 }
 
 Group.all = {}
+
+//create admin group for now; will do w/ student ids
+new Group(0)
+
 
 module.exports = Group
