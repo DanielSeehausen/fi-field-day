@@ -15,7 +15,7 @@ const Group = require('./src/app/group.js')
 const app = express()
 
 /*************************** VALIDATOR ******************************/
-// app.use(validator)
+// app.use(validator) //TODO: add group to validator
 
 /************************** RATE LIMITER ****************************/
 app.use(limiter)
@@ -56,7 +56,6 @@ app.get('/board', (req, res) => {
 })
 
 // GROUPS GROUPS GROUPS
-//TODO: add route validations
 
 app.get('/groups/:id', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -70,7 +69,6 @@ app.post('/groups/:id', (req, res) => {
   // res.setHeader('Content-Type', 'application/json')
   res.setHeader('Access-Control-Allow-Origin', '*')
   const groupId = parseInt(req.params.id)
-  console.log(Group)
   const newGroup = new Group(groupId)
   res.send(JSON.stringify(newGroup.stats()))
 })
@@ -116,7 +114,6 @@ app.use((err, req, res, next) => {
 
 //*********************************** START! ***********************************
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
-console.log(Group)
 //
 // Groups
 // Asserted by group Id
