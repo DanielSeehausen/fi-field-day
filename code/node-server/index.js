@@ -10,21 +10,26 @@ const validator = require('./src/middleware/validator.js')
 
 const Game = require('./src/app/game.js')
 const game = new Game()
+const Group = require('./src/app/group.js')
 
 const app = express()
 
-//*************************** VALIDATOR ******************************
-app.use(validator)
+/*************************** VALIDATOR ******************************/
+// app.use(validator)
 
-//************************** RATE LIMITER ****************************
+/************************** RATE LIMITER ****************************/
 app.use(limiter)
 
-//************************* HTTP REQ LOGGER **************************
+/************************* HTTP REQ LOGGER **************************/
 // app.use(logger)
 
-//***************************** VALID URL ROUTING ******************************
+/***************************** VALID URL ROUTING ******************************/
+
+/***************************** Parse Fetch Body Params ************************/
 // TODO sub routers
 
+//tile?x=2&y=2&c=FF0000&id=0
+// x, y, color as hex string (no #)
 app.post('/tile', (req, res) => {
   console.log(req.url)
   const tile = {
@@ -36,17 +41,38 @@ app.post('/tile', (req, res) => {
   res.status(200).send(true)
 })
 
-app.get('/tile', (req, res) => { //tile?x=2&y=2&c=FF0000&id=0
+app.get('/tile', (req, res) => {
   const payload = JSON.stringify(game.getTile(req.query.x, req.query.y))
   res.send(payload)
 })
 
+// board?id=0; id coming from brwsr client config
 app.get('/board', (req, res) => {
   console.log(req.url)
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Origin', '*')
 
   res.send(new Buffer(game.getBoard(), 'binary'))
+})
+
+// GROUPS GROUPS GROUPS
+//TODO: add route validations
+
+app.get('/groups/:id', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  const groupId = parseInt(req.params.id)
+  const targetGroup = Group.all.find(group => group.id === groupId)
+  const groupData = targetGroup.stats()
+  res.send(JSON.stringify(groupData))
+})
+
+app.post('/groups/:id', (req, res) => {
+  // res.setHeader('Content-Type', 'application/json')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  const groupId = parseInt(req.params.id)
+  console.log(Group)
+  const newGroup = new Group(groupId)
+  res.send(JSON.stringify(newGroup.stats()))
 })
 
 // app.get('/scores', (req, res) => {
@@ -90,3 +116,13 @@ app.use((err, req, res, next) => {
 
 //*********************************** START! ***********************************
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
+console.log(Group)
+//
+// Groups
+// Asserted by group Id
+// Which is passed in the req.query
+//
+// Look at old group class to get a feel
+// Idea is to make it as minimally invasive in the game code as possible
+// And need a new route and validation for group/:id to get their group info
+// So browser can display their achievements
