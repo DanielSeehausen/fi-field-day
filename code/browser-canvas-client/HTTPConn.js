@@ -1,7 +1,7 @@
 class HTTPConn {
   constructor(endpoint) {
     this.endpoint = endpoint
-    // this.setGroupInfo()
+    this.setGroupInfo()
   }
 
   getBoard() {
@@ -26,13 +26,21 @@ class HTTPConn {
       })
   }
 
-  getGroupInfo() {}
+  getGroupInfo() {
+    fetch(`${this.endpoint}/groups/${config.ID}`, { method: 'GET' })
+      .then(r => r.json())
+      .then(groupData => {
+        console.log('%cGETTED GROUP! ', 'color: green', groupData)
+      })
+  }
 
-  // setGroupInfo() {
-  //   fetch(`${this.endpoint}/groups/${config.ID}`, {
-  //     method: 'POST'
-  //   })
-  // }
+  setGroupInfo() {
+    fetch(`${this.endpoint}/groups/${config.ID}`, { method: 'POST' })
+      .then(r => r.json())
+      .then(groupData => {
+        console.log('%cCREATED GROUP! ', 'color: red', groupData)
+      })
+  }
 }
 // function getTile(x, y, id='0') {
 //   fetch(BASE + `/tile?x=${x}&y=${y}&id=${id}`, {
