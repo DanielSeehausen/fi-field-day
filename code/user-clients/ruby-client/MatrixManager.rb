@@ -37,17 +37,17 @@ class MatrixManager
 
 	def set_rect(start_point, end_point, color, local=false)
 		data = self.create_rect(start_point, end_point)
-		
+
 		if local
 			self.local_set(data)
-		else 
+		else
 			self.set(data, color)
 		end
 	end
 
 	def set(argument, color)
 
-		if (@last_write && !(Time.now - @last_write >= 0.3)
+		if (@last_write && !(Time.now - @last_write >= 0.3))
 			return
 		end
 
@@ -78,9 +78,9 @@ class MatrixManager
 
 	def send(x,y,color)
 		puts ("Sending #{color} to coordinates (#{x},#{y})!")
-		begin 
+		begin
 			RestClient.post(@server_url + "/setTile?x=#{x}&y=#{y}&c=#{color}&id=#{@id}", {})
-		rescue 
+		rescue
 			send(x,y,color)
 		end
 	end
@@ -103,6 +103,7 @@ class MatrixManager
 	end
 
 	def many_coordinates(array_hash, set=false)
+
 		array_hash.map do |hash|
 			coordinate = self.to_coordinate(hash)
 
@@ -115,9 +116,8 @@ class MatrixManager
 	end
 
 	def to_coordinate(hash)
+		# {x:5,y:4} => "5-4"
 		"#{hash[:x]}-#{hash[:y]}"
 	end
 
 end
-
-
