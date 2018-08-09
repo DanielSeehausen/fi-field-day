@@ -31,13 +31,16 @@ app.use(limiter)
 //tile?x=2&y=2&c=FF0000&id=0
 // x, y, color as hex string (no #)
 app.post('/tile', (req, res) => {
-  console.log(req.url)
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
+  const groupId = parseInt(req.query.id)
+  // don't love iterating each time users write to the board; could potentially stall our app
+  const group = Group.all.find(g => g.id === groupId)
+  group.addWrite()
   res.status(200).send(true)
 })
 
@@ -48,7 +51,6 @@ app.get('/tile', (req, res) => {
 
 // board?id=0; id coming from brwsr client config
 app.get('/board', (req, res) => {
-  console.log(req.url)
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Origin', '*')
 
@@ -114,12 +116,3 @@ app.use((err, req, res, next) => {
 
 //*********************************** START! ***********************************
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
-//
-// Groups
-// Asserted by group Id
-// Which is passed in the req.query
-//
-// Look at old group class to get a feel
-// Idea is to make it as minimally invasive in the game code as possible
-// And need a new route and validation for group/:id to get their group info
-// So browser can display their achievements

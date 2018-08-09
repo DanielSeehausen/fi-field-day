@@ -22,7 +22,7 @@ class HTTPConn {
     })
       .then(response => response)
       .then(x => {
-        console.log(x.headers)
+        // console.log('%cJUST SET A TILE', 'color: purple', x.headers)
       })
   }
 
