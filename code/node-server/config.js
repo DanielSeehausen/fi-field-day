@@ -2,6 +2,7 @@
 module.exports = {
   ROWS: 100,
   COLUMNS: 100,
+  HTTPPORT: 3000,
   WSPORT: 8080,
   IDLIMIT: {low: 0, high: 25},
   LIMITWINDOW: 1000,

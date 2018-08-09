@@ -5,8 +5,9 @@
 const express = require('express')
 const config = require('./config')
 
-const limiter = require('./src/middleware/rateLimiter.js')
 const validator = require('./src/middleware/validator.js')
+// const logger = require('./src/middleware/logger.js')
+const limiter = require('./src/middleware/rateLimiter.js')
 
 const Game = require('./src/app/game.js')
 const game = new Game()
@@ -20,16 +21,17 @@ app.use(validator)
 /************************** RATE LIMITER ****************************/
 app.use(limiter)
 
-/************************* HTTP REQ LOGGER **************************/
+//************************* REQ LOGGER **************************
 // app.use(logger)
 
-/***************************** VALID URL ROUTING ******************************/
+//***************************** VALID URL ROUTING ******************************
+// TODO determine what is needed here for what routes when using the nexus/browser
+// app.use((req, res) => {
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
+//   res.setHeader('Access-Control-Allow-Origin', '*')
+//   next()
+// })
 
-/***************************** Parse Fetch Body Params ************************/
-// TODO sub routers
-
-//tile?x=2&y=2&c=FF0000&id=0
-// x, y, color as hex string (no #)
 app.post('/tile', (req, res) => {
   const tile = {
     x: parseInt(req.query.x),
@@ -41,7 +43,7 @@ app.post('/tile', (req, res) => {
   // don't love iterating each time users write to the board; could potentially stall our app
   const group = Group.all.find(g => g.id === groupId)
   group.addWrite()
-  res.status(200).send(true)
+  res.send(true)
 })
 
 app.get('/tile', (req, res) => {
@@ -53,7 +55,6 @@ app.get('/tile', (req, res) => {
 app.get('/board', (req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET')
   res.setHeader('Access-Control-Allow-Origin', '*')
-
   res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
@@ -102,12 +103,12 @@ app.post('/groups', (req, res) => {
 //***************************** REQ ERROR HANDLING *****************************
 // 404
 // app.use(express.static(fourOhFourPath)) // 404 assets
-app.use((req, res) => {
-  // removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
-  // even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
-  // res.status(404).sendFile(fourOhFourPath + "404bundle.html")
-  res.status(404).send('check endpoint')
-})
+// app.use((req, res) => {
+// removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
+// even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
+// res.status(404).sendFile(fourOhFourPath + "404bundle.html")
+//   res.status(404).send('check endpoint')
+// })
 
 // 404 and catch all (should be 400 but cant fix atm)
 app.use((err, req, res, next) => {
@@ -115,4 +116,4 @@ app.use((err, req, res, next) => {
 })
 
 //*********************************** START! ***********************************
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
