@@ -39,9 +39,7 @@ app.post('/tile', (req, res) => {
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  const groupId = parseInt(req.query.id)
-  // don't love iterating each time users write to the board; could potentially stall our app
-  const group = Group.all.find(g => g.id === groupId)
+  const group = Group.all[req.query.id]
   group.addWrite()
   res.send(true)
 })
@@ -62,9 +60,8 @@ app.get('/board', (req, res) => {
 
 app.get('/groups', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  const groupId = parseInt(req.query.id)
-  const targetGroup = Group.all.find(group => group.id === groupId)
-  const groupData = targetGroup.stats()
+  const group = Group.all[req.query.id]
+  const groupData = group.stats()
   res.send(JSON.stringify(groupData))
 })
 

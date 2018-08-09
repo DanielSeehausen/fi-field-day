@@ -8,7 +8,7 @@ class Group {
       writes: [],
       goofs: []
     }
-    this.constructor.all.push(this)
+    this.constructor.all[this.id] = this
   }
 
   addWrite() {
@@ -39,6 +39,6 @@ class Group {
   }
 }
 
-Group.all = [] //TODO: consider making this a set; want to avoid groups messing w/ each other
+Group.all = {}
 
 module.exports = Group
