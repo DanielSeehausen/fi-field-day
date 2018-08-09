@@ -6,7 +6,7 @@ const express = require('express')
 const config = require('./config')
 
 const validator = require('./src/middleware/validator.js')
-// const logger = require('./src/middleware/logger.js')
+const logger = require('./src/middleware/logger.js')
 const limiter = require('./src/middleware/rateLimiter.js')
 
 const Game = require('./src/app/game.js')

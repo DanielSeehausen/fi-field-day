@@ -4,7 +4,7 @@ const logStream = fs.createWriteStream('../../../logs/http-req.log', {flags: 'a'
 
 // log success
 
-function log(req, res, next) {
+function logger(req, res, next) {
   logStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
   next()
 }
