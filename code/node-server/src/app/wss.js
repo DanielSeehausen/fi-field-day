@@ -6,10 +6,13 @@ wss.clients = new Set()
 
 wss.on('connection', (ws, req) => {
 
+  console.log("new ws connected: ", req.connection.remoteAddress)
   wss.clients.add(ws)
+  
   // ws.on('message', (data) => {
   //   return // do nothing...not supposed to handle incoming traffic from wsclients
   // })
+  
   ws.on('close', () => {
     console.log("WS conn closed!")
     wss.clients.delete(ws)
@@ -24,7 +27,6 @@ wss.on('connection', (ws, req) => {
 })
   
 wss.emit = (data) => {
-  console.log(wss.clients.length)
   wss.clients.forEach(client => {
     if (client.readyState === WebSocketServer.OPEN)
       client.send(data);

@@ -5,35 +5,42 @@
 const express = require('express')
 const config = require('./config')
 
-const limiter = require('./src/middleware/rateLimiter.js')
 const validator = require('./src/middleware/validator.js')
+const logger = require('./src/middleware/logger.js')
+const limiter = require('./src/middleware/rateLimiter.js')
 
+const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
 const game = new Game()
 
+
 const app = express()
 
-//*************************** VALIDATOR ******************************
+/*************************** VALIDATOR ******************************/
 app.use(validator)
 
-//************************** RATE LIMITER ****************************
+/************************** RATE LIMITER ****************************/
 app.use(limiter)
 
-//************************* HTTP REQ LOGGER **************************
-// app.use(logger)
+//************************* REQ LOGGER **************************
+app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-// TODO sub routers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  next()
+})
 
-app.post('/tile', (req, res) => {
-  console.log(req.url)
+app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  res.status(200).send(true)
+  Group.addWrite(req.query.id)
+  res.send(true)
 })
 
 app.get('/tile', (req, res) => {
@@ -41,52 +48,34 @@ app.get('/tile', (req, res) => {
   res.send(payload)
 })
 
+// board?id=0; id coming from brwsr client config
 app.get('/board', (req, res) => {
-  console.log(req.url)
-  res.setHeader('Access-Control-Allow-Methods', 'GET')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-
   res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
-// app.get('/scores', (req, res) => {
-//   // TODO: why this here
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//   // If needed
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//   res.status(200).json(JSON.stringify(game.getScores()))
-// })
-//
-// app.get('/achievements', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/achievements/:id', (req, res) => {
-//   res.status(200).send(JSON.stringify(req.query.group))
-// })
-//
-// app.get('/netStat', (req, res) => {
-//   if (req.query.id !== '0')
-//     res.status(401).send()
-//   // TODO: return some game/network data?
-// })
+
+//******************** GROUP ROUTING **********************
+
+app.get('/groups', (req, res) => {
+  const group = Group.all[req.query.id]
+  res.send(JSON.stringify(group))
+})
+
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404
 // app.use(express.static(fourOhFourPath)) // 404 assets
-app.use((req, res) => {
-  // removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
-  // even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
-  // res.status(404).sendFile(fourOhFourPath + "404bundle.html")
-  res.status(404).send('check endpoint')
-})
+// app.use((req, res) => {
+// removed this for now because rate limiter is stopping the asset transfer and no time to add in the exception for 404 stuff.
+// even understanding that, the concern is being overwhelmed with requests so its best maybe not to be sending those assets without from the same server :/
+// res.status(404).sendFile(fourOhFourPath + "404bundle.html")
+//   res.status(404).send('check endpoint')
+// })
 
-// 404 and catch all (should be 400 but cant fix atm)
+// 400 and catch all (should be 400 but cant fix atm)
 app.use((err, req, res, next) => {
   res.status(400).send('invalid endpoint or params')
 })
 
 //*********************************** START! ***********************************
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))

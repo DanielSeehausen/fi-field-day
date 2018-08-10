@@ -74,10 +74,7 @@ the server.
 
 #### Server
 
-The new server will (hopefully) be an Elixir Plug application. The previous
-server was written for Node. Ideally, we would re-appropriate it for testing so
-the clients can get on with development while the Elixir server is underway. The
-server is where the sausage is made and is responsible for:
+The server is a node application responsible for:
 
 - maintaining the 'source of truth' in all things (board, achievements, etc.)
 - handling writes to the board via http posts
