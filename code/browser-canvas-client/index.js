@@ -9,13 +9,15 @@ const config = {
 const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT)
+const canvasManager = new CanvasManager
 
-const zoom = document.getElementById("zoom")
-const zoomer = document.getElementById("zoomer")
-const zoomOutput = document.getElementById("zoomOutputId")
-zoom.oninput = (e) =>{
-  zoomOutput.value = (e.target.value)
-  zoomer.style.transform = `scale(${e.target.value/100}, ${e.target.value/100})`
+
+/********************* Zoom Slide Handler ***************************************/
+
+const zoomSlider = document.getElementById("zoomSlider")
+
+zoomSlider.oninput = (e) =>{
+  canvasManager.handleZoom(e)
 }
 
 
