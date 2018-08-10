@@ -10,6 +10,15 @@ const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT)
 
+const zoom = document.getElementById("zoom")
+const zoomer = document.getElementById("zoomer")
+const zoomOutput = document.getElementById("zoomOutputId")
+zoom.oninput = (e) =>{
+  zoomOutput.value = (e.target.value)
+  zoomer.style.transform = `scale(${e.target.value/100}, ${e.target.value/100})`
+}
+
+
 /******************* Sample Tile Setting***************************************/
 
 httpConn.getBoard() //fetch initial state of board
