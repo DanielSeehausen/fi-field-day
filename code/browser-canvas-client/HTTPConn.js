@@ -1,7 +1,6 @@
 class HTTPConn {
   constructor(endpoint) {
     this.endpoint = endpoint
-    this.setGroupInfo()
   }
 
   getBoard() {
@@ -31,14 +30,6 @@ class HTTPConn {
       .then(r => r.json())
       .then(groupData => {
         console.log('%cGETTED GROUP! ', 'color: green', groupData)
-      })
-  }
-
-  setGroupInfo() {
-    fetch(`${this.endpoint}/groups?id=${config.ID}`, { method: 'POST' })
-      .then(r => r.json())
-      .then(groupData => {
-        console.log('%cCREATED GROUP! ', 'color: red', groupData)
       })
   }
 }

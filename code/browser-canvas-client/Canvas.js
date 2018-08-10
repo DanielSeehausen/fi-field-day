@@ -12,8 +12,8 @@ class Canvas {
     return value
   }
 
-  setImageFromArray(pixelArray = config.DEFAULTARRAY) {
-    this.setDimension(Math.sqrt(pixelArray.length / 4))
+  setImageFromArray(pixelArray=config.DEFAULTARRAY) {
+    this.setDimension(Math.sqrt(pixelArray.length/4))
     const data = new ImageData(pixelArray, this.dimension, this.dimension)
     this.ctx.putImageData(data, 0, 0)
     return pixelArray

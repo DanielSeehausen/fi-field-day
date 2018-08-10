@@ -1,44 +1,42 @@
 class Group {
+
+  static addWrite(groupId) {
+    Group.all[groupId].addWrite()
+  }
+
   constructor(id) {
     this.id = id
     this.writes = 0
     this.errors = 0
-    this.time = 0
-    this.achievements = {
-      writes: [],
-      goofs: []
-    }
-    this.constructor.all[this.id] = this
+    this.achievements = new Set()
+    Group.all[this.id] = this
   }
 
   addWrite() {
     this.writes++
-    // consider milestones to be multiples of 100
-    if (this.writes % 100 === 0) this.achievements.writes.push(this.writes)
+    if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
 
-  addGoof() {
-    this.goofs++
-    if (this.goofs % 100 === 0) this.achievements.goofs.push(this.goofs)
+  addError() {
+    this.errors++
+    if (this.errors % 100 === 0) this.achievements.add(`Errors: ${this.writes}`)
   }
 
-  addTime() {}
-
-  score() {}
-
-  stats() {
-    const { id, writes, errors, time, achievements } = this
-    return { id, writes, errors, time, achievements }
+  toJSON() {
+    return {
+      id: this.id,
+      writes: this.writes,
+      errors: this.errors,
+      achievements: Array.from(this.achievements)
+    }
   }
 
-  stringifyAchievements() {
-    /*
-    might ditch this but consider taking goofs and achievements and creating student message
-    `Congrats on over ${this.writes[this.writes.length-1]} writes!`
-    */
-  }
 }
 
 Group.all = {}
+
+//create admin group for now; will do w/ student ids
+new Group(0)
+
 
 module.exports = Group

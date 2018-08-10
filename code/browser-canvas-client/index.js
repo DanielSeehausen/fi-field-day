@@ -22,7 +22,7 @@ zoom.oninput = (e) =>{
 /******************* Sample Tile Setting***************************************/
 
 httpConn.getBoard() //fetch initial state of board
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 100; i++) {
   httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
 }
 // httpConn.setTile(0, 0, 'FF0000') // x, y, hex string color sans #
