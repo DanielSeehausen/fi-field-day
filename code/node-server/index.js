@@ -76,7 +76,7 @@ app.get('/groups', (req, res) => {
 //   res.status(404).send('check endpoint')
 // })
 
-// 404 and catch all (should be 400 but cant fix atm)
+// 400 and catch all (should be 400 but cant fix atm)
 app.use((err, req, res, next) => {
   res.status(400).send('invalid endpoint or params')
 })
