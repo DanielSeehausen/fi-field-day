@@ -14,8 +14,8 @@ const zoom = document.getElementById("zoom")
 const zoomer = document.getElementById("zoomer")
 const zoomOutput = document.getElementById("zoomOutputId")
 zoom.oninput = (e) =>{
-  zoomOutput.value = e.target.value
-  zoomer.style.transform = `scale(${e.target.value}, ${e.target.value})`
+  zoomOutput.value = (e.target.value)
+  zoomer.style.transform = `scale(${e.target.value/100}, ${e.target.value/100})`
 }
 
 
