@@ -26,12 +26,11 @@ app.use(limiter)
 app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-// TODO determine what is needed here for what routes when using the nexus/browser
-// app.use((req, res) => {
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
-//   res.setHeader('Access-Control-Allow-Origin', '*')
-//   next()
-// })
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  next()
+})
 
 app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
   const tile = {
@@ -51,8 +50,6 @@ app.get('/tile', (req, res) => {
 
 // board?id=0; id coming from brwsr client config
 app.get('/board', (req, res) => {
-  res.setHeader('Access-Control-Allow-Methods', 'GET')
-  res.setHeader('Access-Control-Allow-Origin', '*')
   res.send(new Buffer(game.getBoard(), 'binary'))
 })
 
@@ -60,7 +57,6 @@ app.get('/board', (req, res) => {
 //******************** GROUP ROUTING **********************
 
 app.get('/groups', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
   const group = Group.all[req.query.id]
   res.send(JSON.stringify(group))
 })
