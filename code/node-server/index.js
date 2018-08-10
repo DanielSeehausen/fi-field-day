@@ -26,7 +26,6 @@ app.use(limiter)
 app.use(logger)
 
 //***************************** VALID URL ROUTING ******************************
-// TODO determine what is needed here for what routes when using the nexus/browser
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
   res.setHeader('Access-Control-Allow-Origin', '*')
