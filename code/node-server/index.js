@@ -33,7 +33,6 @@ app.use((req, res, next) => {
 })
 
 app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
-  debugger
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
