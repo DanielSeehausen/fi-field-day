@@ -57,6 +57,7 @@ app.get('/board', (req, res) => {
 //******************** GROUP ROUTING **********************
 
 app.get('/groups', (req, res) => {
+  debugger
   const group = Group.all[req.query.id]
   res.send(JSON.stringify(group))
 })
@@ -78,4 +79,8 @@ app.use((err, req, res, next) => {
 })
 
 //*********************************** START! ***********************************
+for (let i = 1; i < config.IDLIMIT.high; i++) {
+  new Group(i)
+}
+
 app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
