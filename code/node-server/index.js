@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 })
 
 app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
+  debugger
   const tile = {
     x: parseInt(req.query.x),
     y: parseInt(req.query.y),
@@ -79,3 +80,4 @@ app.use((err, req, res, next) => {
 
 //*********************************** START! ***********************************
 app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
+console.log(config)
