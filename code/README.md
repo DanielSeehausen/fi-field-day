@@ -98,3 +98,14 @@ The server is a node application responsible for:
 Simple scripts that will act as clients (perhaps with special permissioning/rate
 limiting) an automate some action on the board. This is where the meatbag v.
 machine comes into play.
+
+
+## Dev - Getting Started
+
+### Running Client Canvas
+
+1. ```cd browser-canvas-client/```
+2. open index.html in browser
+3. ```cd ../node-server/```
+4. ```npm install && npm run watch```
+5. In refreshed browser console, run ```httpConn.setTile(0, 1, '00FF00')```. 
