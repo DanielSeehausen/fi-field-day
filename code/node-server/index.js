@@ -57,7 +57,6 @@ app.get('/board', (req, res) => {
 //******************** GROUP ROUTING **********************
 
 app.get('/groups', (req, res) => {
-  debugger
   const group = Group.all[req.query.id]
   res.send(JSON.stringify(group))
 })
