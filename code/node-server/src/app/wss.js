@@ -1,36 +1,33 @@
 const config = require('../../config.js')
-const WebSocketServer = require('ws').Server
+const WebSocketServer = require('ws')
 
-const wss = new WebSocketServer({port: config.WSPORT})
-wss.clients = new Set()
+const wss = new WebSocketServer.Server({port: config.WSPORT})
 
-wss.on('connection', (ws, req) => {
-
-  console.log("new ws connected: ", req.connection.remoteAddress)
-  wss.clients.add(ws)
+wss.on('connection', (ws) => {
   
-  // ws.on('message', (data) => {
-  //   return // do nothing...not supposed to handle incoming traffic from wsclients
-  // })
+  // console.log("New wsclient connected: \n\t", wss.clients.size, " now connected")
+
+  ws.on('message', (data) => {
+    return // do nothing...not supposed to handle incoming traffic from wsclients
+  })
+  
+  ws.send("ws connection established with server")
   
   ws.on('close', () => {
     console.log("WS conn closed!")
-    wss.clients.delete(ws)
   })
   
   ws.on('error', (error) => {
     console.log("WS conn errored! ", error)
-    wss.clients.delete(ws)
   })
   
-  console.log(`New wss initiated. listening for clients on: ${config.WSPORT}`)
 })
-  
+
 wss.emit = (data) => {
-  wss.clients.forEach(client => {
-    if (client.readyState === WebSocketServer.OPEN)
-      client.send(data);
+  wss.clients.forEach((client) => {
+    client.send("fuk")
   })
 }
+
 
 module.exports = wss
