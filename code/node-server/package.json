@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danielseehausen/flatiron-hackathon-wsserver.git"
+    "url": "git+https://github.com/danielseehausen/fi-node-server.git"
   },
   "keywords": [
     "web-sockets",

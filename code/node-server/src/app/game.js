@@ -10,7 +10,7 @@ class Game {
 
   setTile(tile) { // {x, y, hexStr} sans '#' on hexStr
     this.canvas.setTile(tile)
-    this.wss.emit(tile)
+    this.wss.emit("tile")
   }
 
   getTile(coords) {
@@ -21,7 +21,6 @@ class Game {
     return this.canvas.buffer
   }
 
-  //********************************** MISC ************************************
   toJSON() {
     return {
       board: this.canvas.toJSON()

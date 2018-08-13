@@ -7,12 +7,20 @@ html, body {
   align-items: center;
 }
 
-#zoomer {
-  transform: scale(3, 3);
-}
-
 canvas {
   padding: 1px;
   border: 2px solid teal;
   image-rendering: pixelated;
+}
+
+#zoomer {
+  transform: scale(3, 3);
+}
+
+
+
+.zoomContainer {
+  position: absolute;
+  left: 50px;
+  top: 50px;
 }
