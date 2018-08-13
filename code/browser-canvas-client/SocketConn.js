@@ -2,18 +2,16 @@ class SocketConn {
   
   constructor(endpoint) {
     this.endpoint = endpoint
-    this.connectWS()
+    this.ws = this.connectWS()
   }
 
   connectWS() {
-    const socket = new WebSocket(this.endpoint)
+    let ws = new WebSocket(this.endpoint)
 
-    socket.addEventListener('open', event => {
-      socket.send('Hello Server!')
-    })
-
-    socket.addEventListener('message', event => {
+    ws.onmessage = function() {
       console.log('Message from server ', event.data)
-    })
+    }
+    
+    return ws
   }
 }

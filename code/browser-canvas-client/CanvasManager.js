@@ -1,7 +1,7 @@
 class CanvasManager{
 
   constructor(){
-    this.zoomer = document. getElementById("zoomer")
+    this.zoomer = document.getElementById("zoomer")
     this.zoomOutput = document.getElementById("zoomSliderOutput")
   }
 
