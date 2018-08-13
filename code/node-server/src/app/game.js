@@ -10,8 +10,9 @@ class Game {
     this.createGroups()
   }
 
-  setTile(tile) { // {x, y, hexStr} sans '#' on hexStr
+  setTile(tile, groupId) { // {x, y, hexStr} sans '#' on hexStr
     this.canvas.setTile(tile)
+    Group.addWrite(groupId)
     this.wss.emit(tile)
   }
 
@@ -28,7 +29,6 @@ class Game {
       new Group(i)
     }
   }
-
 
   toJSON() {
     return {
