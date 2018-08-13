@@ -2,7 +2,7 @@ class Achievements {
   constructor(groupId) {
     this.groupId = groupId
     this.mileStones = {
-      '1': true,
+      '1': false,
       '100': false,
       '500': false,
       '1000': false,
