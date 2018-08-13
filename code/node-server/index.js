@@ -9,7 +9,6 @@ const validator = require('./src/middleware/validator.js')
 const logger = require('./src/middleware/logger.js')
 const limiter = require('./src/middleware/rateLimiter.js')
 
-const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
 const game = new Game()
 
@@ -78,8 +77,5 @@ app.use((err, req, res, next) => {
 })
 
 //*********************************** START! ***********************************
-for (let i = 1; i < config.IDLIMIT.high; i++) {
-  new Group(i)
-}
 
 app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
