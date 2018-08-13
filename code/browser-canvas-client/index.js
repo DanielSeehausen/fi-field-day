@@ -12,6 +12,12 @@ zoomSlider.oninput = (e) =>{
   canvasManager.handleZoom(e)
 }
 
+document.body.onkeydown = (e) =>{
+  if (e.keyCode === 32) {
+    console.log(e.keyCode)
+    canvasManager.cycleZoom()
+  }
+}
 
 /******************* Sample Tile Setting***************************************/
 
