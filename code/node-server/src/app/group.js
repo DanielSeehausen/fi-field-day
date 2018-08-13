@@ -35,8 +35,5 @@ class Group {
 
 Group.all = {}
 
-//create admin group for now; will do w/ student ids
-new Group(0)
-
 
 module.exports = Group
