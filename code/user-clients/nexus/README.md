@@ -5,6 +5,8 @@ To start the Nexus API, run `npm install && npm start`.
 
 ### Routes
 
+TODO: update these to new restful routes!
+
 ```
 GET /get-tile?x=<INT>&y=<INT>
     Response: {x,y,color}
