@@ -1,6 +1,5 @@
 const config = require('./config.js') 
-const WSClient = require('./socket-server.js')
-const ServerConn = require('./socket-server.js')
+const WSClient = require('./WSClient.js')
 
 class Game {
 
