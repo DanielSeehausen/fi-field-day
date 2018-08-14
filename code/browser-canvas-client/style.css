@@ -17,10 +17,14 @@ canvas {
   transform: scale(7, 7);
 }
 
-
-
-.zoomContainer {
-  position: absolute;
-  left: 50px;
-  top: 50px;
+#zoomStatus {
+  position: fixed;
+  top: 20px;
+  background-color: white;
+  border: solid;
+  border-width: thin;
+  border-color: grey;
+  border-radius: 5px;
+  z-index: 100;
+  padding: 5px;
 }
