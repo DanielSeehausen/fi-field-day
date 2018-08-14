@@ -6,12 +6,12 @@ const canvasManager = new CanvasManager
 
 /********************* Zoom Slide Handler ***************************************/
 
-const zoomSlider = document.getElementById("zoomSlider")
-
-zoomSlider.oninput = (e) =>{
-  canvasManager.handleZoom(e)
+document.body.onkeydown = (e) =>{
+  if (e.keyCode === 32) {
+    console.log(e.keyCode)
+    canvasManager.cycleZoom()
+  }
 }
-
 
 /******************* Sample Tile Setting***************************************/
 
