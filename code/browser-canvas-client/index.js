@@ -11,7 +11,7 @@ document.body.onkeydown = (e) =>{
   if (e.keyCode === 32) {
     canvasManager.cycleZoom(e)
   }
-  if (e.keyCode >= 37 && e.keyCode <= 40) {
+  else {
     canvasManager.handleMove(e)
   }
 }
