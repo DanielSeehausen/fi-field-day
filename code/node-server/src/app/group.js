@@ -6,6 +6,14 @@ class Group {
     Group.all[groupId].addWrite()
   }
 
+  static totalWrites()  {
+    let counter
+    for(const groupId in Group.all) {
+      counter += Group.all[groupId].writes
+    }
+    return counter
+  }
+
   constructor(id) {
     this.id = id
     this.writes = 0
