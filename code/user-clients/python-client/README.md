@@ -16,3 +16,11 @@ GET /queue
 
 DELETE /clear-queue
   Response {message: “Success”, number_deleted: <INT>}
+
+Methods
+
+def set_tile(self, dict):
+def clear_queue(self):
+def get_queue(self):
+def get_rect(self, start, end):
+def get_tile(self, dict):
