@@ -5,7 +5,7 @@ const app = express()
 
 function isValidPoint(x, y) {
   const integers = Number.isInteger(x) && Number.isInteger(y)
-  const inRange = x >= 0 && y >= 0 && x < config.BOARDDIMENSION && y < config.BOARDDIMENSION 
+  const inRange = x >= 0 && y >= 0 && x < config.BOARDDIMENSION && y < config.BOARDDIMENSION
   return integers && inRange
 }
 
@@ -16,7 +16,7 @@ app.get('/tile', (req, res) => {
   if (isValidPoint(x, y)) { //TODO this should be handled as middleware and automatically return error on fail
     res.send({x, y, c: game.getTile(x, y)})
   } else {
-    res.send({error: "Invalid query parameters."}) 
+    res.send({error: "Invalid query parameters."})
   }
 })
 
