@@ -1,6 +1,6 @@
 # Flatiron Field Day Matrix Manager
 
-Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills. 
+Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills.
 
 Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will be receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do a few things:
 
@@ -17,14 +17,14 @@ Right now, we are hosting a server that stores a board full of tiles, and it is 
 * To get started, simply run `npm start` in your terminal. This program will automatically update your local Redis database for you, so simply set it and forget it!
 
 
-Now that you've got that setup, the next step is to install your **Matrix Manager** Ruby client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board. 
+Now that you've got that setup, the next step is to install your **Matrix Manager** Ruby client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board.
 
 To get started, please do the following:
 
 _First, if you would rather use Javascript than Ruby, switch over to [this](https://github.com/learn-co-curriculum/FFD-Student-JS-Client/) repo!_
 
 1. Install our nifty **Matrix Manager**
-* Clone down this repo and `cd` into it. There are two important files: `app.rb` and `MatrixManager.rb`, but you will mostly code in `app.rb`. Run `bundle install` to install all dependencies. 
+* Clone down this repo and `cd` into it. There are two important files: `app.rb` and `MatrixManager.rb`, but you will mostly code in `app.rb`. Run `bundle install` to install all dependencies.
 
 2. Set your team ID
 * Inside `app.rb`, you will notice a very conspicuous String that says `ENTER TEAM ID HERE`. Do this.
@@ -86,4 +86,4 @@ matrix.set_rect({x:1 ,y:1}, {x:4, y:6}, "4286f4")
 
 To run the scripts you write in `app.rb`, simply enter `ruby app.rb`, and your code will run!
 
-And that's all you need to interact with the board! Feel free to combine methods, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it. 
+And that's all you need to interact with the board! Feel free to combine methods, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it.

@@ -9,9 +9,8 @@ class MatrixManager
     @api_url = "http://localhost:3000"
 	end
 
-
-
 	def set_tile(hash)
+		# Tested, working
 		set_tile_url = "#{self.api_url}/set-tile"
 		response = RestClient.post(set_tile_url, hash)
 		JSON.parse(response)
@@ -19,14 +18,15 @@ class MatrixManager
 
 
 	def clear_queue
-		delete_queue_url = "#{self.api_url}/clear_queue"
-		binding.pry
+		# Tested, working
+		delete_queue_url = "#{self.api_url}/clear-queue"
 		response = RestClient.delete(delete_queue_url)
 		JSON.parse(response)
 	end
 
 
 	def get_queue
+		# Tested, working
 		get_queue_url = "#{self.api_url}/get-queue"
 		response = RestClient.get(get_queue_url)
 		JSON.parse(response)
@@ -42,6 +42,7 @@ class MatrixManager
 
 
 	def get_tile(hash)
+		# Tested, working
 		get_tile_url = "#{self.api_url}/get-tile?x=#{hash[:x]}&y=#{hash[:y]}"
 		response = RestClient.get(get_tile_url)
 		JSON.parse(response)

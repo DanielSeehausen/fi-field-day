@@ -12,7 +12,7 @@ const port = 3000
 
 // GLOBAL VARS
 let queue = []
-let interval = null 
+let interval = null
 
 // SOCKET
 // const socket = new WSSManager()
@@ -22,7 +22,6 @@ function startInterval() {
   interval = setInterval(() => {
     if (queue.length > 0) {
       let nextPoint = queue.shift()
-      console.log(nextPoint)
     } else {
       clearInterval(interval)
       interval = null
@@ -32,7 +31,7 @@ function startInterval() {
 
 function checkValidPoint(x,y){
   const integers = Number.isInteger(x) && Number.isInteger(y)
-  const inRange = x >= 0 && y >= 0 && x < size && y < size 
+  const inRange = x >= 0 && y >= 0 && x < size && y < size
   return integers && inRange
 }
 
@@ -41,6 +40,7 @@ function checkValidPoint(x,y){
 app.get('/get-tile', (req, res) => {
   const x = parseInt(req.query.x, 10)
   const y = parseInt(req.query.y, 10)
+
 
   if (checkValidPoint(x,y)) {
     res.send({x,y, color: "FFFFFF"})
@@ -51,13 +51,15 @@ app.get('/get-tile', (req, res) => {
 
 
 app.post('/set-tile', (req, res) => {
-  const x = req.body.x
-  const y = req.body.y
+  // Had to parseInt because they were failing the checkValidPoint test
+  const x = parseInt(req.body.x)
+  const y = parseInt(req.body.y)
   const color = req.body.color
 
   if (checkValidPoint(x,y)){
     const coordinate = {x,y,color}
     queue.push(coordinate)
+
     if (!interval) {
       startInterval()
     }
