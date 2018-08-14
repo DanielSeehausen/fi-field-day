@@ -14,13 +14,42 @@ canvas {
 }
 
 #zoomer {
-  transform: scale(3, 3);
+  transform: scale(7, 7);
 }
 
+#mover{
+  transform: translate(0px,0px);
+}
 
+#statusBar {
+  position: fixed;
+  top: 20px;
+  z-index: 100;
+  display: flex;
+}
 
-.zoomContainer {
-  position: absolute;
-  left: 50px;
-  top: 50px;
+#zoomStatus {
+  background-color: white;
+  border: solid;
+  border-width: thin;
+  border-color: grey;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#resetPosition {
+    background-color: white;
+    border: solid;
+    border-width: thin;
+    border-color: grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#resetPosition:hover {
+  cursor: pointer;
+}
+
+#resetPosition:active {
+  background-color: grey;
 }

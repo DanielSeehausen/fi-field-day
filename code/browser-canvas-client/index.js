@@ -4,14 +4,19 @@ const socketConn = new SocketConn(config.WSENDPOINT)
 const canvasManager = new CanvasManager
 
 
-/********************* Zoom Slide Handler ***************************************/
+/********************* Keyboard Input Handler ***************************************/
 
-const zoomSlider = document.getElementById("zoomSlider")
-
-zoomSlider.oninput = (e) =>{
-  canvasManager.handleZoom(e)
+document.body.onkeydown = (e) =>{
+  if (e.keyCode === 32) {
+    canvasManager.cycleZoom(e)
+  }
+  if (e.keyCode >= 37 && e.keyCode <= 40) {
+    canvasManager.handleMove(e)
+  }
 }
 
+const reset = document.getElementById(`resetPosition`)
+reset.addEventListener('click', () => canvasManager.resetMove())
 
 /******************* Sample Tile Setting***************************************/
 
