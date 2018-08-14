@@ -17,14 +17,39 @@ canvas {
   transform: scale(7, 7);
 }
 
-#zoomStatus {
+#mover{
+  transform: translate(0px,0px);
+}
+
+#statusBar {
   position: fixed;
   top: 20px;
+  z-index: 100;
+  display: flex;
+}
+
+#zoomStatus {
   background-color: white;
   border: solid;
   border-width: thin;
   border-color: grey;
   border-radius: 5px;
-  z-index: 100;
   padding: 5px;
+}
+
+#resetPosition {
+    background-color: white;
+    border: solid;
+    border-width: thin;
+    border-color: grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#resetPosition:hover {
+  cursor: pointer;
+}
+
+#resetPosition:active {
+  background-color: grey;
 }
