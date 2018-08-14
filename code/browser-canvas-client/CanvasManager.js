@@ -8,12 +8,14 @@ class CanvasManager{
     this.y = 0
     this.zoom = 1
     this.mover.style.transform = `translate(0px, 0px)`
+    this.dragger = document.getElementById('dragger')
   }
 
   resetMove(e){
     this.x = 0
     this.y = 0
     this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
+    this.dragger.style.transform = `translate(${this.x}px, ${this.y}px)`
   }
 
   handleMove(e){
@@ -64,5 +66,6 @@ class CanvasManager{
       this.zoomStatus.innerText = `Current Zoom: x1`
     }
   }
+
 
 }

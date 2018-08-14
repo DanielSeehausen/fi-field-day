@@ -2,6 +2,7 @@ const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT)
 const canvasManager = new CanvasManager
+const dragger = new Dragger
 
 
 /********************* Keyboard Input Handler ***************************************/
@@ -17,6 +18,15 @@ document.body.onkeydown = (e) =>{
 
 const reset = document.getElementById(`resetPosition`)
 reset.addEventListener('click', () => canvasManager.resetMove())
+
+
+/********************* Mouse Input Handler ***************************************/
+
+
+const dragDiv = document.getElementById(`dragger`)
+dragDiv.addEventListener('mousedown', (e) =>   dragger.mouseDown(e))
+document.addEventListener('mouseup', (e) =>   dragger.mouseUp(e))
+document.addEventListener('mousemove', (e) =>   dragger.mouseMove(e))
 
 /******************* Sample Tile Setting***************************************/
 

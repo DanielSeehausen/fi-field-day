@@ -44,6 +44,7 @@ canvas {
     border-color: grey;
     border-radius: 5px;
     padding: 5px;
+    user-select: none;
 }
 
 #resetPosition:hover {
