@@ -3,26 +3,31 @@ const app = express()
 const url = require('url');
 const bodyParser = require('body-parser');
 const { WSSManager } = require('./socket-server.js')
+const fetch = require('node-fetch');
 
-// CONFIG
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const size = 500
-const port = 3000
 
+// CONFIG
+const size = 500
+const port = 3001
+const teamID = 1
+const HTTPEndpoint = "http://localhost:3000"
+ 
 // GLOBAL VARS
 let queue = []
 let interval = null 
 
 // SOCKET
-// const socket = new WSSManager()
+const socket = new WSSManager()
 
 // HELPERS
 function startInterval() {
   interval = setInterval(() => {
     if (queue.length > 0) {
       let nextPoint = queue.shift()
-      console.log(nextPoint)
+      socket.setTile(nextPoint.x, nextPoint.y, nextPoint.color)
+      console.log("SENDING POINT: ", nextPoint)
     } else {
       clearInterval(interval)
       interval = null
@@ -41,14 +46,17 @@ function checkValidPoint(x,y){
 app.get('/get-tile', (req, res) => {
   const x = parseInt(req.query.x, 10)
   const y = parseInt(req.query.y, 10)
-
   if (checkValidPoint(x,y)) {
-    res.send({x,y, color: "FFFFFF"})
+  	let color = socket.board[`${x}-${y}`]
+    res.send({x,y,color})
   } else {
     res.send({error: "Invalid query parameters."})
   }
 })
 
+app.get("/board", (req, res) => {
+	res.send(socket.convertBoard())
+})
 
 app.post('/set-tile', (req, res) => {
   const x = req.body.x
@@ -79,4 +87,4 @@ app.delete('/clear-queue', (req, res) => {
 
 
 
-app.listen(port, () => console.log('Example app listening on port 3000!'))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
