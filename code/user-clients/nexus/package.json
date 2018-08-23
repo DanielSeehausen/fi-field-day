@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/DanielSeehausen/fi-field-day#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "node-fetch": "^2.2.0",
     "nodemon": "^1.18.3",
     "ws": "^6.0.0"
   }
