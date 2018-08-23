@@ -1,3 +1,5 @@
+const Achievements = require('./achievements.js')
+
 class Group {
 
   static addWrite(groupId) {
@@ -8,13 +10,14 @@ class Group {
     this.id = id
     this.writes = 0
     this.errors = 0
-    this.achievements = new Set()
+    this.achievements = new Achievements(this.id)
     Group.all[this.id] = this
   }
 
   addWrite() {
     this.writes++
-    if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
+    this.achievements.addMilestone(this.writes)
+    // if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
 
   addError() {
@@ -27,16 +30,13 @@ class Group {
       id: this.id,
       writes: this.writes,
       errors: this.errors,
-      achievements: Array.from(this.achievements)
+      achievements: this.achievements.stringifyAchievements()
     }
   }
 
 }
 
 Group.all = {}
-
-//create admin group for now; will do w/ student ids
-new Group(0)
 
 
 module.exports = Group
