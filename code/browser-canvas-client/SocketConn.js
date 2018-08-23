@@ -1,17 +1,25 @@
 class SocketConn {
-  
-  constructor(endpoint) {
-    this.endpoint = endpoint
-    this.ws = this.connectWS()
-  }
+	
+	constructor(endpoint, canvas) {
+		this.endpoint = endpoint
+		this.ws = this.connectWS()
 
-  connectWS() {
-    let ws = new WebSocket(this.endpoint)
+		this.canvas = canvas
+	}
 
-    ws.onmessage = function() {
-      console.log('Message from server ', event.data)
-    }
-    
-    return ws
-  }
+	connectWS() {
+		let ws = new WebSocket(this.endpoint)
+
+		ws.onmessage = (function() {
+			const data = JSON.parse(event.data)
+			if (data.payload) {
+				const {x,y,hexStr} = data.payload
+
+				this.canvas.drawTile(y,x,hexStr)
+			}
+			// console.log('Message from server ', event.data)
+		}).bind(this)
+		
+		return ws
+	}
 }
