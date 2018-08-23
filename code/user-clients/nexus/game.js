@@ -41,7 +41,6 @@ class Game {
 	writeTile(obj){
 		const { x, y, hexStr } = obj
 		this.board[`${x}-${y}`] = hexStr
-		console.log(this.board)
 	}
 
 	getBoard() {
@@ -55,11 +54,12 @@ class Game {
 	}
 
 	setTile(x, y, c) {
-			fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${1}`, {
+			fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.GROUPID}`, {
 				method: 'Post',
-				mode: 'no-cors'
+				mode: 'no-cors',
 			})
 			.then(response => response)
+			// .then(console.log)
 		}
 }
 

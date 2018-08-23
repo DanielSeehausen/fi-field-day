@@ -6,7 +6,6 @@ class HTTPConn {
   
   getBoard() {
     const route = `/board?id=${config.ID}`
-    console.log(this.endpoint + route)
     fetch(this.endpoint + route, { method: 'GET' })
       .then(response => response.arrayBuffer())
       .then(bufferData => {
@@ -31,7 +30,7 @@ class HTTPConn {
     fetch(`${this.endpoint}/groups?id=${config.ID}`, { method: 'GET' })
       .then(r => r.json())
       .then(groupData => {
-        console.log('%cGETTED GROUP! ', 'color: green', groupData)
+        // console.log('%cGETTED GROUP! ', 'color: green', groupData)
       })
   }
 }

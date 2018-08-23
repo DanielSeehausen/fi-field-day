@@ -1,6 +1,6 @@
 const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
-const socketConn = new SocketConn(config.WSENDPOINT)
+const socketConn = new SocketConn(config.WSENDPOINT, canvas)
 const canvasManager = new CanvasManager
 
 
@@ -9,7 +9,7 @@ const canvasManager = new CanvasManager
 const zoomSlider = document.getElementById("zoomSlider")
 
 zoomSlider.oninput = (e) =>{
-  canvasManager.handleZoom(e)
+	canvasManager.handleZoom(e)
 }
 
 
@@ -17,7 +17,7 @@ zoomSlider.oninput = (e) =>{
 
 httpConn.getBoard() //fetch initial state of board
 for (let i = 0; i < 100; i++) {
-  httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
+	httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
 }
 
 httpConn.getGroupInfo()
