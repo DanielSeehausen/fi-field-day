@@ -5,6 +5,8 @@ To start the Nexus API, run `npm install && npm start`.
 
 ### Routes
 
+TODO: update these to new restful routes!
+
 ```
 GET /get-tile?x=<INT>&y=<INT>
     Response: {x,y,color}
@@ -17,5 +19,5 @@ GET /get-queue
     Response: [{x,y,color}]
 
 DELETE /clear-queue
-    Response {message: “Queue successfully cleared. <NUM ITEMS DELETED> items removed.”,
+    Response {message: “Queue successfully cleared. <NUM ITEMS DELETED> items removed.”}
 ```

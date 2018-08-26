@@ -39,7 +39,6 @@ app.post('/tile', (req, res) => { // /tile?x=x&y=y&c=c&id=ID
     hexStr: `${req.query.c}`
   }
   game.setTile(tile, req.query.id)
-  Group.addWrite(req.query.id)
   res.send(true)
 })
 
@@ -78,4 +77,6 @@ app.use((err, req, res, next) => {
 })
 
 //*********************************** START! ***********************************
+
 app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
+console.log(config)
