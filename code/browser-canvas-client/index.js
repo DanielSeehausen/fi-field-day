@@ -2,16 +2,33 @@ const canvas = new Canvas(config.DEFAULTLENGTH, config.DEFAULTARRAY)
 const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT, canvas)
 const canvasManager = new CanvasManager
+const dragger = new Dragger
 
 
-/********************* Zoom Slide Handler ***************************************/
+/********************* Keyboard Input Handler ***************************************/
 
-const zoomSlider = document.getElementById("zoomSlider")
 
-zoomSlider.oninput = (e) =>{
-	canvasManager.handleZoom(e)
+document.body.onkeydown = (e) =>{
+  if (e.keyCode === 32) {
+    canvasManager.cycleZoom(e)
+  }
+  else {
+    canvasManager.handleMove(e)
+  }
+
 }
 
+const reset = document.getElementById(`resetPosition`)
+reset.addEventListener('click', () => canvasManager.resetMove())
+
+
+/********************* Mouse Input Handler ***************************************/
+
+
+const dragDiv = document.getElementById(`dragger`)
+dragDiv.addEventListener('mousedown', (e) =>   dragger.mouseDown(e))
+document.addEventListener('mouseup', (e) =>   dragger.mouseUp(e))
+document.addEventListener('mousemove', (e) =>   dragger.mouseMove(e))
 
 /******************* Sample Tile Setting***************************************/
 
