@@ -35,10 +35,13 @@ class Dragger{
       const newPos = `translate(${this.newX}px, ${this.newY}px)`
       this.dragger.style.transform = newPos
     }
-
   }
 
 
+  resetMove(){
+    this.lastTimeX = 0
+    this.lastTimeY = 0
+  }
 
 
 
