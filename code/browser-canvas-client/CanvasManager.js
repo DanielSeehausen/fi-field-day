@@ -62,7 +62,6 @@ class CanvasManager{
   }
 
   cycleZoom(e){
-    console.log(this.zoomer.style.transform)
     e.preventDefault()
     switch (this.zoomer.style.transform) {
       case `scale(7, 7)`:
