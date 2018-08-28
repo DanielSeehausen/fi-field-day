@@ -8,6 +8,7 @@ class CanvasManager{
     this.y = 0
     this.zoom = 1
     this.mover.style.transform = `translate(0px, 0px)`
+    this.zoomer.style.transform = `scale(7, 7)`
     this.dragger = document.getElementById('dragger')
   }
 
@@ -53,12 +54,15 @@ class CanvasManager{
         this.y += (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
+      case 32:
+        this.cycleZoom(e)
       default:
       this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
     }
   }
 
   cycleZoom(e){
+    console.log(this.zoomer.style.transform)
     e.preventDefault()
     switch (this.zoomer.style.transform) {
       case `scale(7, 7)`:
