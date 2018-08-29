@@ -19,5 +19,5 @@ GET /get-queue
     Response: [{x,y,color}]
 
 DELETE /clear-queue
-    Response {message: “Queue successfully cleared. <NUM ITEMS DELETED> items removed.”,
+    Response {message: “Queue successfully cleared. <NUM ITEMS DELETED> items removed.”}
 ```
