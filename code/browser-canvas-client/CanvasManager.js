@@ -23,35 +23,35 @@ class CanvasManager{
     e.preventDefault()
     switch(e.keyCode){
       case 37:
-        this.x -= (20 * this.zoom)
+        this.x += (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 65:
-        this.x -= (20 * this.zoom)
+        this.x += (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 38:
-        this.y -= (20 * this.zoom)
+        this.y += (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 87:
-        this.y -= (20 * this.zoom)
+        this.y += (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 39:
-        this.x += (20 * this.zoom)
+        this.x -= (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 68:
-        this.x += (20 * this.zoom)
+        this.x -= (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 40:
-        this.y += (20 * this.zoom)
+        this.y -= (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 83:
-        this.y += (20 * this.zoom)
+        this.y -= (20 * this.zoom)
         this.mover.style.transform = `translate(${this.x}px, ${this.y}px)`
       break;
       case 32:
