@@ -14,6 +14,7 @@ class Canvas {
   }
 
   setImageFromArray(pixelArray=config.DEFAULTARRAY) {
+    // TODO somewhere the draggable container needs to resize (ideally at the same time)
     this.setDimension(Math.sqrt(pixelArray.length/4))
     const data = new ImageData(pixelArray, this.dimension, this.dimension)
     this.ctx.putImageData(data, 0, 0)
