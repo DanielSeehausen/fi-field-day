@@ -6,16 +6,12 @@ const dragger = new Dragger
 
 
 /********************* Keyboard Input Handler ***************************************/
-
+const keyCodes = [32, 37, 38, 39, 40, 65, 68, 83, 87]
 
 document.body.onkeydown = (e) =>{
-  if (e.keyCode === 32) {
-    canvasManager.cycleZoom(e)
-  }
-  else {
+  if (keyCodes.includes(e.keyCode)) {
     canvasManager.handleMove(e)
   }
-
 }
 
 const reset = document.getElementById(`resetPosition`)
