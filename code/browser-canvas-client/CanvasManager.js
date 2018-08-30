@@ -9,10 +9,10 @@ class CanvasManager {
     this.y = 0
     this.zoom = 1
     this.mover.style.transform = `translate(0px, 0px)`
-    this.zoomer.style.transform = `scale(2, 2)`
+    this.zoomer.style.transform = `scale(1.3, 1.3)`
     this.dragger = document.getElementById('dragger')
   }
-  
+
   setDefaultDimension() {
     this.zoomer.height = config.DEFAULTLENGTH
     this.zoomer.width = config.DEFAULTLENGTH
@@ -70,23 +70,23 @@ class CanvasManager {
   cycleZoom(e) {
     e.preventDefault()
     switch (this.zoomer.style.transform) {
-      case `scale(2, 2)`:
-        this.zoomer.style.transform = `scale(14, 14)`
+      case `scale(1.3, 1.3)`:
+        this.zoomer.style.transform = `scale(2.6, 2.6)`
         this.zoom = 2
         this.zoomStatus.innerText = `Current Zoom: x2`
         break;
-      case `scale(14, 14)`:
-        this.zoomer.style.transform = `scale(28, 28)`
+      case `scale(2.6, 2.6)`:
+        this.zoomer.style.transform = `scale(5.2, 5.2)`
         this.zoom = 4
         this.zoomStatus.innerText = `Current Zoom: x4`
         break;
-      case `scale(28, 28)`:
-        this.zoomer.style.transform = `scale(7, 7)`
+      case `scale(5.2, 5.2)`:
+        this.zoomer.style.transform = `scale(1.3, 1.3)`
         this.zoom = 1
         this.zoomStatus.innerText = `Current Zoom: x1`
         break;
       default:
-      this.zoomer.style.transform = `scale(7, 7)`
+      this.zoomer.style.transform = `scale(1.3, 1.3)`
       this.zoom = 1
       this.zoomStatus.innerText = `Current Zoom: x1`
     }
