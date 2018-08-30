@@ -28,6 +28,23 @@ dragDiv.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
 document.addEventListener('mouseup',   (e) => dragger.mouseUp(e))
 document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
 
+/********************* Instruction Pane Handler ***************************************/
+
+const questionMark = document.getElementById('questionMark')
+const instructions = document.getElementsByClassName('instructions')[0]
+questionMark.addEventListener('click', (e) => {
+  instructions.style.zIndex = 100;
+  instructions.style.opacity = 1;
+  questionMark.style.opacity = 0;
+  // Add a class to instructions that contains all of the styles we want to run on click
+})
+
+const close = document.getElementById('close')
+close.addEventListener('click', (e) =>{
+  instructions.style.zIndex = 98;
+  instructions.style.opacity = 0;
+  questionMark.style.opacity = 1;
+})
 
 /******************* Sample Tile Setting***************************************/
 

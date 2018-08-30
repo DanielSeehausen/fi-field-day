@@ -54,3 +54,16 @@ canvas {
 #resetPosition:active {
   background-color: grey;
 }
+
+.questionMark {
+  height: 70px;
+  z-index: 90;
+  transition: opacity 1s ease-out;
+
+}
+
+.instructions {
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s ease-in;
+}

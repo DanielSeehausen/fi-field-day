@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>u wot m8?</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
   </head>
   <body>
 
@@ -24,6 +25,19 @@
       </div>
     </div>
 
+    <div class="fixed bottom-0 left-0 right-0 p2">
+      <img src="./question.svg" class="questionMark right mr2" id="questionMark"/>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 mr2 right instructions">
+      <p id="close" class="right">X </p><br />
+      <div class="right pb2 ">
+        W,A,S,D - Movement <br />
+        Arrows Keys - Movement <br />
+        Space - Cycle Zoom Levels <br />
+        K - Reset the Board's Position <br />
+      </div>
+    </div>
 
     <script src="./config.js" charset="utf-8"></script>
     <script src="./CanvasManager.js" charset="utf-8"></script>
