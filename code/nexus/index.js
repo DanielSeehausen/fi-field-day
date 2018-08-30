@@ -33,7 +33,7 @@ function startInterval() {
       clearInterval(interval)
       interval = null
     }
-  }, 1000)
+  }, config.INTERVAL)
 }
 
 function checkValidPoint(x,y){

@@ -20,16 +20,15 @@ class Dragger{
       this.dragEvent = false
       this.lastTimeX = this.newX
       this.lastTimeY = this.newY
+    } else {
+      this.dragEvent = false
     }
   }
 
   mouseMove(e){
     if (this.dragEvent === true){
-      // console.log("starting " + this.startingX)
-      // console.log("client " + e.clientX)
       this.xDiff = this.startingX - e.clientX
       this.yDiff = this.startingY - e.clientY
-
       this.newX = this.lastTimeX - this.xDiff
       this.newY = this.lastTimeY - this.yDiff
       const newPos = `translate(${this.newX}px, ${this.newY}px)`
