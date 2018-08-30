@@ -5,7 +5,7 @@ module.exports = {
   COLUMNS: 500,
   HTTPPORT: 3001,
   WSPORT: 8080,
-  IDLIMIT: { low: 0, high: 20 },
+  IDLIMIT: { low: 0, high: 5 }, // for testing purposes
 
   // IDLIMIT: { low: 0, high: argv.groups ? argv.groups : 40 },
   LIMITWINDOW: 1000,
