@@ -18,6 +18,7 @@ const routeValidators = {
     '/board': [validID],
     '/groups': [validID],
     '/tile': [validTile, validID],
+    '/netstat': [() => true],
     __noSuchMethod__: [() => true] // might be 404 but that is handled normally.
   }
 }

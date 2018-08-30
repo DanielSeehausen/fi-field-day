@@ -8,7 +8,7 @@ class Group {
 
 
   static totalWrites()  {
-    let counter
+    let counter = 0
     for(const groupId in Group.all) {
       counter += Group.all[groupId].writes
     }
