@@ -28,7 +28,7 @@ app.post('/tile', (req, res) => {
   if (isValidPoint(x, y)) { //TODO this should be handled as middleware and automatically return error on fail
     const action = {endpoint: "setTile", params: {x, y, color, id: config.GROUPID}}
     game.enqueue(action)
-    res.status(200).send("success: "Successfully enqueued: ", action")
+    res.status(200).send(`Successful enqued: ${action}`)
   } else {
     res.send({error: "Invalid query parameters."})
   }
