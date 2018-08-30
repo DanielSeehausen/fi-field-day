@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "npm test",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "watch": "supervisor -n index.js --no-restart-on error --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,11 @@
   },
   "homepage": "https://github.com/DanielSeehausen/fi-field-day#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "node-fetch": "^2.2.0",
     "nodemon": "^1.18.3",
+    "supervisor": "^0.12.0",
     "ws": "^6.0.0"
   }
 }

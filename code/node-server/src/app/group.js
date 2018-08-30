@@ -6,6 +6,7 @@ class Group {
     Group.all[groupId].addWrite()
   }
 
+
   static totalWrites()  {
     let counter
     for(const groupId in Group.all) {
@@ -14,23 +15,31 @@ class Group {
     return counter
   }
 
+  static addError(errorType, groupId) {
+    Group.all[groupId].addError(errorType)
+  }
+
   constructor(id) {
     this.id = id
     this.writes = 0
     this.errors = 0
+    this.errorTypes = []
     this.achievements = new Achievements(this.id)
     Group.all[this.id] = this
   }
 
   addWrite() {
     this.writes++
-    this.achievements.addMilestone(this.writes)
+    this.achievements.addMilestone('writes', this.writes)
     // if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
 
-  addError() {
+  addError(errorType) {
     this.errors++
-    if (this.errors % 100 === 0) this.achievements.add(`Errors: ${this.writes}`)
+    this.errorTypes.push(errorType)
+    this.achievements.addMilestone('errors', this.errors)
+    this.achievements.addErrorTypeMilestone(errorType)
+    // if (this.errors % 100 === 0) this.achievements.add(`Errors: ${this.writes}`)
   }
 
   toJSON() {
@@ -38,6 +47,7 @@ class Group {
       id: this.id,
       writes: this.writes,
       errors: this.errors,
+      errorTypes: this.errorTypes,
       achievements: this.achievements.stringifyAchievements()
     }
   }
