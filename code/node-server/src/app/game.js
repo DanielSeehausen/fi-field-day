@@ -10,7 +10,8 @@ const BASECOLORS = [
   '34495E','17202A','641E16','6F0062',
 	'2ECC71','F1C40F','F39C12','5A0007',
   '145A32','7D6608','7E5109','A079BF',
-	'1ABC9C','16A085','27AE60','A1C299'
+	'1ABC9C','16A085','27AE60','A1C299',
+  '1CE6FF','FF34FF','FF4A46','008941'
 ]
 
 // may need some better contrasting colors...possible ones below
@@ -53,8 +54,8 @@ class Game {
 	}
 
 	getStartIdenticonPosPerSide({spx, spy, dx, dy, count}) {
-		const fullSize = 55
-		const buffer = 15
+		const fullSize = 50
+		const buffer = 10
 		const posArray = []
 
 		for (let idx = 0; idx < count; idx++) {
@@ -72,9 +73,9 @@ class Game {
 
     const recs = [
       {spx: 0, spy: 0, dx: 1, dy: 0, count: null},
-      {spx: config.ROWS - 55, spy: 0, dx: 0, dy: 1, count: null},
-      {spx: config.ROWS - 55, spy: config.COLUMNS - 55, dx: -1, dy: 0, count: null},
-      {spx: 0, spy: config.COLUMNS - 55, dx: 0, dy: -1, count: null}
+      {spx: config.ROWS - 50, spy: 0, dx: 0, dy: 1, count: null},
+      {spx: config.ROWS - 50, spy: config.COLUMNS - 50, dx: -1, dy: 0, count: null},
+      {spx: 0, spy: config.COLUMNS - 50, dx: 0, dy: -1, count: null}
     ]
 
     const minPerSide = Math.floor(groupCount / 4)
