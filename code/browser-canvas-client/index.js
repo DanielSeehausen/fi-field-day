@@ -11,6 +11,9 @@ const keyCodes = [32, 37, 38, 39, 40, 65, 68, 83, 87]
 document.body.onkeydown = (e) =>{
   if (keyCodes.includes(e.keyCode)) {
     canvasManager.handleMove(e)
+  } if (e.keyCode === 75){
+    canvasManager.resetMove()
+    dragger.resetMove()
   }
 }
 
