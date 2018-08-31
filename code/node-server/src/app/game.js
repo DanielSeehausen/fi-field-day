@@ -100,7 +100,9 @@ class Game {
 		allStartPositions.forEach((pos, idx) => {
 			for (let row = pos['x']; row < pos['x'] + 25; row++) {
 				for (let col = pos['y']; col < pos['y'] + 25; col++) {
-					this.canvas.setTile({x: row, y: col, hexStr: Group.all[idx].hexColor})
+					const tile = {x: row, y: col, hexStr: Group.all[idx].hexColor}
+					this.canvas.setTile(tile)
+					this.wss.emit({action: "writeTile", payload: tile})
 				}
 			}
 		})
