@@ -15,7 +15,7 @@ class HTTPConn {
       })
   }
 
-  setTile({x, y, c}) {
+  setTile(x, y, c) {
     fetch(this.endpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.ID}`, {
       method: 'Post',
       mode: 'no-cors'
