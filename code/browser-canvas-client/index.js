@@ -17,12 +17,6 @@ document.body.onkeydown = (e) =>{
   }
 }
 
-const reset = document.getElementById(`resetPosition`)
-reset.addEventListener('click', () => {
-  canvasManager.resetMove()
-  dragger.resetMove()
-})
-
 
 /********************* Mouse Input Handler ***************************************/
 
