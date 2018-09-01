@@ -85,4 +85,4 @@ app.use((err, req, res, next) => {
 //*********************************** START! ***********************************
 
 app.listen(config.HTTPPORT, () => console.log(`App listening on port ${config.HTTPPORT}!`))
-console.log(config)
+console.log("Loaded with config: ", config)
