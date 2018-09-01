@@ -5,7 +5,7 @@ module.exports = {
   COLUMNS: 500,
   HTTPPORT: 3001,
   WSPORT: 8080,
-  IDLIMIT: { low: 0, high: argv.groups ? argv.groups : 40 },
+  IDLIMIT: { low: 0, high: argv.groups ? argv.groups : 35 }, // max 40 led to overlapping identicons -> set max to 35
   LIMITWINDOW: 1000,
   LIMITCOUNT: 5,
   ADMIN_SECRET: '0' // TODO: make secret, add to .gitignore

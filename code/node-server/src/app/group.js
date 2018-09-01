@@ -19,8 +19,9 @@ class Group {
     Group.all[groupId].addError(errorType)
   }
 
-  constructor(id) {
+  constructor(id, hexColor) {
     this.id = id
+    this.hexColor = hexColor
     this.writes = 0
     this.errors = 0
     this.errorTypes = []
@@ -45,6 +46,7 @@ class Group {
   toJSON() {
     return {
       id: this.id,
+      hexColor: this.hexColor,
       writes: this.writes,
       errors: this.errors,
       errorTypes: this.errorTypes,
