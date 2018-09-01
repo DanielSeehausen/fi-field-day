@@ -1,7 +1,7 @@
 const config = require('./config.js') 
 const WSClient = require('./WSClient.js')
 const fetch = require('node-fetch')
-const HTTPEndpoint = `http://localhost:${config.SERVERHTTPPORT}`
+const HTTPEndpoint = config.APIENDPOINT
 
 class Game {
 
@@ -58,7 +58,7 @@ class Game {
 				method: 'Post',
 				mode: 'no-cors',
 			})
-			.then(response => response)
+			.then(response => console.log(response))
 			// .then(console.log)
 		}
 }

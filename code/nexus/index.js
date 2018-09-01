@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const url = require('url');
 const bodyParser = require('body-parser');
-const Game = require('./game.js')
+const Game = require('./Game.js')
 const config = require("./config.js")
 const fetch = require('node-fetch');
 
@@ -13,10 +13,10 @@ app.use(bodyParser.json());
 const size = config.BOARDDIMENSION
 const port = config.HTTPPORT
 const teamID = config.GROUPID
-const HTTPEndpoint = `http://localhost:${config.SERVERHTTPPORT}`
+const HTTPEndpoint = config.APIENDPOINT
  
 // GLOBAL VARS
-let queue = []
+const queue = []
 let interval = null 
 
 // game
@@ -27,8 +27,7 @@ function startInterval() {
   interval = setInterval(() => {
     if (queue.length > 0) {
       let nextPoint = queue.shift()
-      game.setTile(nextPoint.x, nextPoint.y, nextPoint.color)
-      // console.log("SENDING POINT: ", nextPoint)
+      game.setTile(nextPoint.x, nextPoint.y, nextPoint.c)
     } else {
       clearInterval(interval)
       interval = null
@@ -62,10 +61,10 @@ app.get("/board", (req, res) => {
 app.post('/set-tile', (req, res) => {
   const x = req.body.x
   const y = req.body.y
-  const color = req.body.color
+  const c = req.body.c
 
-  if (checkValidPoint(x,y)){
-    const coordinate = {x,y,color}
+  if (checkValidPoint(x,y)) {
+    const coordinate = {x, y, c}
     queue.push(coordinate)
     if (!interval) {
       startInterval()

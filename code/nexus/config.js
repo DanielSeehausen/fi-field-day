@@ -1,8 +1,8 @@
 module.exports = {
 	HTTPPORT: 3000,
-	SERVERWSPORT: 8080,
-	SERVERHTTPPORT: 3001,
+  APIENDPOINT: 'http://theAPI.link',
+  APIWSENDPOINT: 'ws://theAPI.link/socket',
 	INTERVAL: 250,
 	BOARDDIMENSION: 500,
-	GROUPID: 1
+	GROUPID: 0,
 }
