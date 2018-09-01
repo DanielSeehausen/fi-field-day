@@ -6,6 +6,15 @@ class Group {
     Group.all[groupId].addWrite()
   }
 
+
+  static totalWrites()  {
+    let counter = 0
+    for(const groupId in Group.all) {
+      counter += Group.all[groupId].writes
+    }
+    return counter
+  }
+
   static addError(errorType, groupId) {
     Group.all[groupId].addError(errorType)
   }

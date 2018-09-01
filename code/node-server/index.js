@@ -11,6 +11,7 @@ const limiter = require('./src/middleware/rateLimiter.js')
 
 const Group = require('./src/app/group.js')
 const Game = require('./src/app/game.js')
+const Netstat = require('./src/app/netstat')
 const game = new Game()
 
 
@@ -54,10 +55,15 @@ app.get('/board', (req, res) => {
 
 
 //******************** GROUP ROUTING **********************
-
 app.get('/groups', (req, res) => {
   const group = Group.all[req.query.id]
   res.send(JSON.stringify(group))
+})
+
+//******************** GROUP NETSTAT **********************
+app.get('/netstat', (req, res) => {
+  const netstat = Netstat.showTotalWrites()
+  res.send(JSON.stringify(netstat))
 })
 
 
