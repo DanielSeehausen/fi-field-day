@@ -30,11 +30,7 @@ document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
 
 httpConn.getBoard() //fetch initial state of board
 
-for (let i = 0; i < 100; i++) {
-  httpConn.setTile(i, i, 'FF0000') // x, y, hex string color sans #
-}
-
-httpConn.getGroupInfo()
+// httpConn.getGroupInfo()
 
 // const pos = [
 //   { x: 15, y: 15, c: '00FF00' },
