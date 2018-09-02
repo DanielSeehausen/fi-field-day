@@ -15,14 +15,14 @@ const BASECOLORS = [
 ]
 
 // may need some better contrasting colors...possible ones below
-// 	'1CE6FF', 'FF34FF', 'FF4A46', '008941',
-// 	'FFDBE5', '7A4900', '0000A6', '63FFAC',
-// 	'5A0007', '809693', 'FEFFE6', '1B4400',
-// 	'61615A', 'BA0900', '6B7900', '00C2A0',
-// 	'DDEFFF', '000035', '7B4F4B', 'A1C299',
-// 	'372101', 'FFB500', 'C2FFED', 'A079BF',
-// 	'00489C', '6F0062', '0CBD66', 'EEC3FF',
-// 	'885578', 'FAD09F', 'FF8A9A', 'D157A0'
+//  '1CE6FF', 'FF34FF', 'FF4A46', '008941',
+//  'FFDBE5', '7A4900', '0000A6', '63FFAC',
+//  '5A0007', '809693', 'FEFFE6', '1B4400',
+//  '61615A', 'BA0900', '6B7900', '00C2A0',
+//  'DDEFFF', '000035', '7B4F4B', 'A1C299',
+//  '372101', 'FFB500', 'C2FFED', 'A079BF',
+//  '00489C', '6F0062', '0CBD66', 'EEC3FF',
+//  '885578', 'FAD09F', 'FF8A9A', 'D157A0'
 
 class Game {
   constructor() {
