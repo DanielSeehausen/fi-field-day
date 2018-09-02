@@ -8,7 +8,7 @@ class HTTPConn {
     this.prepareBoard = prepareBoard
   }
   getBoard() {
-    const route = `/board?id=${1}`
+    const route = `/board?id=${config.GROUPID}`
     fetch(HTTPEndpoint + route)
     .then(response => response.arrayBuffer())
     .then(bufferData => {
