@@ -24,35 +24,35 @@ const game = new Game()
 
 // HELPERS
 function startInterval() {
-  interval = setInterval(() => {
-    if (queue.length > 0) {
-      let nextPoint = queue.shift()
-      game.setTile(nextPoint.x, nextPoint.y, nextPoint.color)
-      // console.log("SENDING POINT: ", nextPoint)
-    } else {
-      clearInterval(interval)
-      interval = null
-    }
-  }, 1000)
+	interval = setInterval(() => {
+		if (queue.length > 0) {
+			let nextPoint = queue.shift()
+			game.setTile(nextPoint.x, nextPoint.y, nextPoint.color)
+			// console.log("SENDING POINT: ", nextPoint)
+		} else {
+			clearInterval(interval)
+			interval = null
+		}
+	}, 1000)
 }
 
 function checkValidPoint(x,y){
-  const integers = Number.isInteger(x) && Number.isInteger(y)
-  const inRange = x >= 0 && y >= 0 && x < size && y < size 
-  return integers && inRange
+	const integers = Number.isInteger(x) && Number.isInteger(y)
+	const inRange = x >= 0 && y >= 0 && x < size && y < size 
+	return integers && inRange
 }
 
 
 // ROUTES
 app.get('/get-tile', (req, res) => {
-  const x = parseInt(req.query.x, 10)
-  const y = parseInt(req.query.y, 10)
-  if (checkValidPoint(x,y)) {
-  	let color = game.board[`${x}-${y}`]
-    res.send({x,y,color})
-  } else {
-    res.send({error: "Invalid query parameters."})
-  }
+	const x = parseInt(req.query.x, 10)
+	const y = parseInt(req.query.y, 10)
+	if (checkValidPoint(x,y)) {
+		let color = game.board[`${x}-${y}`]
+		res.send({x,y,color})
+	} else {
+		res.send({error: "Invalid query parameters."})
+	}
 })
 
 app.get("/board", (req, res) => {
@@ -60,30 +60,30 @@ app.get("/board", (req, res) => {
 })
 
 app.post('/set-tile', (req, res) => {
-  const x = req.body.x
-  const y = req.body.y
-  const color = req.body.color
+	const x = req.body.x
+	const y = req.body.y
+	const color = req.body.color
 
-  if (checkValidPoint(x,y)){
-    const coordinate = {x,y,color}
-    queue.push(coordinate)
-    if (!interval) {
-      startInterval()
-    }
-    res.send({success: "Successfully queued!", coordinate, position: queue.length})
-  } else {
-    res.send({error: "Invalid point."})
-  }
+	if (checkValidPoint(x,y)){
+		const coordinate = {x,y,color}
+		queue.push(coordinate)
+		if (!interval) {
+			startInterval()
+		}
+		res.send({success: "Successfully queued!", coordinate, position: queue.length})
+	} else {
+		res.send({error: "Invalid point."})
+	}
 })
 
 app.get('/get-queue', (req, res) => {
-  res.send(queue)
+	res.send(queue)
 })
 
 app.delete('/clear-queue', (req, res) => {
-  let numItemsRemoved = queue.length
-  queue = []
-  res.send({message: `Queue successfully cleared. ${numItemsRemoved} items removed.`})
+	let numItemsRemoved = queue.length
+	queue = []
+	res.send({message: `Queue successfully cleared. ${numItemsRemoved} items removed.`})
 })
 
 
