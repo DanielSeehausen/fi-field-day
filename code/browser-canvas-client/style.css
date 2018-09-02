@@ -1,5 +1,5 @@
 html, body {
-  background: grey;
+  background: #ddd;
   width: 100%;
   height: 100%;
   display: flex;
@@ -8,9 +8,8 @@ html, body {
 }
 
 canvas {
-  padding: 1px;
-  border: 2px solid teal;
   image-rendering: pixelated;
+  box-shadow: 0px 0px 60px #555;
 }
 
 #zoomer {
@@ -29,27 +28,28 @@ canvas {
 }
 
 #zoomStatus {
+  background-color: RGBa(175,175,175,.25);
   position: fixed;
-  left: 60px;
-  top: 40px;
-  background-color: RGBa(175,175,175,.6);
-  border: solid;
-  border-width: thin;
-  border-color: RGBa(1,1,1,0);
-  border-radius: 2px;
+  z-index: 2;
+  left: 10px;
+  top: 10px;
   padding: 10px;
-  z-index: 100;
+  border-radius: 4px;
   user-select: none;
+  
+  color: rgb(50, 50, 50);
+  font-weight: bold;
+  font-size: 30pt;
 }
 
 #resetPosition {
-    background-color: RGBa(255,255,255,1);
-    border: solid;
-    border-width: thin;
-    border-color: grey;
-    border-radius: 5px;
-    padding: 5px;
-    user-select: none;
+  background-color: RGBa(255,255,255,1);
+  border: solid;
+  border-width: thin;
+  border-color: grey;
+  border-radius: 5px;
+  padding: 5px;
+  user-select: none;
 }
 
 #resetPosition:hover {
@@ -58,4 +58,26 @@ canvas {
 
 #resetPosition:active {
   background-color: grey;
+}
+
+#help-modal {
+  background-color: #ddd;
+  position: fixed;
+  opacity: 0;
+  width: 400px;
+  height: 600px;
+  border: none;
+  font-size: 30pt;
+  text-align: center;
+}
+
+#help-button {
+  z-index: 2;
+  color: rgba(50, 50, 50, 0.5);
+  font-size: 55pt;
+  cursor: pointer;
+  padding: 10px;
+  bottom: 0px;
+  right: 10px;
+  position: fixed;
 }

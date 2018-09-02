@@ -73,24 +73,23 @@ class CanvasManager {
       case `scale(1.3, 1.3)`:
         this.zoomer.style.transform = `scale(2.6, 2.6)`
         this.zoom = 2
-        this.zoomStatus.innerText = `Current Zoom: x2`
+        this.zoomStatus.innerText = `x2`
         break;
       case `scale(2.6, 2.6)`:
         this.zoomer.style.transform = `scale(5.2, 5.2)`
         this.zoom = 4
-        this.zoomStatus.innerText = `Current Zoom: x4`
+        this.zoomStatus.innerText = `x4`
         break;
       case `scale(5.2, 5.2)`:
         this.zoomer.style.transform = `scale(1.3, 1.3)`
         this.zoom = 1
-        this.zoomStatus.innerText = `Current Zoom: x1`
+        this.zoomStatus.innerText = `x1`
         break;
       default:
-      this.zoomer.style.transform = `scale(1.3, 1.3)`
-      this.zoom = 1
-      this.zoomStatus.innerText = `Current Zoom: x1`
+        this.zoomer.style.transform = `scale(1.3, 1.3)`
+        this.zoom = 1
+        this.zoomStatus.innerText = `x1`
     }
   }
-
 
 }
