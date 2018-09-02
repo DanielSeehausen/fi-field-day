@@ -21,4 +21,4 @@ function onButtonClick() {
 }
 
 button.onclick = onButtonClick
-modal.onblur = hideModals
+modal.onblur = hideModal
