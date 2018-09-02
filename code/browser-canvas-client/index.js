@@ -17,7 +17,6 @@ document.body.onkeydown = (e) =>{
   }
 }
 
-
 /********************* Mouse Input Handler ***************************************/
 
 const dragDiv = document.getElementById(`dragger`)
@@ -32,14 +31,12 @@ const instructions = document.getElementsByClassName('instructionsHidden')[0]
 questionMark.addEventListener('click', (e) => {
   instructions.className = "instructions fixed bottom-0 left-0 right-0 mr2 right"
   questionMark.className = "questionMarkHidden right mr2"
-  // Add a class to instructions that contains all of the styles we want to run on click
 })
 
 const close = document.getElementById('close')
 close.addEventListener('click', (e) =>{
   instructions.className = "instructionsHidden fixed bottom-0 left-0 right-0 mr2 right"
   questionMark.className = "questionMark right mr2"
-
 })
 
 /******************* Sample Tile Setting***************************************/
