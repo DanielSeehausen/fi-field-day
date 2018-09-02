@@ -35,24 +35,6 @@ canvas {
   user-select: none;
 }
 
-#resetPosition {
-    background-color: RGBa(255,255,255,1);
-    border: solid;
-    border-width: thin;
-    border-color: grey;
-    border-radius: 5px;
-    padding: 5px;
-    user-select: none;
-}
-
-#resetPosition:hover {
-  cursor: pointer;
-}
-
-#resetPosition:active {
-  background-color: grey;
-}
-
 .questionMark {
   height: 70px;
   z-index: 90;
@@ -87,4 +69,11 @@ canvas {
   opacity: 1;
   z-index: 100;
   transition: opacity 0.5s ease-out;
+}
+.instructionsText{
+  border: solid;
+  border-radius: 10px;
+  border-color: RGBA(1,1,1,0);
+  background-color: RGBa(175,175,175,.6);
+  padding: 10px;
 }
