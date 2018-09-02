@@ -28,19 +28,18 @@ document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
 /********************* Instruction Pane Handler ***************************************/
 
 const questionMark = document.getElementById('questionMark')
-const instructions = document.getElementsByClassName('instructions')[0]
+const instructions = document.getElementsByClassName('instructionsHidden')[0]
 questionMark.addEventListener('click', (e) => {
-  instructions.style.zIndex = 100;
-  instructions.style.opacity = 1;
-  questionMark.style.opacity = 0;
+  instructions.className = "instructions fixed bottom-0 left-0 right-0 mr2 right"
+  questionMark.className = "questionMarkHidden right mr2"
   // Add a class to instructions that contains all of the styles we want to run on click
 })
 
 const close = document.getElementById('close')
 close.addEventListener('click', (e) =>{
-  instructions.style.zIndex = 98;
-  instructions.style.opacity = 0;
-  questionMark.style.opacity = 1;
+  instructions.className = "instructionsHidden fixed bottom-0 left-0 right-0 mr2 right"
+  questionMark.className = "questionMark right mr2"
+
 })
 
 /******************* Sample Tile Setting***************************************/
