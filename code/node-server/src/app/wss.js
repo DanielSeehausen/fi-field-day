@@ -24,7 +24,6 @@ wss.on('connection', (ws) => {
 })
 
 wss.emit = (data) => {
-	console.log("EMISSION", data)
 	wss.clients.forEach((client) => {
 		client.send(JSON.stringify(data))
 	})

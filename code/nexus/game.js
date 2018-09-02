@@ -1,7 +1,7 @@
 const config = require('./config.js') 
 const WSClient = require('./WSClient.js')
 const fetch = require('node-fetch')
-const HTTPEndpoint = `http://localhost:${config.SERVERHTTPPORT}`
+const HTTPEndpoint = config.APIENDPOINT
 
 class Game {
 
@@ -54,6 +54,7 @@ class Game {
 	}
 
 	setTile(x, y, c) {
+    console.log('sjns')
 			fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.GROUPID}`, {
 				method: 'Post',
 				mode: 'no-cors',

@@ -29,16 +29,21 @@ canvas {
 }
 
 #zoomStatus {
-  background-color: white;
+  position: fixed;
+  left: 60px;
+  top: 40px;
+  background-color: RGBa(175,175,175,.6);
   border: solid;
   border-width: thin;
-  border-color: grey;
-  border-radius: 5px;
-  padding: 5px;
+  border-color: RGBa(1,1,1,0);
+  border-radius: 2px;
+  padding: 10px;
+  z-index: 100;
+  user-select: none;
 }
 
 #resetPosition {
-    background-color: white;
+    background-color: RGBa(255,255,255,1);
     border: solid;
     border-width: thin;
     border-color: grey;

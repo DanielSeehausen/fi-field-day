@@ -1,9 +1,9 @@
 const WebSocket = require('ws')
 const config = require("./config.js")
-const socketURI = `ws://localhost:${config.SERVERWSPORT}`
+const socketURI = config.APIWSENDPOINT
 
 class WSClient {
-		constructor(board, writeTile){
+		constructor(board, writeTile) {
 
 			// INITIALIZER DISPATCH
 			this.dispatch = {

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const url = require('url');
 const bodyParser = require('body-parser');
-const Game = require('./game.js')
+const Game = require('./Game.js')
 const config = require("./config.js")
 const fetch = require('node-fetch');
 
@@ -13,30 +13,28 @@ app.use(bodyParser.json());
 const size = config.BOARDDIMENSION
 const port = config.HTTPPORT
 const teamID = config.GROUPID
-const HTTPEndpoint = `http://localhost:${config.SERVERHTTPPORT}`
+const HTTPEndpoint = config.APIENDPOINT
  
 // GLOBAL VARS
-let queue = []
-let interval = null 
+const queue = []
 
 // game
 const game = new Game()
 
 // HELPERS
 function startInterval() {
-  interval = setInterval(() => {
+  setInterval(() => {
+    console.log(queue)
     if (queue.length > 0) {
       let nextPoint = queue.shift()
-      game.setTile(nextPoint.x, nextPoint.y, nextPoint.color)
-      // console.log("SENDING POINT: ", nextPoint)
-    } else {
-      clearInterval(interval)
-      interval = null
+      game.setTile(nextPoint.x, nextPoint.y, nextPoint.c)
     }
   }, config.INTERVAL)
 }
+startInterval()
 
-function checkValidPoint(x,y){
+function checkValidPoint(x,y) {
+  console.log(x, y)
   const integers = Number.isInteger(x) && Number.isInteger(y)
   const inRange = x >= 0 && y >= 0 && x < size && y < size 
   return integers && inRange
@@ -62,14 +60,11 @@ app.get("/board", (req, res) => {
 app.post('/set-tile', (req, res) => {
   const x = req.body.x
   const y = req.body.y
-  const color = req.body.color
-
-  if (checkValidPoint(x,y)){
-    const coordinate = {x,y,color}
+  const c = req.body.c
+  console.log(checkValidPoint(x,y))
+  if (checkValidPoint(x,y)) {
+    const coordinate = {x, y, c}
     queue.push(coordinate)
-    if (!interval) {
-      startInterval()
-    }
     res.send({success: "Successfully queued!", coordinate, position: queue.length})
   } else {
     res.send({error: "Invalid point."})

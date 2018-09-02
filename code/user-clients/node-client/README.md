@@ -1,6 +1,6 @@
 # Flatiron Field Day Matrix Manager
 
-Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills. 
+Hello and welcome to the first ever Flatiron Field Day! Today, you and your team will have the opportunity to create a mosaic using your programming skills.
 
 Right now, we are hosting a server that stores a board full of tiles, and it is the job of your team to write scripts that will allow you to set the color of individual tiles, thus painting your masterpieces for all the world to see. A local Redis server will be running on your machine that will store a live copy on your machine and will receive updates everytime the main board is updated. If you have no idea what Redis is, first: look it up!, second: don't worry about it! We've given you some code that will handle this part - you only have to do a few things:
 
@@ -13,18 +13,18 @@ Right now, we are hosting a server that stores a board full of tiles, and it is 
 3. Install our handy [FFD-Student-Socket](https://github.com/learn-co-curriculum/ffd-student-socket)
 * Clone down the FFD-Student-Socket repo and `cd` into it. Run `npm install` to install all dependencies.
 
-4. Run our handy [FFD-Student-Socket](https://github.com/learn-co-curriculum/ffd-student-socket) 
+4. Run our handy [FFD-Student-Socket](https://github.com/learn-co-curriculum/ffd-student-socket)
 * To get started, simply run `npm start` in your terminal. This program will automatically update your local Redis database for you, so simply set it and forget it!
 
 
-Now that you've got that setup, the next step is to install your **Matrix Manager** JS client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board. 
+Now that you've got that setup, the next step is to install your **Matrix Manager** JS client. This piece of code has methods that will allow you to read information from your Redis database, as well as interact with the server that hosts the main board.
 
 To get started, please do the following:
 
 _First, if you would rather use Ruby than Javascript, switch over to [this](https://github.com/learn-co-curriculum/FFD-Student-Ruby-Client/) repo!_
 
 1. Install our nifty **Matrix Manager**
-* Clone down this repo and `cd` into it. There are two important files: `app.js` and `MatrixManager.js`, but you will mostly code in `app.js`. Run `npm install` to install all dependencies. 
+* Clone down this repo and `cd` into it. There are two important files: `app.js` and `MatrixManager.js`, but you will mostly code in `app.js`. Run `npm install` to install all dependencies.
 
 2. Set your team ID
 * Inside `app.js`, you will notice a very conscipicuous String that says `ENTER TEAM ID HERE`. Do this.
@@ -46,7 +46,7 @@ function whatColor (point) {
 }
 
 //Logs the color stored at coordinate (0,0)
-Matrix.read({x:0,y:0}, whatColor) 
+Matrix.read({x:0,y:0}, whatColor)
 
 
 
@@ -108,4 +108,4 @@ Matrix.setRect({x:1,y:1}, {x:4,y:6}, "4286f4")
 
 To run the code written in `app.js`, you have two options: run `nodemon app.js` or `node app.js`. Running `app.js` using `nodemon` will allow for hot reloading, meaning that everytime you save in `app.js` the code will automatically be run, whereas `node` will run your code only once.
 
-And that's all you need to interact with the board! Feel free to combine methods, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it. 
+And that's all you need to interact with the board! Feel free to combine methods, for instance, to selectively change tiles when they meet a certain criteria (e.g. turn all white tiles in an area blue). This action requires both reading from the board **and** writing to it.
