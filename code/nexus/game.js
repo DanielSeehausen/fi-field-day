@@ -1,15 +1,16 @@
 const config = require('./config.js') 
-const WSClient = require('./WSClient.js')
-const fetch = require('node-fetch')
 const HTTPEndpoint = config.APIENDPOINT
+
+const WSClient = require('./WSClient.js')
+const HTTPConn = require('./HTTPConn.js')
 
 class Game {
 
   constructor() {
     this.board = {} // TODO instantiate board 500x500 (matrix style 500 rows by 500 columns)
     this.wsc = new WSClient(this.board, this.writeTile.bind(this))
-    this.getBoard()
-    // this.serverConn = new ServerConn()
+    this.HTTPConn = new HTTPConn(this.prepareBoard.bind(this))
+    this.HTTPConn.getBoard()
   }
 
   intToHex(int) {
@@ -19,6 +20,10 @@ class Game {
       hex = "0" + hex
     }
     return hex
+  }
+
+  setTile(){
+    this.HTTPConn.setTile(...arguments)
   }
 
   prepareBoard(array) {
@@ -39,29 +44,12 @@ class Game {
   }
 
   writeTile(obj){
+    // console.log("UPDATING BOARD AT", obj)
     const { x, y, hexStr } = obj
     this.board[`${x}-${y}`] = hexStr
   }
 
-  getBoard() {
-    const route = `/board?id=${1}`
-    fetch(HTTPEndpoint + route)
-    .then(response => response.arrayBuffer())
-    .then(bufferData => {
-      const pixelArray = Array.prototype.slice.call(new Uint8ClampedArray(bufferData))
-      this.prepareBoard(pixelArray)
-    })
-  }
 
-  setTile(x, y, c) {
-    console.log('sjns')
-      fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.GROUPID}`, {
-        method: 'Post',
-        mode: 'no-cors',
-      })
-      .then(response => response)
-      // .then(console.log)
-    }
 }
 
 module.exports = Game
