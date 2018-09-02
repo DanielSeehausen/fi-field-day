@@ -17,25 +17,24 @@ const HTTPEndpoint = config.APIENDPOINT
  
 // GLOBAL VARS
 const queue = []
-let interval = null 
 
 // game
 const game = new Game()
 
 // HELPERS
 function startInterval() {
-  interval = setInterval(() => {
+  setInterval(() => {
+    console.log(queue)
     if (queue.length > 0) {
       let nextPoint = queue.shift()
       game.setTile(nextPoint.x, nextPoint.y, nextPoint.c)
-    } else {
-      clearInterval(interval)
-      interval = null
     }
   }, config.INTERVAL)
 }
+startInterval()
 
-function checkValidPoint(x,y){
+function checkValidPoint(x,y) {
+  console.log(x, y)
   const integers = Number.isInteger(x) && Number.isInteger(y)
   const inRange = x >= 0 && y >= 0 && x < size && y < size 
   return integers && inRange
@@ -62,13 +61,10 @@ app.post('/set-tile', (req, res) => {
   const x = req.body.x
   const y = req.body.y
   const c = req.body.c
-
+  console.log(checkValidPoint(x,y))
   if (checkValidPoint(x,y)) {
     const coordinate = {x, y, c}
     queue.push(coordinate)
-    if (!interval) {
-      startInterval()
-    }
     res.send({success: "Successfully queued!", coordinate, position: queue.length})
   } else {
     res.send({error: "Invalid point."})

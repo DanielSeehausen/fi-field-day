@@ -54,11 +54,12 @@ class Game {
 	}
 
 	setTile(x, y, c) {
+    console.log('sjns')
 			fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.GROUPID}`, {
 				method: 'Post',
 				mode: 'no-cors',
 			})
-			.then(response => console.log(response))
+			.then(response => response)
 			// .then(console.log)
 		}
 }
