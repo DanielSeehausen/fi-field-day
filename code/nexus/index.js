@@ -1,22 +1,26 @@
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const url = require('url');
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
+
 const Game = require('./Game.js')
 const config = require("./config.js")
-const fetch = require('node-fetch');
+const validColor = require("./validations/color.js")
+const validPoint = require("./validations/point.js")
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors())
 
 // CONFIG
-const size = config.BOARDDIMENSION
 const port = config.HTTPPORT
 const teamID = config.GROUPID
 const HTTPEndpoint = config.APIENDPOINT
  
 // GLOBAL VARS
-const queue = []
+let queue = []
 
 // game
 const game = new Game()
@@ -24,50 +28,46 @@ const game = new Game()
 // HELPERS
 function startInterval() {
   setInterval(() => {
-    console.log(queue)
     if (queue.length > 0) {
       let nextPoint = queue.shift()
+      console.log("SENDING", nextPoint)
       game.setTile(nextPoint.x, nextPoint.y, nextPoint.c)
     }
   }, config.INTERVAL)
 }
 startInterval()
 
-function checkValidPoint(x,y) {
-  console.log(x, y)
-  const integers = Number.isInteger(x) && Number.isInteger(y)
-  const inRange = x >= 0 && y >= 0 && x < size && y < size 
-  return integers && inRange
-}
-
-
 // ROUTES
 app.get('/get-tile', (req, res) => {
   const x = parseInt(req.query.x, 10)
   const y = parseInt(req.query.y, 10)
-  if (checkValidPoint(x,y)) {
-  	let color = game.board[`${x}-${y}`]
+  if (validPoint(x,y)) {
+    let color = game.board[`${x}-${y}`]
     res.send({x,y,color})
   } else {
-    res.send({error: "Invalid query parameters."})
+    res.send({error: `Invalid point. (${x},${y}) not on board`})
   }
 })
 
 app.get("/board", (req, res) => {
-	res.send(game.convertBoard())
+  res.send(game.convertBoard())
 })
 
 app.post('/set-tile', (req, res) => {
   const x = req.body.x
   const y = req.body.y
   const c = req.body.c
-  console.log(checkValidPoint(x,y))
-  if (checkValidPoint(x,y)) {
-    const coordinate = {x, y, c}
-    queue.push(coordinate)
-    res.send({success: "Successfully queued!", coordinate, position: queue.length})
+
+  if (validPoint(x,y)) {
+    if (validColor(c)){
+      const coordinate = {x, y, c}
+      queue.push(coordinate)
+      res.send({success: "Successfully queued!", coordinate, position: queue.length})
+    } else {
+      res.send({error: `${c} is not a valid Hexidecimal color.`})
+    }
   } else {
-    res.send({error: "Invalid point."})
+    res.send({error: `Invalid point. (${x},${y}) not on board`})
   }
 })
 
