@@ -1,9 +1,9 @@
 class HTTPConn {
-  
+
   constructor(endpoint) {
     this.endpoint = endpoint
   }
-  
+
   getBoard() {
     const route = `/board?id=${config.ID}`
     fetch(this.endpoint + route, { method: 'GET' })

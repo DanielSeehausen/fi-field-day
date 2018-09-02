@@ -1,10 +1,11 @@
-const redis = require('redis');
 const { MatrixManager } = require('./MatrixManager.js')
 
-var client = redis.createClient();
 var teamID = "ENTER TEAM ID HERE"
 
-client.on('connect', function(){
-	let Matrix = new MatrixManager(client, teamID)  
-	//Code here!
-})
+const matrix = new MatrixManager(teamID)
+
+// matrix.setTile({x: 200, y: 200, c: 'FFFFFF'})
+
+
+// Write your code here!
+// all functions return a promise.
