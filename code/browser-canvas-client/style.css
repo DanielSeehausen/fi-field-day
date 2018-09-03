@@ -1,5 +1,5 @@
 html, body {
-  background: #ddd;
+  background: #eee;
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,6 +10,11 @@ html, body {
 canvas {
   image-rendering: pixelated;
   box-shadow: 0px 0px 60px #555;
+}
+
+hr {
+  border-color: #bbb;
+  width: 85%;
 }
 
 #zoomer {
@@ -35,49 +40,6 @@ canvas {
   font-size: 30pt;
 }
 
-.questionMark {
-  height: 70px;
-  z-index: 90;
-  transition: opacity 0.5s ease-out;
-  opacity: 0.5
-}
-
-.questionMarkHidden{
-  height: 70px;
-  z-index: 90;
-  transition: opacity 0.5s ease-out;
-  opacity: 0
-}
-
-.questionMark:hover{
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.1s ease-out;
-}
-
-.close:hover {
-  cursor: pointer;
-}
-
-.instructionsHidden {
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.5s ease-out;
-}
-
-.instructions {
-  opacity: 1;
-  z-index: 100;
-  transition: opacity 0.5s ease-out;
-}
-.instructionsText{
-  border: solid;
-  border-radius: 10px;
-  border-color: RGBA(1,1,1,0);
-  background-color: RGBa(175,175,175,.6);
-  padding: 10px;
-}
-
 #help-modal {
   background-color: #ddd;
   position: fixed;
@@ -86,15 +48,27 @@ canvas {
   height: 600px;
   font-size: 30pt;
   text-align: center;
+  border-radius: 10px;
+  line-height: 1.75em;
+}
+
+/* makes it so the 'onfocus' blue outline doesn't persist */
+#help-modal:focus {
+  outline: 0;
 }
 
 #help-button {
-  z-index: 2;
-  color: rgba(50, 50, 50, 0.5);
-  font-size: 55pt;
-  cursor: pointer;
+  position: fixed;
   padding: 10px;
   bottom: 0px;
   right: 10px;
-  position: fixed;
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+  z-index: 10;
+  opacity: 0.5
+}
+
+.fader {
+  transition: opacity 0.2s ease-in-out;
 }
