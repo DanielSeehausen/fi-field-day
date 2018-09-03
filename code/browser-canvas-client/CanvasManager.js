@@ -87,10 +87,10 @@ class CanvasManager {
         this.zoomStatus.innerText = `x1`
         break;
       default:
-        this.zoomer.style.transform = `scale(1.3, 1.3)`
         this.zoom = 1
         this.zoomStatus.innerText = `x1`
     }
+    this.zoomer.style.transform = `scale(${this.zoomMultiplier(this.zoom)}, ${this.zoomMultiplier(this.zoom)})`
   }
 
 }

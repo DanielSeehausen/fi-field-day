@@ -27,58 +27,67 @@ const game = new Game()
 
 // HELPERS
 function startInterval() {
-  setInterval(() => {
-    if (queue.length > 0) {
-      let nextPoint = queue.shift()
-      console.log("SENDING", nextPoint)
-      game.setTile(nextPoint.x, nextPoint.y, nextPoint.c)
-    }
-  }, config.INTERVAL)
+	setInterval(() => {
+		if (queue.length > 0) {
+			let nextPoint = queue.shift()
+			console.log("SENDING", nextPoint)
+			game.setTile(nextPoint.x, nextPoint.y, nextPoint.c, nextPoint.id)
+		}
+	}, config.INTERVAL)
 }
 startInterval()
 
 // ROUTES
 app.get('/get-tile', (req, res) => {
-  const x = parseInt(req.query.x, 10)
-  const y = parseInt(req.query.y, 10)
-  if (validPoint(x,y)) {
-    let color = game.board[`${x}-${y}`]
-    res.send({x,y,color})
-  } else {
-    res.send({error: `Invalid point. (${x},${y}) not on board`})
-  }
+	const x = parseInt(req.query.x, 10)
+	const y = parseInt(req.query.y, 10)
+	if (validPoint(x,y)) {
+		let color = game.board[`${x}-${y}`]
+		res.send({x,y,color})
+	} else {
+		res.send({error: `Invalid point. (${x},${y}) not on board`})
+	}
 })
 
 app.get("/board", (req, res) => {
-  res.send(game.convertBoard())
+	if (req.query.id) {
+		res.send(game.convertBoard())
+	} else {
+		res.send({error: "Please include your team ID!"})
+	}
 })
 
 app.post('/set-tile', (req, res) => {
-  const x = req.body.x
-  const y = req.body.y
-  const c = req.body.c
+	const x = parseInt(req.body.x)
+	const y = parseInt(req.body.y)
+	const c = req.body.c
+	const id = req.body.id
 
-  if (validPoint(x,y)) {
-    if (validColor(c)){
-      const coordinate = {x, y, c}
-      queue.push(coordinate)
-      res.send({success: "Successfully queued!", coordinate, position: queue.length})
-    } else {
-      res.send({error: `${c} is not a valid Hexidecimal color.`})
-    }
-  } else {
-    res.send({error: `Invalid point. (${x},${y}) not on board`})
-  }
+	if (id !== undefined) {
+		if (validPoint(x,y)) {
+			if (validColor(c)){
+				const coordinate = {x, y, c, id}
+				queue.push(coordinate)
+				res.send({success: "Successfully queued!", coordinate, position: queue.length})
+			} else {
+				res.send({error: `${c} is not a valid Hexidecimal color.`})
+			}
+		} else {
+			res.send({error: `Invalid point. (${x},${y}) not on board`})
+		}
+	} else {
+		res.send({error: "Please include your team ID!"})
+	}
 })
 
 app.get('/get-queue', (req, res) => {
-  res.send(queue)
+	res.send(queue)
 })
 
 app.delete('/clear-queue', (req, res) => {
-  let numItemsRemoved = queue.length
-  queue = []
-  res.send({message: `Queue successfully cleared. ${numItemsRemoved} items removed.`})
+	let numItemsRemoved = queue.length
+	queue = []
+	res.send({message: `Queue successfully cleared. ${numItemsRemoved} items removed.`})
 })
 
 
