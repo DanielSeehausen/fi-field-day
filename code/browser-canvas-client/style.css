@@ -22,17 +22,20 @@ canvas {
 }
 
 #zoomStatus {
+
+
+  background-color: RGBa(175,175,175,.25);
   position: fixed;
-  left: 60px;
-  top: 40px;
-  background-color: RGBa(175,175,175,.6);
-  border: solid;
-  border-width: thin;
-  border-color: RGBa(1,1,1,0);
-  border-radius: 2px;
+  z-index: 2;
+  left: 10px;
+  top: 10px;
   padding: 10px;
-  z-index: 100;
+  border-radius: 4px;
   user-select: none;
+
+  color: rgb(50, 50, 50);
+  font-weight: bold;
+  font-size: 30pt;
 }
 
 .questionMark {

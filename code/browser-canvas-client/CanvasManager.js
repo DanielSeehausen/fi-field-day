@@ -77,22 +77,22 @@ class CanvasManager {
       case 1:
         this.zoom = 2
         this.zoomer.style.transform = `scale(${this.zoomMultiplier(this.zoom)}, ${this.zoomMultiplier(this.zoom)})`
-        this.zoomStatus.innerText = `Current Zoom: x2`
+        this.zoomStatus.innerText = `Zoom x2`
         break;
       case 2:
         this.zoom = 4
         this.zoomer.style.transform = `scale(${this.zoomMultiplier(this.zoom)}, ${this.zoomMultiplier(this.zoom)})`
-        this.zoomStatus.innerText = `Current Zoom: x4`
+        this.zoomStatus.innerText = `Zoom x4`
         break;
       case 4:
         this.zoom = 1
         this.zoomer.style.transform = `scale(${this.zoomMultiplier(this.zoom)}, ${this.zoomMultiplier(this.zoom)})`
-        this.zoomStatus.innerText = `Current Zoom: x1`
+        this.zoomStatus.innerText = `Zoom x1`
         break;
       default:
         this.zoom = 1
         this.zoomer.style.transform = `scale(${this.zoomMultiplier(this.zoom)}, ${this.zoomMultiplier(this.zoom)})`
-        this.zoomStatus.innerText = `Current Zoom: x1`
+        this.zoomStatus.innerText = `Zoom x1`
     }
   }
 
