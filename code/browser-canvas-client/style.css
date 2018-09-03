@@ -21,13 +21,6 @@ canvas {
   transform: translate(0px,0px);
 }
 
-#statusBar {
-  position: fixed;
-  top: 20px;
-  z-index: 100;
-  display: flex;
-}
-
 #zoomStatus {
   position: fixed;
   left: 60px;
@@ -42,20 +35,45 @@ canvas {
   user-select: none;
 }
 
-#resetPosition {
-    background-color: RGBa(255,255,255,1);
-    border: solid;
-    border-width: thin;
-    border-color: grey;
-    border-radius: 5px;
-    padding: 5px;
-    user-select: none;
+.questionMark {
+  height: 70px;
+  z-index: 90;
+  transition: opacity 0.5s ease-out;
+  opacity: 0.5
 }
 
-#resetPosition:hover {
+.questionMarkHidden{
+  height: 70px;
+  z-index: 90;
+  transition: opacity 0.5s ease-out;
+  opacity: 0
+}
+
+.questionMark:hover{
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.1s ease-out;
+}
+
+.close:hover {
   cursor: pointer;
 }
 
-#resetPosition:active {
-  background-color: grey;
+.instructionsHidden {
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.5s ease-out;
+}
+
+.instructions {
+  opacity: 1;
+  z-index: 100;
+  transition: opacity 0.5s ease-out;
+}
+.instructionsText{
+  border: solid;
+  border-radius: 10px;
+  border-color: RGBA(1,1,1,0);
+  background-color: RGBa(175,175,175,.6);
+  padding: 10px;
 }

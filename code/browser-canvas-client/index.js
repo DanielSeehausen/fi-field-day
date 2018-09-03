@@ -17,7 +17,6 @@ document.body.onkeydown = (e) =>{
   }
 }
 
-
 /********************* Mouse Input Handler ***************************************/
 
 const dragDiv = document.getElementById(`dragger`)
@@ -25,6 +24,20 @@ dragDiv.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
 document.addEventListener('mouseup',   (e) => dragger.mouseUp(e))
 document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
 
+/********************* Instruction Pane Handler ***************************************/
+
+const questionMark = document.getElementById('questionMark')
+const instructions = document.getElementsByClassName('instructionsHidden')[0]
+questionMark.addEventListener('click', (e) => {
+  instructions.className = "instructions fixed bottom-0 left-0 right-0 mr2 right"
+  questionMark.className = "questionMarkHidden right mr2"
+})
+
+const close = document.getElementById('close')
+close.addEventListener('click', (e) =>{
+  instructions.className = "instructionsHidden fixed bottom-0 left-0 right-0 mr2 right"
+  questionMark.className = "questionMark right mr2"
+})
 
 /******************* Sample Tile Setting***************************************/
 
