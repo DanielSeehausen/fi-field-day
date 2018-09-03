@@ -17,8 +17,8 @@ class HTTPConn {
     })
   }
 
-  setTile(x, y, c) {
-      fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.GROUPID}`, {
+  setTile(x, y, c, id) {
+      fetch(HTTPEndpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${id}`, {
         method: 'Post',
         mode: 'no-cors',
       })

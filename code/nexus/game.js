@@ -43,6 +43,18 @@ class Game {
     }
   }
 
+  convertBoard(){
+    let array = []
+
+    for (var key in this.board) {
+      let coordinates = key.split("-")
+      let x = parseInt(coordinates[0], 10)
+      let y = parseInt(coordinates[1], 10)
+      array.push({x,y, color: this.board[key]})
+    }
+    return array
+  }
+
   writeTile(obj){
     // console.log("UPDATING BOARD AT", obj)
     const { x, y, hexStr } = obj
