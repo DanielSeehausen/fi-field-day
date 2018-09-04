@@ -16,11 +16,9 @@ document.body.onkeydown = (e) => {
     dragger.resetMove()
   }
 }
-
 /********************* Mouse Input Handler ***************************************/
 
-const dragDiv = document.getElementById(`dragger`)
-dragDiv.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
+document.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
 document.addEventListener('mouseup',   (e) => dragger.mouseUp(e))
 document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
 
