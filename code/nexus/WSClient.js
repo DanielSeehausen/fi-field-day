@@ -22,27 +22,16 @@ class WSClient {
 			this.wsConn.on('close', () => console.log('Socket closed'))
 		}
 
-		convertBoard(){
-			let array = []
-
-			for (var key in this.board) {
-				let coordinates = key.split("-")
-				let x = parseInt(coordinates[0], 10)
-				let y = parseInt(coordinates[1], 10)
-				array.push({x,y, color: this.board[key]})
-			}
-			return array
-		}
-
 		handleMsg(msg){
 			let data = JSON.parse(msg)
-			console.log(data)
+			// console.log(data)
 			const {action, payload} = data
 
 			if (action && payload)
 				this.dispatch[action](payload)
 
 		}
+
 
 
 	}
