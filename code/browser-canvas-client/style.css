@@ -66,37 +66,14 @@ hr {
   height: 70px;
   width: 70px;
   z-index: 10;
-  opacity: 0.5
+  opacity: 0.5;
+  user-select: none;
 }
 
 .fader {
   transition: opacity 0.2s ease-in-out;
 }
 
-#help-modal {
-  background-color: #bbb;
-  border: 3px solid #222;
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  opacity: 0;
-  width: 400px;
-  height: 600px;
-  font-size: 30pt;
-  text-align: center;
-}
-
-#help-button {
-  z-index: 2;
-  color: rgba(50, 50, 50, 0.5);
-  font-size: 55pt;
-  cursor: pointer;
-  padding: 10px;
-  bottom: 0px;
-  right: 10px;
-  position: fixed;
-  user-select: none;
-}
 
 #close-help-modal-button {
   position: absolute;
@@ -106,4 +83,20 @@ hr {
   width: 45px;
   opacity: .75;
   cursor: pointer;
+}
+
+#colorPicker {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+  height: 120px;
+  width: 120px;
+  outline: solid;
+  z-index: 2;
+  text-align: center;
+  background-color: blue;
+}
+
+#colorPicker:hover {
+  cursor: url("assets/Paintbrush.png"), auto;
 }

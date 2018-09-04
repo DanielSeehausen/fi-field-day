@@ -83,6 +83,14 @@ class CanvasManager {
         this.zoomStatus.innerText = `x4`
         break;
       case 4:
+        this.zoom = 8
+        this.zoomStatus.innerText = `x8`
+        break;
+      case 8:
+        this.zoom = 16
+        this.zoomStatus.innerText = `x16`
+        break;
+      case 16:
         this.zoom = 1
         this.zoomStatus.innerText = `x1`
         break;
