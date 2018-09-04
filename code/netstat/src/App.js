@@ -10,7 +10,7 @@ class App extends Component {
       <div className="App">
         <div>
           <h1 className="header-text">NETSTATS</h1>
-          <p className="header-text">LIVE UPDATES FROM theAPI.LINK</p>
+          <p className="header-text">LIVE UPDATES FROM theAPI.link</p>
         </div>
         <div className="chart-container"><Chart /></div>
       </div>
