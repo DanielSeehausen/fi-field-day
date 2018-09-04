@@ -35,7 +35,6 @@ hr {
   padding: 10px;
   border-radius: 4px;
   user-select: none;
-  
   color: rgb(50, 50, 50);
   font-weight: bold;
   font-size: 30pt;
@@ -96,6 +95,7 @@ hr {
   bottom: 0px;
   right: 10px;
   position: fixed;
+  user-select: none;
 }
 
 #close-help-modal-button {
