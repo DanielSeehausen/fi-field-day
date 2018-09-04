@@ -73,6 +73,7 @@ hr {
   height: 600px;
   font-size: 30pt;
   text-align: center;
+  z-index: -1
 }
 
 #close-help-modal-button {
@@ -97,6 +98,13 @@ hr {
   background-color: blue;
 }
 
-#colorPicker:hover {
-  cursor: url("assets/eyedropper.png"), auto;
+#pick {
+  cursor: inherit;
 }
+#paint {
+  cursor: inherit;
+}
+
+/* #colorPicker:hover {
+  cursor: url("assets/eyedropper.png"), auto;
+} */
