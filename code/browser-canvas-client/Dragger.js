@@ -36,12 +36,9 @@ class Dragger{
     }
   }
 
-
   resetMove(){
     this.lastTimeX = 0
     this.lastTimeY = 0
   }
-
-
 
 }

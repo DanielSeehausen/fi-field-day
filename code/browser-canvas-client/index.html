@@ -8,13 +8,7 @@
   </head>
   <body>
 
-    <div id="zoomStatus">
-      Zoom x1
-    </div>
-
-    <div id="statusBar">
-
-    </div>
+    <div id="zoomStatus">x1</div>
 
     <div id="dragger">
       <div id="mover">
@@ -24,18 +18,17 @@
       </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 p2">
-      <img src="./question.svg" class="questionMark right mr2" id="questionMark"/>
+    <div id="help-button" class="fader">
+      <img src="./question.svg" />
     </div>
 
-      <div class="instructionsHidden fixed bottom-0 left-0 right-0 mr2 right">
-      <p id="close" class="right close">X </p><br />
-      <div class="right pb2 instructionsText">
-        W,A,S,D - Movement <br />
-        Arrows Keys - Movement <br />
-        Space - Cycle Zoom Levels <br />
-        K - Reset the Board's Position
-      </div>
+    <div tabindex="-1" id="help-modal" class="fader">
+      <br>
+      <strong><u>WASD + Arrow Keys</u></strong><br>Movement
+      <hr>
+      <strong><u>Spacebar</u></strong><br>Cycle Zoom Levels
+      <hr>
+      <strong><u>k</u></strong><br />Reset Board Position
     </div>
 
     <script src="./config.js" charset="utf-8"></script>
@@ -44,6 +37,7 @@
     <script src="./Canvas.js" charset="utf-8"></script>
     <script src="./SocketConn.js" charset="utf-8"></script>
     <script src="./HTTPConn.js" charset="utf-8"></script>
+    <script src="./helper.js" charset="utf-8"></script>
     <script src="./index.js" charset="utf-8"></script>
   </body>
 </html>
