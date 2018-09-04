@@ -75,8 +75,11 @@ hr {
 }
 
 #help-modal {
-  background-color: #ddd;
+  background-color: #bbb;
+  border: 3px solid #222;
   position: fixed;
+  right: 10px;
+  bottom: 10px;
   opacity: 0;
   width: 400px;
   height: 600px;
@@ -93,4 +96,14 @@ hr {
   bottom: 0px;
   right: 10px;
   position: fixed;
+}
+
+#close-help-modal-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  height: 45px;
+  width: 45px;
+  opacity: .75;
+  cursor: pointer;
 }

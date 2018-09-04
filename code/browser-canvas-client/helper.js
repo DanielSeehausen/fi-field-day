@@ -1,5 +1,6 @@
 const modal = document.getElementById("help-modal")
-const button = document.getElementById("help-button")
+const openButton = document.getElementById("help-button")
+const closeButton = document.getElementById("close-help-modal-button")
 
 let modalOpen = false
 
@@ -9,8 +10,8 @@ function showModal() {
   modal.focus()
   modalOpen = true
   
-  button.style.opacity = 0
-  button.style.zIndex = -1
+  openButton.style.opacity = 0
+  openButton.style.zIndex = -1
 }
 
 function hideModal() {
@@ -18,13 +19,14 @@ function hideModal() {
   modal.style.zIndex = -1
   modalOpen = false
   
-  button.style.opacity = .5
-  button.style.zIndex = 10
+  openButton.style.opacity = .5
+  openButton.style.zIndex = 10
 }
 
-function onButtonClick() {
+function toggleModal() {
   modalOpen ? hideModal() : showModal()
 }
 
-button.onclick = onButtonClick
-modal.onblur = hideModal
+openButton.onclick = toggleModal
+closeButton.onclick = toggleModal
+// modal.onblur = hideModal
