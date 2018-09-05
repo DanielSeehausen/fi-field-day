@@ -21,8 +21,8 @@ document.body.onkeydown = (e) => {
 document.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
 document.addEventListener('mouseup',   (e) => dragger.mouseUp(e))
 document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
-
 document.addEventListener('click', (e) => handleClick(e))
+
 /******************* Sample Tile Setting***************************************/
 
 httpConn.getBoard() //fetch initial state of board

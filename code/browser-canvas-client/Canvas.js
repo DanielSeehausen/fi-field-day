@@ -5,7 +5,6 @@ class Canvas {
     this.ctx = this.canvas.getContext('2d')
     this.dimension = this.setDimension(dimension)
     this.pixelArray = this.setImageFromArray(pixelArray)
-    this.pointerTransformed = false
   }
 
   setDimension(value) {
@@ -34,7 +33,4 @@ class Canvas {
 
     this.ctx.putImageData(data, x, y)
   }
-
-  
-
 }
