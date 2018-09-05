@@ -7,6 +7,10 @@
     <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
   </head>
   <body>
+    <div id="colorPicker">
+      <button type="button" name="pick" id="pick">Pick</button>
+      <button type="button" name="paint" id="paint">Paint</button>
+    </div>
 
     <div id="zoomStatus">x1</div>
 
@@ -17,12 +21,9 @@
         </div>
       </div>
     </div>
-    
-    
     <div id="help-button" class="fader">
       <img src="./assets/question.svg" />
     </div>
-    
     <!-- tabindex used to enable onblur/onfocus - not currently used -->
     <div tabindex="-1" id="help-modal" class="fader">
       <img id="close-help-modal-button" src="./assets/close.png" />
@@ -41,6 +42,7 @@
     <script src="./SocketConn.js" charset="utf-8"></script>
     <script src="./HTTPConn.js" charset="utf-8"></script>
     <script src="./helper.js" charset="utf-8"></script>
+    <script src="./colorSelect.js" charset="utf-8"></script>
     <script src="./index.js" charset="utf-8"></script>
   </body>
 </html>

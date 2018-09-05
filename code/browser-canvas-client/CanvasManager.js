@@ -8,8 +8,9 @@ class CanvasManager {
     this.x = 0
     this.y = 0
     this.zoom = 1
+    this.sizeAdjust = window.screen.height * .00165
     this.mover.style.transform = `translate(0px, 0px)`
-    this.zoomer.style.transform = `scale(${window.screen.height * .00165}, ${window.screen.height * .00165})`
+    this.zoomer.style.transform = `scale(${this.sizeAdjust}, ${this.sizeAdjust})`
     this.dragger = document.getElementById('dragger')
   }
 
@@ -68,7 +69,7 @@ class CanvasManager {
   }
 
   zoomMultiplier(zoomLevel){
-    return window.screen.height * .00165 * this.zoom
+    return this.sizeAdjust * this.zoom
   }
 
   cycleZoom(e) {
@@ -83,6 +84,14 @@ class CanvasManager {
         this.zoomStatus.innerText = `x4`
         break;
       case 4:
+        this.zoom = 8
+        this.zoomStatus.innerText = `x8`
+        break;
+      case 8:
+        this.zoom = 16
+        this.zoomStatus.innerText = `x16`
+        break;
+      case 16:
         this.zoom = 1
         this.zoomStatus.innerText = `x1`
         break;

@@ -40,18 +40,6 @@ hr {
   font-size: 30pt;
 }
 
-#help-modal {
-  background-color: #ddd;
-  position: fixed;
-  opacity: 0;
-  width: 400px;
-  height: 600px;
-  font-size: 30pt;
-  text-align: center;
-  border-radius: 10px;
-  line-height: 1.75em;
-}
-
 /* makes it so the 'onfocus' blue outline doesn't persist */
 #help-modal:focus {
   outline: 0;
@@ -66,7 +54,8 @@ hr {
   height: 70px;
   width: 70px;
   z-index: 10;
-  opacity: 0.5
+  opacity: 0.5;
+  user-select: none;
 }
 
 .fader {
@@ -84,18 +73,7 @@ hr {
   height: 600px;
   font-size: 30pt;
   text-align: center;
-}
-
-#help-button {
-  z-index: 2;
-  color: rgba(50, 50, 50, 0.5);
-  font-size: 55pt;
-  cursor: pointer;
-  padding: 10px;
-  bottom: 0px;
-  right: 10px;
-  position: fixed;
-  user-select: none;
+  z-index: -1
 }
 
 #close-help-modal-button {
@@ -107,3 +85,26 @@ hr {
   opacity: .75;
   cursor: pointer;
 }
+
+#colorPicker {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+  height: 120px;
+  width: 120px;
+  outline: solid;
+  z-index: 2;
+  text-align: center;
+  background-color: rgb(0,0,0);
+}
+
+#pick {
+  cursor: inherit;
+}
+#paint {
+  cursor: inherit;
+}
+
+/* #colorPicker:hover {
+  cursor: url("assets/eyedropper.png"), auto;
+} */
