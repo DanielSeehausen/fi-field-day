@@ -70,28 +70,20 @@ class Game {
 
   getAllStartIdenticonPos() {
     const groupCount = Object.keys(Group.all).length
-
     const recs = [
       { spx: 0, spy: 0, dx: 1, dy: 0, count: null },
       { spx: config.ROWS - 50, spy: 0, dx: 0, dy: 1, count: null },
       { spx: config.ROWS - 50, spy: config.COLUMNS - 50, dx: -1, dy: 0, count: null },
       { spx: 0, spy: config.COLUMNS - 50, dx: 0, dy: -1, count: null }
     ]
-
     const minPerSide = Math.floor(groupCount / 4)
-
     recs.forEach(obj => (obj.count = minPerSide))
-
     const remainingIdenticons = groupCount % minPerSide
-
     recs.slice(0, remainingIdenticons).forEach(obj => obj.count++)
-
     const startPositions = []
-
     recs.forEach(rec => {
       startPositions.push(...this.getStartIdenticonPosPerSide(rec))
     })
-
     return startPositions
   }
 
