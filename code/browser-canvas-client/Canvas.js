@@ -35,29 +35,6 @@ class Canvas {
     this.ctx.putImageData(data, x, y)
   }
 
-  handlePointer(e){
-    this.pointerTransformed = !this.pointerTransformed
-    this.pointerTransformed == false ? document.body.style.cursor = "auto" : null
-  }
-
-  getCursorPosition(e) {
-      let rect = this.canvas.getBoundingClientRect();
-      let x = Math.round((e.clientX / (window.screen.height * .00165)) - (rect.left / (window.screen.height * .00165)));
-      let y = Math.round((e.clientY / (window.screen.height * .00165)) - (rect.top / (window.screen.height * .00165)));
-      console.log(rect.top)
-      return {x: x, y: y}
-  }
-
-  getColor(coords) {
-    let data = this.canvas.getContext('2d').getImageData(coords.x, coords.y, 1, 1).data
-    return {r: data[0], g: data[1], b: data[2]}
-  }
-
-  handleClick(e) {
-    this.handlePointer(e)
-    let coords = this.getCursorPosition(e)
-    let data = this.getColor(coords)
-    selectColor(data)
-  }
+  
 
 }

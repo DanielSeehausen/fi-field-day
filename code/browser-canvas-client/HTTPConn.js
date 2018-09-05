@@ -16,12 +16,14 @@ class HTTPConn {
   }
 
   setTile(x, y, c) {
+    console.log(this.endpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.ID}`)
     fetch(this.endpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.ID}`, {
       method: 'Post',
       mode: 'no-cors'
     })
       .then(response => response)
       .then(x => {
+
         // console.log('%cJUST SET A TILE', 'color: purple', x.headers)
       })
   }
