@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { interpolateLab } from 'd3-interpolate'
+import UUID from 'uuid'
 
 export default class Bars extends Component {
   constructor(props) {
@@ -12,21 +13,25 @@ export default class Bars extends Component {
       .interpolate(interpolateLab)
   }
 
+  getKey = () => {
+
+  }
+
   render() {
     const { scales, margins, data, svgDimensions } = this.props
     const { xScale, yScale } = scales
     const { height } = svgDimensions
 
     const bars = (
-      data.map(datum =>
+      Object.values(data).map(datum =>
         <rect
-          key={datum.title}
+          key={ UUID() }
           x={xScale(datum.title)}
-          y={yScale(datum.hits)}
-          height={height - margins.bottom - scales.yScale(datum.hits)}
+          y={yScale(datum.writes)}
+          height={height - margins.bottom - scales.yScale(datum.writes)}
           width={xScale.bandwidth()}
-          fill={this.colorScale(datum.hits)}
-        />,
+          fill={this.colorScale(datum.writes)}
+        />
       )
     )
 
@@ -35,3 +40,15 @@ export default class Bars extends Component {
     )
   }
 }
+
+
+// data.map(datum =>
+//   <rect
+//     key={datum.title}
+//     x={xScale(datum.title)}
+//     y={yScale(datum.hits)}
+//     height={height - margins.bottom - scales.yScale(datum.hits)}
+//     width={xScale.bandwidth()}
+//     fill={this.colorScale(datum.hits)}
+//   />,
+// )
