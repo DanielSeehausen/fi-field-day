@@ -1,35 +1,40 @@
 const { MatrixManager } = require('./MatrixManager.js')
 
-var teamID = 1
+var teamID = 2
 
 const matrix = new MatrixManager(teamID)
 
-matrix.getTile({x: 460, y: 460})
-.then(res=>console.log(res))
+// for(let x = 301; x < 400; x++) {
+//   for(let y = 301; y < 400; y++) {
+//
+//     setTimeout(function(){
+//       console.log("Executing", x, y)
+//       if(x%2==0){
+//         if(y%2==0){
+//           matrix.setTile({x: x, y: y, c:"ffff00"})
+//         }else{
+//           matrix.setTile({x: x, y: y, c:"48f442"})
+//         }
+//       }else{
+//         if(y%2==0){
+//           matrix.setTile({x: x, y: y, c:"48f442"})
+//         }else{
+//           matrix.setTile({x: x, y: y, c:"ffff00"})
+//         }
+//       }
+//     }, 1000);
+//
+//   }
+// }
 
-for(let x = 0; x < 10; x++) {
-  for(let y = 0; y < 10; y++) {
-    matrix.setTile({x: x, y: y, c:"00ff00"})
-  }
+
+for(let i = 0; i < 500; i++){
+  var randx = Math.floor(Math.random() * i) + 1
+  var randy = Math.floor(Math.random() * i) + 1
+  matrix.setTile({x: randx, y: randy, c:"48f442"})
 }
 
-// matrix.setTile({x: 0, y: 0, c:"00ff00"})
-matrix.getQueue()
-.then(resp=>console.log(resp))
 
 
-
-// matrix.setTile({x: 460, y: 460, c:"ffffff"})
-// matrix.setTile({x: 455, y: 455, c:"ffffff"})
-// matrix.setTile({x: 460, y: 460, c:"ffffff"})
-// matrix.setTile({x: 460, y: 460, c:"ffffff"})
-// matrix.setTile({x: 460, y: 460, c:"ffffff"})
-
-// matrix.getTile({x: 460, y: 460})
-// .then(res=>console.log(res))
-
-
-
-
-// Write your code here!
-// all functions return a promise.
+matrix.getBoard()
+  .then(console.log)

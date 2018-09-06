@@ -7,7 +7,9 @@ class MatrixManager {
   }
 
   getBoard(){
-    console.log("Need to build out")
+    let get_board_url = `${this.api_url}/board`
+    return fetch(get_board_url)
+      .then(resp => resp.json())
   }
 
   getTile(object) {
@@ -46,6 +48,12 @@ class MatrixManager {
 
     return fetch(set_tile_url, options)
       .then(resp => resp.json())
+      // .catch((err) => {
+      //   setTimeout(()=>{
+      //     self.setTile(obj)
+      //   }, 5000)
+      //
+      // })
   }
 }
 
