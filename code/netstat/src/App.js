@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-// import Writes from './components/Writes.js'
+import { connect } from 'react-redux'
+
 import Chart from './components/Chart.js'
 
 class App extends Component {
@@ -13,6 +14,18 @@ class App extends Component {
           <h1 className="header-text">NETSTAT</h1>
           <p className="header-text">LIVE UPDATES FROM theAPI.link</p>
         </div>
+
+        <div className="flex justify-center stats-boxes">
+          <div className="stat-box col border p1 mr3">
+            <p>Writes to theAPI.link</p>
+            {this.props.totalWrites}
+          </div>
+          <div className="stat-box col border p1 ml3">
+            <p>Sockets Connected</p>
+            {this.props.wsConns}
+          </div>
+        </div>
+
         <div className="chart-container">
           <Chart />
         </div>
@@ -23,4 +36,8 @@ class App extends Component {
 
 
 
-export default App;
+const mapStateToProps = state => {
+  return {totalWrites: state.totalWrites, wsConns: state.wsConns, fetching:state.fetching}
+}
+
+export default connect(mapStateToProps)(App);
