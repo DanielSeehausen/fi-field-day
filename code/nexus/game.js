@@ -1,11 +1,11 @@
-const config = require('./config.js') 
+const config = require('./config.js')
 const HTTPEndpoint = config.APIENDPOINT
 
 const WSClient = require('./WSClient.js')
 const HTTPConn = require('./HTTPConn.js')
 
 class Game {
-
+	// nexus needs auto start on fail
 	constructor() {
 		this.board = {} // TODO instantiate board 500x500 (matrix style 500 rows by 500 columns)
 		this.wsc = new WSClient(this.board, this.writeTile.bind(this))
@@ -37,9 +37,9 @@ class Game {
 			this.board[`${x}-${y}`] = color
 			y++
 			if (y === dimension) {
-				y = 0 
+				y = 0
 				x++
-			} 
+			}
 		}
 	}
 

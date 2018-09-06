@@ -6,6 +6,10 @@ class MatrixManager {
     this.id = id
   }
 
+  getBoard(){
+    console.log("Need to build out")
+  }
+
   getTile(object) {
     // Tested, working
     let get_tile_url = `${this.api_url}/get-tile?x=${object["x"]}&y=${object["y"]}`
@@ -37,7 +41,7 @@ class MatrixManager {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({...obj, id: this.id})
+      body: JSON.stringify(Object.assign({}, obj, {id: this.id}))
     }
 
     return fetch(set_tile_url, options)

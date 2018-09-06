@@ -18,7 +18,7 @@ app.use(cors())
 const port = config.HTTPPORT
 const teamID = config.GROUPID
 const HTTPEndpoint = config.APIENDPOINT
- 
+
 // GLOBAL VARS
 let queue = []
 
@@ -28,9 +28,10 @@ const game = new Game()
 // HELPERS
 function startInterval() {
 	setInterval(() => {
+    console.log(queue.length);
 		if (queue.length > 0) {
 			let nextPoint = queue.shift()
-			console.log("SENDING", nextPoint)
+      console.log("SENDING", nextPoint)
 			game.setTile(nextPoint.x, nextPoint.y, nextPoint.c, nextPoint.id)
 		}
 	}, config.INTERVAL)
