@@ -62,7 +62,7 @@ app.get('/groups', (req, res) => {
 
 //******************** GROUP NETSTAT **********************
 app.get('/netstat', (req, res) => {
-  const netstat = Netstat.showTotalWrites()
+  const netstat = Netstat.getNetstat(game)
   res.send(JSON.stringify(netstat))
 })
 

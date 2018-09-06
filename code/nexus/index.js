@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-var cors = require('cors')
+const cors = require('cors')
 const url = require('url');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');

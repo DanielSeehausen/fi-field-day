@@ -27,7 +27,7 @@ class Canvas {
   }
 
   _coordToByteIdx(x, y) {
-    return (this.width * x + y)
+    return (this.width * y + x)
   }
 
   toJSON() {

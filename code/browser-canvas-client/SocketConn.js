@@ -13,9 +13,9 @@ class SocketConn {
     ws.onmessage = (function() {
       const data = JSON.parse(event.data)
       if (data.payload) {
-        const {x,y,hexStr} = data.payload
+        const {x, y, hexStr} = data.payload
 
-        this.canvas.drawTile(y,x,hexStr)
+        this.canvas.drawTile(x, y, hexStr)
       }
       // console.log('Message from server ', event.data)
     }).bind(this)
