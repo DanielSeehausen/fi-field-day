@@ -14,8 +14,10 @@ function rgbToHex(r, g, b) {
 }
 
 function selectColor(colorInfo) {
+   let oppositeColor= rgbToHex(256 - colorInfo.r, 256 - colorInfo.g, 256 - colorInfo.b)
    hexColor = rgbToHex(colorInfo.r,colorInfo.g,colorInfo.b)
    colorPicker.style.backgroundColor = hexColor
+   colorPicker.style.outlineColor = oppositeColor
   resetPointer()
 }
 
@@ -36,8 +38,7 @@ function getColor(coords) {
 }
 
 function applyColor(coords) {
-  // TODO: This should be coords.x and coords.y, but the server is reversing them at the moment.  Once that is fixed, this will need to be fixed.
-  httpConn.setTile(coords.y, coords.x, hexColor.slice(1))
+  httpConn.setTile(coords.x, coords.y, hexColor.slice(1))
   resetPointer()
 }
 

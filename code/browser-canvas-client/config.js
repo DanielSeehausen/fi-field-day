@@ -1,10 +1,10 @@
 const config = {
   DEFAULTLENGTH: 500,
   DEFAULTARRAY: null,
-  HTTPENDPOINT: 'http://localhost:3000',
-  WSENDPOINT: 'ws://localhost:8080',
-  // HTTPENDPOINT: 'http://theapi.link',
-  // WSENDPOINT: 'ws://theapi.link/socket',
+  // HTTPENDPOINT: 'http://localhost:3000',
+  // WSENDPOINT: 'ws://localhost:8080',
+  HTTPENDPOINT: 'http://theapi.link',
+  WSENDPOINT: 'ws://theapi.link/socket',
   ID: 0 //preassigned group ids
 }
 
