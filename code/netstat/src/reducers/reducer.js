@@ -7,16 +7,22 @@ export default function rootReducer(state = {
 
   switch(action.type) {
 
-    case "FETCH_NETSTAT_DATA":
+    case "FETCHING_NETSTAT_DATA":
       return {
         ...state,
         fetching: true
       }
 
-    case "GROUP_STATS":
+    case "FETCHED_NETSTAT_DATA":
       return {
         ...state,
-        groupStatsByID: action.payload
+        fetching: false
+      }
+
+    case "ADD_GROUP_STATS":
+      return {
+        ...state,
+        groupStatsByID: [...state.groupStatsByID, action.payload]
       }
 
     case "TOTAL_WRITES":

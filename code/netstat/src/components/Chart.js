@@ -7,13 +7,16 @@ import { bindActionCreators } from 'redux'
 
 import Axes from './Axes'
 import Bars from './Bars'
-import data from './Data'
 
 class Chart extends Component {
   constructor() {
     super()
     this.xScale = scaleBand()
     this.yScale = scaleLinear()
+  }
+
+  shouldComponentUpdate = () => {
+    return !this.props.fetching
   }
 
   componentDidMount = () => {
@@ -29,6 +32,7 @@ class Chart extends Component {
     const xScale = this.xScale
       .padding(0.5)
       .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${d}`))
+      // .domain(this.props.groupStatsByID).map(d => d.group)
       .range([margins.left, svgDimensions.width - margins.right])
 
     const yScale = this.yScale
@@ -43,6 +47,7 @@ class Chart extends Component {
          svgDimensions={svgDimensions}
        />
 
+     { Object.keys(this.props.groupStatsByID).length !== 0 &&
        <Bars
          scales={{ xScale, yScale }}
          margins={margins}
@@ -50,13 +55,14 @@ class Chart extends Component {
          maxValue={maxValue}
          svgDimensions={svgDimensions}
        />
+   }
       </svg>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {totalWrites: state.totalWrites, wsConns: state.wsConns, groupStatsByID: state.groupStatsByID}
+  return {totalWrites: state.totalWrites, wsConns: state.wsConns, groupStatsByID: state.groupStatsByID, fetching:state.fetching}
 }
 
 const mapDispatchToProps = dispatch => {
