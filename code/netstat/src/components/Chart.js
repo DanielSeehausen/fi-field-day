@@ -31,7 +31,7 @@ class Chart extends Component {
 
     const xScale = this.xScale
       .padding(0.5)
-      .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${d}`))
+      .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${parseInt(d) + 1}`))
       // .domain(this.props.groupStatsByID).map(d => d.group)
       .range([margins.left, svgDimensions.width - margins.right])
 

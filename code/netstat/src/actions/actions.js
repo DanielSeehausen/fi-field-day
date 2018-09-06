@@ -7,11 +7,17 @@ export function FetchNetstatData() {
     return fetch('http://theapi.link/netstat')
     .then( res => res.json())
     .then( data => {
-      let counter = 0;
+      let counter = 0
+      let skip = false
       Object.values(data.groupStatsByID).map(datum => {
-        datum["group"] = counter
-        counter++
-        dispatch({ type: 'ADD_GROUP_STATS', payload: datum })
+        if (skip === false) {
+          skip = true
+          counter++
+        } else {
+          datum["group"] = counter
+          counter++
+          dispatch({ type: 'ADD_GROUP_STATS', payload: datum })
+        }
       })
       dispatch({type: 'FETCHED_NETSTAT_DATA'})
       dispatch({ type: 'TOTAL_WRITES', payload: data.totalWrites })

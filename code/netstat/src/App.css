@@ -3,8 +3,8 @@
 
 :root {
   --black: #302c2e;
-  --lightGreen: rgba(143, 246, 181, 0.2);
-  --lightBlue: rgba(214, 221, 252, 1);
+  --lightGreen: #c0edef;
+  --lightBlue: #d5e9f6;
   --darkBlue: rgba(0, 18, 137, 1);
 }
 
@@ -25,13 +25,13 @@
 
 .header-text {
   margin-bottom: 0px;
-  color: var(--darkBlue)
+  color: var(--black)
 }
 
 .chart-container{
   background-color: var(--lightBlue);
-  border: 2px solid var(--darkBlue);
-  box-shadow: 7px 10px var(--darkBlue);
+  border: 2px solid var(--black);
+  box-shadow: 7px 10px var(--black);
   padding: 20px;
   margin-top: 0;
 }
@@ -43,7 +43,7 @@
 
 .stat-box {
   width: 25%;
-  background-color: #F1F1F1;
+  background-color: var(--lightBlue);
   border: 2px solid var(--black);
   box-shadow: 7px 10px var(--black);
 }
@@ -51,16 +51,16 @@
 /* Axis Styles */
 .Axis path,
 .Axis line {
-  stroke: var(--darkBlue);
+  stroke: var(--black);
 }
 
 .Axis text {
   font-size: 11px;
-  fill: var(--darkBlue);
+  fill: var(--black);
 }
 
 .Axis-Bottom text {
   transform: rotate(-45deg);
   text-anchor: end;
-  fill: var(--darkBlue);
+  fill: var(--black);
 }

@@ -10,7 +10,7 @@ class Bars extends Component {
 
     this.colorScale = scaleLinear()
       .domain([0, this.props.maxValue])
-      .range(['#F3E5F5', '#7B1FA2'])
+      .range(['#818ffd', '#1e6ca4'])
       .interpolate(interpolateLab)
   }
 
