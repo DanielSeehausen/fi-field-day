@@ -3,6 +3,7 @@ const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT, canvas)
 const canvasManager = new CanvasManager(config.dimension)
 const dragger = new Dragger
+const DOMCanvas = document.getElementById('canvas')
 
 
 /********************* Keyboard Input Handler ***************************************/

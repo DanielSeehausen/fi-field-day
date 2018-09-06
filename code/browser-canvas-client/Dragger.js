@@ -10,6 +10,7 @@ class Dragger{
   }
 
   mouseDown(e){
+    VanillaTilt.init(DOMCanvas)
     this.dragEvent = true
     this.startingX = e.clientX
     this.startingY = e.clientY
@@ -23,6 +24,7 @@ class Dragger{
     } else {
       this.dragEvent = false
     }
+    DOMCanvas.vanillaTilt.destroy()
   }
 
   mouseMove(e){
