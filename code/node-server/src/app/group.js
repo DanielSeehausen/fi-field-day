@@ -18,7 +18,7 @@ class Group {
   static addError(errorType, groupId) {
     Group.all[groupId].addError(errorType)
   }
-  
+
   static getStatsByID() {
     return Object.values(Group.all).reduce((acc, group) => {
       acc[group.id] = {
@@ -28,7 +28,7 @@ class Group {
       return acc
     }, {})
   }
-  
+
   constructor(id, hexColor) {
     this.id = id
     this.hexColor = hexColor
@@ -44,7 +44,7 @@ class Group {
     this.achievements.addMilestone('writes', this.writes)
     // if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
-  
+
   addError(errorType) {
     this.errors++
     this.errorTypes.push(errorType)
