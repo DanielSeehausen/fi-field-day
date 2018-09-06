@@ -27,8 +27,8 @@ function resetPointer(e){
 
 function getCursorPosition(e) {
     let rect = canvas.canvas.getBoundingClientRect();
-    let x = Math.round((e.clientX / canvasManager.zoomMultiplier(canvasManager.zoom)) - (rect.left / canvasManager.zoomMultiplier(canvasManager.zoom)));
-    let y = Math.round((e.clientY / canvasManager.zoomMultiplier(canvasManager.zoom)) - (rect.top / canvasManager.zoomMultiplier(canvasManager.zoom)));
+    let x = (e.clientX / canvasManager.zoomMultiplier(canvasManager.zoom) - (rect.left / canvasManager.zoomMultiplier(canvasManager.zoom)));
+    let y = (e.clientY / canvasManager.zoomMultiplier(canvasManager.zoom) - (rect.top / canvasManager.zoomMultiplier(canvasManager.zoom)));
     return {x: x, y: y}
 }
 
