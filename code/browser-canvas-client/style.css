@@ -67,9 +67,9 @@ hr {
   border: 3px solid #222;
   position: fixed;
   right: 10px;
-  bottom: 10px;
+  bottom: 100px;
   opacity: 0;
-  width: 400px;
+  width: 250px;
   height: 600px;
   font-size: 30pt;
   text-align: center;
