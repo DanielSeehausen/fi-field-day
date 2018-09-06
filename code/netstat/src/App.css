@@ -3,7 +3,6 @@
 
 :root {
   --black: #302c2e;
-<<<<<<< HEAD
   --lightGreen: #c0edef;
   --lightBlue: #d5e9f6;
   --darkBlue: rgba(0, 18, 137, 1);
@@ -13,13 +12,6 @@
   font-family: 'Source Code Pro'
 }
 
-=======
-  --lightGreen: rgba(143, 246, 181, 0.2);
-  --lightBlue: rgba(214, 221, 252, 1);
-  --darkBlue: rgba(0, 18, 137, 1);
-}
-
->>>>>>> origin/master
 /* App Styles */
 .App {
   display: flex;
@@ -33,28 +25,17 @@
 
 .header-text {
   margin-bottom: 0px;
-<<<<<<< HEAD
   color: var(--black)
-=======
-  font-family: 'Source Code Pro';
-  color: var(--darkBlue)
->>>>>>> origin/master
 }
 
 .chart-container{
   background-color: var(--lightBlue);
-<<<<<<< HEAD
   border: 2px solid var(--black);
   box-shadow: 7px 10px var(--black);
-=======
-  border: 2px solid var(--darkBlue);
-  box-shadow: 7px 10px var(--darkBlue);
->>>>>>> origin/master
   padding: 20px;
   margin-top: 0;
 }
 
-<<<<<<< HEAD
 /* Stats Boxs Styles */
 .stats-boxes{
   width: 100vw;
@@ -66,35 +47,20 @@
   border: 2px solid var(--black);
   box-shadow: 7px 10px var(--black);
 }
-=======
->>>>>>> origin/master
 
 /* Axis Styles */
 .Axis path,
 .Axis line {
-<<<<<<< HEAD
   stroke: var(--black);
-=======
-  stroke: var(--darkBlue);
->>>>>>> origin/master
 }
 
 .Axis text {
   font-size: 11px;
-<<<<<<< HEAD
   fill: var(--black);
-=======
-  fill: var(--darkBlue);
-  font-family: 'Source Code Pro'
->>>>>>> origin/master
 }
 
 .Axis-Bottom text {
   transform: rotate(-45deg);
   text-anchor: end;
-<<<<<<< HEAD
   fill: var(--black);
-=======
-  fill: var(--darkBlue);
->>>>>>> origin/master
 }
