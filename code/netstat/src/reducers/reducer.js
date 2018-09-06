@@ -22,7 +22,7 @@ export default function rootReducer(state = {
     case "ADD_GROUP_STATS":
       return {
         ...state,
-        groupStatsByID: [...state.groupStatsByID, action.payload]
+        groupStatsByID: action.payload
       }
 
     case "TOTAL_WRITES":

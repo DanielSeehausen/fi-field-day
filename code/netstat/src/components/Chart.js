@@ -15,12 +15,13 @@ class Chart extends Component {
     this.yScale = scaleLinear()
   }
 
-  shouldComponentUpdate = () => {
-    return !this.props.fetching
-  }
+  // shouldComponentUpdate = () => {
+  //   return !this.props.fetching
+  // }
 
   componentDidMount = () => {
-    this.props.FetchNetstatData()
+    // this.props.FetchNetstatData()
+    setInterval(this.props.FetchNetstatData, 1000);
   }
 
   render() {
@@ -31,8 +32,7 @@ class Chart extends Component {
 
     const xScale = this.xScale
       .padding(0.5)
-      .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${parseInt(d) + 1}`))
-      // .domain(this.props.groupStatsByID).map(d => d.group)
+      .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${parseInt(d)}`))
       .range([margins.left, svgDimensions.width - margins.right])
 
     const yScale = this.yScale
@@ -51,7 +51,7 @@ class Chart extends Component {
        <Bars
          scales={{ xScale, yScale }}
          margins={margins}
-         data={this.props.groupStatsByID}
+         data={Object.values(this.props.groupStatsByID)}
          maxValue={maxValue}
          svgDimensions={svgDimensions}
        />

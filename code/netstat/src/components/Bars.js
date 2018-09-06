@@ -19,11 +19,12 @@ class Bars extends Component {
     const { xScale, yScale } = scales
     const { height } = svgDimensions
 
+    let counter = 1;
     const bars = (
       data.map(datum =>
         <rect
           key={datum.group}
-          x={xScale(`Group ${datum.group}`)}
+          x={xScale(`Group ${counter++}`)}
           y={yScale(datum.writes)}
           height={height - margins.bottom - scales.yScale(datum.writes)}
           width={xScale.bandwidth()}
@@ -31,7 +32,7 @@ class Bars extends Component {
           />
       )
     )
-
+    
     return (
       <g>{bars}</g>
     )
