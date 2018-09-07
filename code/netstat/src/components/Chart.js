@@ -55,23 +55,14 @@ class Chart extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    totalWrites: state.totalWrites,
-    wsConns: state.wsConns,
-    groupStatsByID: state.groupStatsByID,
-    fetching: state.fetching
-  }
-}
+const mapStateToProps = ({ totalWrites, wsConns, groupStatsByID, fetching }) => ({
+  totalWrites,
+  wsConns,
+  groupStatsByID,
+  fetching
+})
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      FetchNetstatData
-    },
-    dispatch
-  )
-}
+const mapDispatchToProps = dispatch => bindActionCreators({ FetchNetstatData }, dispatch)
 
 export default connect(
   mapStateToProps,
