@@ -5,7 +5,7 @@ const config = {
   // WSENDPOINT: 'ws://localhost:8080',
   HTTPENDPOINT: 'http://theapi.link',
   WSENDPOINT: 'ws://theapi.link/socket',
-  ID: 0 //preassigned group ids
+  ID: 8 //preassigned group ids
 }
 
 config.DEFAULTARRAY = new Uint8ClampedArray(Math.pow(config.DEFAULTLENGTH, 2) * 4).fill('33')

@@ -39,7 +39,7 @@ function getColor(coords) {
 
 function applyColor(coords) {
   httpConn.setTile(coords.x, coords.y, hexColor.slice(1))
-  resetPointer()
+  // resetPointer()
 }
 
 function handleClick(e){
