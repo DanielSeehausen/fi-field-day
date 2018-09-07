@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import './App.css';
-
+import React, { Component } from 'react'
+import './App.css'
 import { connect } from 'react-redux'
-
 import Chart from './components/Chart.js'
 
 class App extends Component {
@@ -30,14 +28,14 @@ class App extends Component {
           <Chart />
         </div>
       </div>
-    );
+    )
   }
 }
 
+const mapStateToProps = ({ totalWrites, wsConns, fetching }) => ({
+  totalWrites,
+  wsConns,
+  fetching
+})
 
-
-const mapStateToProps = state => {
-  return {totalWrites: state.totalWrites, wsConns: state.wsConns, fetching:state.fetching}
-}
-
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)

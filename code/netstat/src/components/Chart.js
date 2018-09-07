@@ -21,7 +21,7 @@ class Chart extends Component {
 
   componentDidMount = () => {
     // this.props.FetchNetstatData()
-    setInterval(this.props.FetchNetstatData, 1000);
+    setInterval(this.props.FetchNetstatData, 1000)
   }
 
   render() {
@@ -35,40 +35,33 @@ class Chart extends Component {
       .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${parseInt(d)}`))
       .range([margins.left, svgDimensions.width - margins.right])
 
-    const yScale = this.yScale
-      .domain([0, maxValue])
-      .range([svgDimensions.height - margins.bottom, margins.top])
+    const yScale = this.yScale.domain([0, maxValue]).range([svgDimensions.height - margins.bottom, margins.top])
 
     return (
       <svg width={svgDimensions.width} height={svgDimensions.height}>
-        <Axes
-         scales={{ xScale, yScale }}
-         margins={margins}
-         svgDimensions={svgDimensions}
-       />
+        <Axes scales={{ xScale, yScale }} margins={margins} svgDimensions={svgDimensions} />
 
-     { Object.keys(this.props.groupStatsByID).length !== 0 &&
-       <Bars
-         scales={{ xScale, yScale }}
-         margins={margins}
-         data={Object.values(this.props.groupStatsByID)}
-         maxValue={maxValue}
-         svgDimensions={svgDimensions}
-       />
-   }
+        {Object.keys(this.props.groupStatsByID).length !== 0 && (
+          <Bars
+            scales={{ xScale, yScale }}
+            margins={margins}
+            data={Object.values(this.props.groupStatsByID)}
+            maxValue={maxValue}
+            svgDimensions={svgDimensions}
+          />
+        )}
       </svg>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {totalWrites: state.totalWrites, wsConns: state.wsConns, groupStatsByID: state.groupStatsByID, fetching:state.fetching}
-}
+const mapStateToProps = ({ totalWrites, wsConns, groupStatsByID, fetching }) => ({
+  totalWrites,
+  wsConns,
+  groupStatsByID,
+  fetching
+})
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({
-    FetchNetstatData
-  }, dispatch)
-}
+const mapDispatchToProps = dispatch => bindActionCreators({ FetchNetstatData }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart)

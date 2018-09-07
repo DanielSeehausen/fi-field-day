@@ -6,6 +6,16 @@
   --lightGreen: #c0edef;
   --lightBlue: #d5e9f6;
   --darkBlue: rgba(0, 18, 137, 1);
+  --white: rgb(239,248,217);
+  --green: rgba(6, 214, 160, 1);
+  --blue: rgba(27, 154, 170, 1);
+  --pink: rgba(239, 71, 111, 1);
+  --yellow: rgba(255, 196, 61, 1);
+  --black: #302c2e;
+  }
+
+* {
+  font-family: 'Source Code Pro'
 }
 
 * {
@@ -20,7 +30,7 @@
   align-items: center;
   height: 100vh;
   text-align: center;
-  background-color: var(--lightGreen);
+  background-color: white;
 }
 
 .header-text {
