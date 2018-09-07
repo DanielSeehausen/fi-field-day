@@ -1,6 +1,8 @@
 const config = require('../../config.js')
 const Canvas = require('./canvas.js')
 const Group = require('./group.js')
+const TimeBoard = require('./TimeBoard.js')
+
 
 const BASECOLORS = [
   'C0392B','E74C3C','9B59B6','008941',
@@ -14,28 +16,21 @@ const BASECOLORS = [
   '1CE6FF','FF34FF','FF4A46','008941'
 ]
 
-// may need some better contrasting colors...possible ones below
-//  '1CE6FF', 'FF34FF', 'FF4A46', '008941',
-//  'FFDBE5', '7A4900', '0000A6', '63FFAC',
-//  '5A0007', '809693', 'FEFFE6', '1B4400',
-//  '61615A', 'BA0900', '6B7900', '00C2A0',
-//  'DDEFFF', '000035', '7B4F4B', 'A1C299',
-//  '372101', 'FFB500', 'C2FFED', 'A079BF',
-//  '00489C', '6F0062', '0CBD66', 'EEC3FF',
-//  '885578', 'FAD09F', 'FF8A9A', 'D157A0'
-
 class Game {
   constructor() {
-    this.canvas = new Canvas(config.ROWS, config.COLUMNS)
+    this.timeBoard = new TimeBoard()
+    this.canvas = new Canvas(config.ROWS, config.COLUMNS, this.timeBoard)
     this.wss = require('./wss.js')
     this.createGroups()
     this.setIdenticons()
   }
 
-  setTile(tile, groupId) {
+  setTile(tile, groupID) {
     // {x, y, hexStr} sans '#' on hexStr
     this.canvas.setTile(tile)
-    Group.addWrite(groupId)
+    if (groupID != config.ADMIN_SECRET) {
+      Group.addWrite(groupID)
+    }
     this.wss.emit({ action: 'writeTile', payload: tile })
   }
 
@@ -48,8 +43,9 @@ class Game {
   }
 
   createGroups() {
-    for (let i = config.IDLIMIT.low; i <= config.IDLIMIT.high; i++) {
-      new Group(i, BASECOLORS[i])
+    for (let idx = 0; idx <= config.IDLIMIT.high; idx++) {
+      const groupID = idx + 1
+      new Group(groupID, BASECOLORS[idx])
     }
   }
 
@@ -89,17 +85,23 @@ class Game {
 
   setIdenticons() {
     const allStartPositions = this.getAllStartIdenticonPos()
-
+    const watchedTiles = new Set()
     allStartPositions.forEach((pos, idx) => {
       for (let row = pos['x']; row < pos['x'] + 25; row++) {
         for (let col = pos['y']; col < pos['y'] + 25; col++) {
           // could use this.setTile() but not sure if we want to add a write achievement here
-          const tile = { x: row, y: col, hexStr: Group.all[idx].hexColor }
+          const groupID = idx + 1
+          const tile = { x: row, y: col, hexStr: Group.all[groupID].hexColor }
           this.canvas.setTile(tile)
-          this.wss.emit({ action: 'writeTile', payload: tile })
+          
+          const key = `${row}-${col}`
+          watchedTiles.add(key)
+          this.timeBoard.board[key].c = Group.all[groupID].hexColor
+          this.timeBoard.board[key].groupID = groupID
         }
       }
     })
+    this.canvas.watchedTiles = watchedTiles
   }
 
   toJSON() {

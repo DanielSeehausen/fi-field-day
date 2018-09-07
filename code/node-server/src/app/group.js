@@ -37,6 +37,12 @@ class Group {
     this.errorTypes = []
     this.achievements = new Achievements(this.id)
     Group.all[this.id] = this
+    this.time = 0
+  }
+  
+  addTime(additionalTime) {
+    this.time += additionalTime
+    console.log("new time for group 0: ", this.time/1000)
   }
 
   addWrite() {
@@ -67,6 +73,5 @@ class Group {
 }
 
 Group.all = {}
-
 
 module.exports = Group
