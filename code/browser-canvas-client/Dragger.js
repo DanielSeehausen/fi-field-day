@@ -48,9 +48,16 @@ class Dragger{
   }
 
   handleTilt(e){
-    console.log(e.movementX )
-    if (e.movementX < -5){
-     this.Ytilter.style.transform = "perspective(800px) rotateY(-5deg)"
+    if (e.movementX < -150) {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(-360deg)"
+    }else if(e.movementX < -20){
+     this.Ytilter.style.transform = "perspective(800px) rotateY(-10deg)"
+    }else if (e.movementX < -5) {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(-5deg)"
+    }else if (e.movementX > 150) {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(360deg)"
+    }else if (e.movementX > 20) {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(10deg)"
     }
     else if (e.movementX > 5) {
       this.Ytilter.style.transform = "perspective(800px) rotateY(5deg)"
@@ -59,12 +66,18 @@ class Dragger{
     }
 
 
-    if (e.movementY < -3){
-     this.Xtilter.style.transform = "perspective(800px) rotateX(5deg)"
+    if (e.movementY < -10){
+     this.Xtilter.style.transform = "perspective(800px) rotateX(2deg)"
     }
-    else if (e.movementY > 3) {
+    else if (e.movementY < -5) {
+      this.Xtilter.style.transform = "perspective(800px) rotateX(5deg)"
+    }
+    else if (e.movementY > 5) {
+      this.Xtilter.style.transform = "perspective(800px) rotateX(-2deg)"
+    } else if (e.movementY > 10) {
       this.Xtilter.style.transform = "perspective(800px) rotateX(-5deg)"
-    } else {
+    }
+    else {
       // console.log("sup")
       this.Xtilter.style.transform = "perspective(800px) rotateX(0deg)"
 
