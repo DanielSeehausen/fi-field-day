@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Chart from './components/Chart.js'
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">

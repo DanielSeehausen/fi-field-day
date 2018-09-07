@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 :root {
-  /* --black: #302c2e; */
+  --black: #302c2e;
   --lightGreen: #c0edef;
   --lightBlue: #d5e9f6;
   --darkBlue: rgba(0, 18, 137, 1);
@@ -13,6 +13,10 @@
   --yellow: rgba(255, 196, 61, 1);
   --black: #302c2e;
   }
+
+* {
+  font-family: 'Source Code Pro'
+}
 
 * {
   font-family: 'Source Code Pro'
@@ -31,13 +35,13 @@
 
 .header-text {
   margin-bottom: 0px;
-  color: var(--pink)
+  color: var(--black)
 }
 
 .chart-container{
-  background-color: var(--black);
-  border: 2px solid var(--blue);
-  box-shadow: 7px 10px var(--blue);
+  background-color: var(--lightBlue);
+  border: 2px solid var(--black);
+  box-shadow: 7px 10px var(--black);
   padding: 20px;
   margin-top: 0;
 }
@@ -49,25 +53,24 @@
 
 .stat-box {
   width: 25%;
-  background-color: var(--blue);
+  background-color: var(--lightBlue);
   border: 2px solid var(--black);
   box-shadow: 7px 10px var(--black);
-  color: white;
 }
 
 /* Axis Styles */
 .Axis path,
 .Axis line {
-  stroke: white;
+  stroke: var(--black);
 }
 
 .Axis text {
   font-size: 11px;
-  fill: white;
+  fill: var(--black);
 }
 
 .Axis-Bottom text {
   transform: rotate(-45deg);
   text-anchor: end;
-  fill: white;
+  fill: var(--black);
 }

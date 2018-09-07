@@ -64,7 +64,4 @@ const mapStateToProps = ({ totalWrites, wsConns, groupStatsByID, fetching }) => 
 
 const mapDispatchToProps = dispatch => bindActionCreators({ FetchNetstatData }, dispatch)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Chart)
+export default connect(mapStateToProps, mapDispatchToProps)(Chart)
