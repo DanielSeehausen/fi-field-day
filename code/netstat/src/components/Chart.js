@@ -1,35 +1,41 @@
 import React, { Component } from 'react'
 import { scaleBand, scaleLinear } from 'd3-scale'
 
+import { FetchNetstatData } from '../actions/actions.js'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Axes from './Axes'
 import Bars from './Bars'
-import data from './Data'
 
-export default class Chart extends Component {
+class Chart extends Component {
   constructor() {
     super()
     this.xScale = scaleBand()
     this.yScale = scaleLinear()
   }
 
+  // shouldComponentUpdate = () => {
+  //   return !this.props.fetching
+  // }
+
+  componentDidMount = () => {
+    // this.props.FetchNetstatData()
+    setInterval(this.props.FetchNetstatData, 1000);
+  }
+
   render() {
     const margins = { top: 50, right: 20, bottom: 100, left: 60 }
     const svgDimensions = { width: 800, height: 500 }
 
-    const maxValue = Math.max(...data.map(d => d.hits))
+    const maxValue = Math.max(...Object.values(this.props.groupStatsByID).map(d => d.writes))
 
-    // scaleBand type
     const xScale = this.xScale
       .padding(0.5)
-      // scaleBand domain should be an array of specific values
-      // in our case, we want to use movie titles
-      .domain(data.map(d => d.title))
+      .domain(Object.keys(this.props.groupStatsByID).map(d => `Group ${parseInt(d)}`))
       .range([margins.left, svgDimensions.width - margins.right])
 
-     // scaleLinear type
     const yScale = this.yScale
-       // scaleLinear domain required at least two values, min and max
       .domain([0, maxValue])
       .range([svgDimensions.height - margins.bottom, margins.top])
 
@@ -41,14 +47,28 @@ export default class Chart extends Component {
          svgDimensions={svgDimensions}
        />
 
+     { Object.keys(this.props.groupStatsByID).length !== 0 &&
        <Bars
          scales={{ xScale, yScale }}
          margins={margins}
-         data={data}
+         data={Object.values(this.props.groupStatsByID)}
          maxValue={maxValue}
          svgDimensions={svgDimensions}
        />
+   }
       </svg>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {totalWrites: state.totalWrites, wsConns: state.wsConns, groupStatsByID: state.groupStatsByID, fetching:state.fetching}
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    FetchNetstatData
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);
