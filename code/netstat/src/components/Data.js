@@ -11,5 +11,5 @@ export default [
   { title: 'Group 10', hits: 540 },
   { title: 'Group 11', hits: 320 },
   { title: 'Group 12', hits: 10 },
-  { title: 'Group 13', hits: 200 },
+  { title: 'Group 13', hits: 200 }
 ]

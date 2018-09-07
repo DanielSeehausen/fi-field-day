@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { interpolateLab } from 'd3-interpolate'
 
-
 class Bars extends Component {
   constructor(props) {
     super(props)
@@ -19,25 +18,20 @@ class Bars extends Component {
     const { xScale, yScale } = scales
     const { height } = svgDimensions
 
-    let counter = 1;
-    const bars = (
-      data.map(datum =>
-        <rect
-          key={datum.group}
-          x={xScale(`Group ${counter++}`)}
-          y={yScale(datum.writes)}
-          height={height - margins.bottom - scales.yScale(datum.writes)}
-          width={xScale.bandwidth()}
-          fill={this.colorScale(datum.writes)}
-          />
-      )
-    )
+    let counter = 1
+    const bars = data.map(datum => (
+      <rect
+        key={datum.group}
+        x={xScale(`Group ${counter++}`)}
+        y={yScale(datum.writes)}
+        height={height - margins.bottom - scales.yScale(datum.writes)}
+        width={xScale.bandwidth()}
+        fill={this.colorScale(datum.writes)}
+      />
+    ))
 
-    return (
-      <g>{bars}</g>
-    )
+    return <g>{bars}</g>
   }
 }
-
 
 export default Bars

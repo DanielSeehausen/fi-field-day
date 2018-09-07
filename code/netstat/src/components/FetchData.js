@@ -16,23 +16,23 @@ export default class FetchData extends Component {
   }
 
   getGroupWritesById = () => {
-    fetch( 'http://theapi.link/netstat' )
-    .then( res => res.json() )
-    .then( data => {
+    fetch('http://theapi.link/netstat')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
 
-      console.log(data)
-
-      this.setState({
-        groupStatsByID: data.groupStatsByID,
-        totalWrites: data.totalWrites,
-        wsConns: data.wsConns
-      }, () => console.log(this.state))
-    })
+        this.setState(
+          {
+            groupStatsByID: data.groupStatsByID,
+            totalWrites: data.totalWrites,
+            wsConns: data.wsConns
+          },
+          () => console.log(this.state)
+        )
+      })
   }
 
   render() {
-    return (
-      <div>HEY</div>
-    )
+    return <div>HEY</div>
   }
 }
