@@ -2,15 +2,17 @@ class Dragger{
 
   constructor(){
     this.dragger = document.getElementById('dragger')
+    this.Xtilter = document.getElementById('Xtilter')
+    this.Ytilter = document.getElementById('Ytilter')
       this.startingX = 0
       this.startingY = 0
       this.lastTimeX = 0
       this.lastTimeY = 0
+      this.xTilt = 0
     this.dragEvent = false
   }
 
   mouseDown(e){
-    VanillaTilt.init(DOMCanvas)
     this.dragEvent = true
     this.startingX = e.clientX
     this.startingY = e.clientY
@@ -24,7 +26,8 @@ class Dragger{
     } else {
       this.dragEvent = false
     }
-    DOMCanvas.vanillaTilt.destroy()
+    this.Xtilter.style.transform = "perspective(400px) rotateY(0deg)"
+    this.Ytilter.style.transform = "perspective(400px) rotateY(0deg)"
   }
 
   mouseMove(e){
@@ -35,12 +38,37 @@ class Dragger{
       this.newY = this.lastTimeY - this.yDiff
       const newPos = `translate(${this.newX}px, ${this.newY}px)`
       this.dragger.style.transform = newPos
+      this.handleTilt(e)
     }
   }
 
   resetMove(){
     this.lastTimeX = 0
     this.lastTimeY = 0
+  }
+
+  handleTilt(e){
+    console.log(e.movementX )
+    if (e.movementX < -5){
+     this.Ytilter.style.transform = "perspective(800px) rotateY(-5deg)"
+    }
+    else if (e.movementX > 5) {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(5deg)"
+    } else {
+      this.Ytilter.style.transform = "perspective(800px) rotateY(0deg)"
+    }
+
+
+    if (e.movementY < -3){
+     this.Xtilter.style.transform = "perspective(800px) rotateX(5deg)"
+    }
+    else if (e.movementY > 3) {
+      this.Xtilter.style.transform = "perspective(800px) rotateX(-5deg)"
+    } else {
+      // console.log("sup")
+      this.Xtilter.style.transform = "perspective(800px) rotateX(0deg)"
+
+    }
   }
 
 }
