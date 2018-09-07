@@ -8,10 +8,12 @@
   </head>
   <body>
     <div id="colorPicker">
-      <button type="button" name="pick" id="pick">Pick</button>
-      <button type="button" name="paint" id="paint">Paint</button>
-      <input type="text" name="hex" value="" id="hex" placeholder="Pick by Hex">
-      <button type="button" name="hexSubmit" id="hexSubmit">Go.</button>
+      <form class="colorPickerForm" id="colorForm">
+        <button type="button" name="pick" id="pick">Pick</button>
+        <button type="button" name="paint" id="paint">Paint</button>
+        <input type="text" name="hex" value="" id="hex" placeholder="Pick by Hex">
+        <input type="submit" name="hexSubmit" id="hexSubmit" value="Go.">
+    </form>
     </div>
 
     <div id="zoomStatus">x1</div>
