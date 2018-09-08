@@ -21,7 +21,7 @@ class Bars extends Component {
     let counter = 1
     const bars = data.map(datum => (
       <rect
-        key={datum.group}
+        key={counter}
         x={xScale(`Group ${counter++}`)}
         y={yScale(datum.writes)}
         height={height - margins.bottom - scales.yScale(datum.writes)}
