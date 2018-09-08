@@ -66,6 +66,14 @@ app.get('/netstat', (req, res) => {
   res.send(JSON.stringify(netstat))
 })
 
+app.get('/allGroups', (req, res) => {
+  try {
+    res.send(JSON.stringify(Object.values(Group.all)))
+  } catch (e) {
+    console.error("fetching all groups broke...:\n", e)
+  }
+})
+
 
 //***************************** REQ ERROR HANDLING *****************************
 // 404
