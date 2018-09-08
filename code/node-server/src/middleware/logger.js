@@ -1,18 +1,14 @@
 const fs = require('fs')
-// const logStream = fs.createWriteStream('../../../logs/http-req.log', {flags: 'a'})
-// const errStream = fs.createWriteStream('../../../logs/http-req-error.log', {flags: 'a'})
+const logStream = fs.createWriteStream('logs/http-req.log', { flags: 'a' })
+const errStream = fs.createWriteStream('logs/http-req-error.log', { flags: 'a' })
 
-// log success
-
-function logger(req, res, next) {
-  // logStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
+const logger = (err, req, res, next) => {
+  if (err) {
+    errStream.write(`\n${err.message}|${req.connection.remoteAddress}|${Date.now()}|${req.url}|${req.query.id}|${req.query.x}|${req.query.y}|${req.query.c}`)
+    next(err)
+  }
+  logStream.write(`\n${req.connection.remoteAddress}|${Date.now()}|${req.url}|${req.query.id}|${req.query.x}|${req.query.y}|${req.query.c}`)
   next()
 }
-
-// log failure
-// app.use((err, req, res, next) => {
-//   errStream.write(`\n${req.connection.remoteAddress} ${req.url} ${Date.now()}`)
-//   next(err)
-// })
 
 module.exports = logger
