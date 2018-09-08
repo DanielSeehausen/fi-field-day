@@ -29,7 +29,7 @@ wss.emit = (data) => {
       client.send(JSON.stringify(data))
     })
   } catch (e) {
-    console.error('websocket emit faliure!\n', e)
+    console.error('websocket emit failure!\n', e)
   }
 
 }
