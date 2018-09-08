@@ -24,9 +24,14 @@ wss.on('connection', (ws) => {
 })
 
 wss.emit = (data) => {
-  wss.clients.forEach((client) => {
-    client.send(JSON.stringify(data))
-  })
+  try {
+    wss.clients.forEach((client) => {
+      client.send(JSON.stringify(data))
+    })
+  } catch (e) {
+    console.error('websocket emit failure!\n', e)
+  }
+
 }
 
 
