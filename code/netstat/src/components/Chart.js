@@ -21,7 +21,7 @@ class Chart extends Component {
 
   componentDidMount = () => {
     // this.props.FetchNetstatData()
-    setInterval(this.props.FetchNetstatData, 1000)
+    setInterval(this.props.FetchNetstatData, 1200)
   }
 
   render() {
