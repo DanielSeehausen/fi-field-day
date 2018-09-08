@@ -5,6 +5,9 @@ const canvasManager = new CanvasManager(config.dimension)
 const dragger = new Dragger
 const DOMCanvas = document.getElementById('canvas')
 
+if (config.ID == "YOUR ID HERE"){
+  window.alert("Set your ID in config.js to continue")
+}
 
 /********************* Keyboard Input Handler ***************************************/
 const keyCodes = [32, 37, 38, 39, 40, 65, 68, 83, 87]
