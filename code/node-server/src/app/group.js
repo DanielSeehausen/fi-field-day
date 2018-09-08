@@ -42,20 +42,18 @@ class Group {
   
   addTime(additionalTime) {
     this.time += additionalTime
-    console.log("new time for group 0: ", this.time/1000)
   }
 
   addWrite() {
     this.writes++
-    this.achievements.addMilestone('writes', this.writes)
+    // this.achievements.addMilestone('writes', this.writes)
     // if (this.writes % 100 === 0) this.achievements.add(`Writes: ${this.writes}`)
   }
 
   addError(errorType) {
     this.errors++
-    this.errorTypes.push(errorType)
-    this.achievements.addMilestone('errors', this.errors)
-    this.achievements.addErrorTypeMilestone(errorType)
+    // this.achievements.addMilestone('errors', this.errors)
+    // this.achievements.addErrorTypeMilestone(errorType)
     // if (this.errors % 100 === 0) this.achievements.add(`Errors: ${this.writes}`)
   }
 
@@ -65,8 +63,9 @@ class Group {
       hexColor: this.hexColor,
       writes: this.writes,
       errors: this.errors,
-      errorTypes: this.errorTypes,
-      achievements: this.achievements.stringifyAchievements()
+      time: this.time
+      // errorTypes: this.errorTypes,
+      // achievements: this.achievements.stringifyAchievements()
     }
   }
 
