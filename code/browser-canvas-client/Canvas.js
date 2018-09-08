@@ -1,5 +1,4 @@
 class Canvas {
-  
   constructor(dimension, pixelArray) {
     this.canvas = document.getElementById('canvas')
     this.ctx = this.canvas.getContext('2d')

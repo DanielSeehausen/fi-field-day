@@ -3,24 +3,28 @@ const httpConn = new HTTPConn(config.HTTPENDPOINT)
 const socketConn = new SocketConn(config.WSENDPOINT, canvas)
 const canvasManager = new CanvasManager(config.dimension)
 const dragger = new Dragger
+const DOMCanvas = document.getElementById('canvas')
 
 
 /********************* Keyboard Input Handler ***************************************/
 const keyCodes = [32, 37, 38, 39, 40, 65, 68, 83, 87]
 
 document.body.onkeydown = (e) => {
-  if (keyCodes.includes(e.keyCode)) {
+  if (e.target.id !== "hex"){
+    if (keyCodes.includes(e.keyCode)) {
     canvasManager.handleMove(e)
-  } if (e.keyCode === 75){
+  } else if (e.keyCode === 75){
     canvasManager.resetMove()
     dragger.resetMove()
   }
+ }
 }
 /********************* Mouse Input Handler ***************************************/
 
 document.addEventListener('mousedown',  (e) => dragger.mouseDown(e))
 document.addEventListener('mouseup',   (e) => dragger.mouseUp(e))
 document.addEventListener('mousemove', (e) => dragger.mouseMove(e))
+document.addEventListener('click', (e) => handleClick(e))
 
 /******************* Sample Tile Setting***************************************/
 
