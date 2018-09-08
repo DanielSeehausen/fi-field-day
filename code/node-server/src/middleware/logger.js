@@ -1,6 +1,5 @@
 const fs = require('fs')
 
-console.log(process.cwd())
 const logStream = fs.createWriteStream('./code/node-server/logs/http-req.log', { flags: 'a' })
 const errStream = fs.createWriteStream('./code/node-server/logs/http-req-error.log', { flags: 'a' })
 
