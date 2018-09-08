@@ -7,9 +7,12 @@ let hex = document.getElementById('hex')
 
 colorForm.addEventListener('submit', (e) => {
   e.preventDefault()
-  console.log(hex.value)
+  if(hex.value[0] !== "#"){
+    hex.value = "#" + hex.value
+  }
   colorPicker.style.backgroundColor = hex.value
-  // colorPicker.style.outlineColor = invertColor(hex.value)
+  colorPicker.style.outlineColor = invertColor(hex.value)
+  hexColor = hex.value
   // console.log(hex.value)
 })
 
