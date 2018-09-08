@@ -90,8 +90,8 @@ hr {
   position: absolute;
   left: 10px;
   top: 100px;
-  height: 120px;
-  width: 120px;
+  height: 15%;
+  width: 15%;
   outline: solid;
   outline-color: white;
   z-index: 2;
@@ -101,9 +101,11 @@ hr {
 
 #pick {
   cursor: inherit;
+  font-size: 1.2em
 }
 #paint {
   cursor: inherit;
+  font-size: 1.2em
 }
 
 #Ytilter {
@@ -119,10 +121,12 @@ hr {
   position: absolute;
   bottom: 10px;
   left: 5px;
+  font-size: 1em
 }
 
 #hexSubmit{
   position: absolute;
   bottom: 10px;
   right: 5px;
+  font-size: 1em
 }
