@@ -93,6 +93,7 @@ hr {
   height: 120px;
   width: 120px;
   outline: solid;
+  outline-color: white;
   z-index: 2;
   text-align: center;
   background-color: rgb(0,0,0);
