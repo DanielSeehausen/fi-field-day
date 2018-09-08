@@ -51,16 +51,16 @@ class Dragger{
     if (e.movementX < -150) {
       this.Ytilter.style.transform = "perspective(800px) rotateY(-360deg)"
     }else if(e.movementX < -20){
-     this.Ytilter.style.transform = "perspective(800px) rotateY(-10deg)"
+     this.Ytilter.style.transform = "perspective(800px) rotateY(-7deg)"
     }else if (e.movementX < -5) {
-      this.Ytilter.style.transform = "perspective(800px) rotateY(-5deg)"
+      this.Ytilter.style.transform = "perspective(800px) rotateY(-3deg)"
     }else if (e.movementX > 150) {
       this.Ytilter.style.transform = "perspective(800px) rotateY(360deg)"
     }else if (e.movementX > 20) {
-      this.Ytilter.style.transform = "perspective(800px) rotateY(10deg)"
+      this.Ytilter.style.transform = "perspective(800px) rotateY(7deg)"
     }
     else if (e.movementX > 5) {
-      this.Ytilter.style.transform = "perspective(800px) rotateY(5deg)"
+      this.Ytilter.style.transform = "perspective(800px) rotateY(3deg)"
     } else {
       this.Ytilter.style.transform = "perspective(800px) rotateY(0deg)"
     }
